@@ -8,6 +8,7 @@ import OrderList from '@/components/pages/OrderList';
 import Coupon from '@/components/pages/Coupon';
 import CustomerOrder from '@/components/pages/CostomerOrders';
 import CustomerCheckout from '@/components/pages/CustomerCheckout';
+import ShoppingCart from '@/components/pages/ShoppingCart';
 
 Vue.use(Router);
 
@@ -50,8 +51,7 @@ export default new Router({
           name: 'Coupon',
           component: Coupon,
           meta: { requiresAuth: true },
-        },
-        
+        },   
       ]
     },
 

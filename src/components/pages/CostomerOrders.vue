@@ -4,7 +4,7 @@
     <loading :active.sync="isLoading"></loading>
 
     <div class="text-right">
-      <button class="btn btn-primary mt-4">查看購物車</button>
+      <router-link class="btn btn-primary mt-4" to="/shopping_cart">查看購物車</router-link>
     </div>
 
     <!-- BS card -->
@@ -22,7 +22,6 @@
             </h5>
             <p class="card-text">{{item.content}}</p>
             <div class="d-flex justify-content-between align-items-baseline">
-              <!-- <div class="h5">2,800 元</div> -->
               <div class="h5" v-if="!item.price">現在只要 {{item.origin_price}} 元</div>
               <del class="h6" v-if="item.price">原價 {{item.origin_price}} 元</del>
               <div class="h5" v-if="item.price">現在只要 {{item.price}} 元</div>
@@ -104,7 +103,7 @@
     <Pagination :pagination="pagination" @changePage="getProducts"></Pagination>
 
     <!-- Shopping cart -->
-    <div class="my-5 row justify-content-center">
+    <!-- <div class="my-5 row justify-content-center">
       <div class="my-5 row justify-content-center">
         <table class="table mt-4">
           <thead>
@@ -154,7 +153,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
 
     <!-- Order list -->
     <div class="my-5 row justify-content-center">
