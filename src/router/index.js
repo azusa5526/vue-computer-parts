@@ -1,13 +1,15 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-//import HelloWorld from '@/components/HelloWorld';
+
 import Login from '@/components/pages/Login';
 import Dashboard from '@/components/Dashboard';
+import FrontEnd from '@/components/FrontEnd';
 import Products from '@/components/pages/Products';
 import OrderList from '@/components/pages/OrderList';
 import Coupon from '@/components/pages/Coupon';
 import CustomerOrder from '@/components/pages/CostomerOrders';
 import CustomerCheckout from '@/components/pages/CustomerCheckout';
+
 
 Vue.use(Router);
 
@@ -17,17 +19,18 @@ export default new Router({
       path: '*',
       redirect: '/login',
     },
-    // {
-    //   path: '/',
-    //   name: 'HelloWorld',
-    //   component: HelloWorld,
-    //   meta: { requiresAuth: true },
-    // },
+
     {
       path: '/login',
       name: 'Login',
       component: Login,
     },
+    {
+      path: '/',
+      name: 'FrontEnd',
+      component: FrontEnd,
+    },
+
     {
       path: '/admin',
       name: 'Dashboard',

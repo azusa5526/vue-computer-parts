@@ -3,7 +3,7 @@
     <loading :active.sync="isLoading"></loading>
 
     <form class="form-signin" @submit.prevent="signin">
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <h1 class="h3 mb-3 font-weight-normal">VueComputerParts.com</h1>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" id="inputEmail" class="form-control" v-model="user.username" placeholder="Email address" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Login',
   data () {
     return {
       user: {
@@ -38,10 +38,10 @@ export default {
         vm.isLoading = true;
 
         this.$http.post(api, vm.user).then((response) => {
-            //console.log(response.data);
+            console.log(response.data);
             vm.isLoading = false;
             if(response.data.success) {
-                vm.$router.push('/admin/products');
+                vm.$router.push('/');
             };
         });
       }
