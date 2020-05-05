@@ -38,7 +38,7 @@ export default {
         vm.isLoading = true;
 
         this.$http.post(api, vm.user).then((response) => {
-            console.log(response.data);
+            //console.log(response.data);
             vm.isLoading = false;
             if(response.data.success) {
                 vm.$router.push('/');

@@ -1,233 +1,79 @@
 <template>
   <div>
-    <div
-      class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm"
-    >
-      <h5 class="my-0 mr-md-auto font-weight-normal">VCP.com</h5>
-      <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="#">Features</a>
-        <a class="p-2 text-dark" href="#">Enterprise</a>
-        <a class="p-2 text-dark" href="#">Support</a>
-        <a class="p-2 text-dark" href="#">Pricing</a>
-      </nav>
-      <a class="btn btn-outline-danger" href="#" v-if="is_login" @click="signOut">Sign out</a>
-      <router-link class="btn btn-outline-primary" to="/login" v-else>Sign in</router-link>
-    </div>
+    <FrontNavbar></FrontNavbar>
 
-    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-      <h1 class="display-4">Pricing</h1>
-      <p
-        class="lead"
-      >Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p>
-    </div>
-
-    <div class="container">
-      <div class="card-deck mb-3 text-center">
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Free</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">
-              $0
-              <small class="text-muted">/ mo</small>
-            </h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>10 users included</li>
-              <li>2 GB of storage</li>
-              <li>Email support</li>
-              <li>Help center access</li>
-            </ul>
-            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>
-          </div>
-        </div>
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Pro</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">
-              $15
-              <small class="text-muted">/ mo</small>
-            </h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>20 users included</li>
-              <li>10 GB of storage</li>
-              <li>Priority email support</li>
-              <li>Help center access</li>
-            </ul>
-            <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
-          </div>
-        </div>
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Enterprise</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">
-              $29
-              <small class="text-muted">/ mo</small>
-            </h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>30 users included</li>
-              <li>15 GB of storage</li>
-              <li>Phone and email support</li>
-              <li>Help center access</li>
-            </ul>
-            <button type="button" class="btn btn-lg btn-block btn-primary">Contact us</button>
-          </div>
+    <main role="main">
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Hello, world!</h1>
+          <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+          <p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a>
+          </p>
         </div>
       </div>
 
-      <footer class="pt-4 my-md-5 pt-md-5 border-top">
+      <div class="container">
+        <!-- Example row of columns -->
         <div class="row">
-          <div class="col-12 col-md">
-            <img
-              class="mb-2"
-              src="/docs/4.4/assets/brand/bootstrap-solid.svg"
-              alt
-              width="24"
-              height="24"
-            />
-            <small class="d-block mb-3 text-muted">&copy; 2017-2019</small>
+          <div class="col-md-4">
+            <h2>Computer Parts</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+            <p>
+              <a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
+            </p>
           </div>
-          <div class="col-6 col-md">
-            <h5>Features</h5>
-            <ul class="list-unstyled text-small">
-              <li>
-                <a class="text-muted" href="#">Cool stuff</a>
-              </li>
-              <li>
-                <a class="text-muted" href="#">Random feature</a>
-              </li>
-              <li>
-                <a class="text-muted" href="#">Team feature</a>
-              </li>
-              <li>
-                <a class="text-muted" href="#">Stuff for developers</a>
-              </li>
-              <li>
-                <a class="text-muted" href="#">Another one</a>
-              </li>
-              <li>
-                <a class="text-muted" href="#">Last time</a>
-              </li>
-            </ul>
+          <div class="col-md-4">
+            <h2>Desktop</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+            <p>
+              <a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
+            </p>
           </div>
-          <div class="col-6 col-md">
-            <h5>Resources</h5>
-            <ul class="list-unstyled text-small">
-              <li>
-                <a class="text-muted" href="#">Resource</a>
-              </li>
-              <li>
-                <a class="text-muted" href="#">Resource name</a>
-              </li>
-              <li>
-                <a class="text-muted" href="#">Another resource</a>
-              </li>
-              <li>
-                <a class="text-muted" href="#">Final resource</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-6 col-md">
-            <h5>About</h5>
-            <ul class="list-unstyled text-small">
-              <li>
-                <a class="text-muted" href="#">Team</a>
-              </li>
-              <li>
-                <a class="text-muted" href="#">Locations</a>
-              </li>
-              <li>
-                <a class="text-muted" href="#">Privacy</a>
-              </li>
-              <li>
-                <a class="text-muted" href="#">Terms</a>
-              </li>
-            </ul>
+          <div class="col-md-4">
+            <h2>Laptop</h2>
+            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+            <p>
+              <a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
+            </p>
           </div>
         </div>
-      </footer>
-    </div>
+
+        <hr />
+      </div>
+      <!-- /container -->
+    </main>
+
+    <footer class="container">
+      <p>&copy; Company 2017-2019</p>
+    </footer>
+
   </div>
 </template>
 
 <script >
+import FrontNavbar from "./FrontNavbar";
+import Sidebar from "./Sidebar";
+import FrontSidebar from "./FrontSidebar";
+
 export default {
-  components: {},
+  components: {
+    FrontNavbar,
+    Sidebar,
+    FrontSidebar
+  },
 
   data() {
-    return {
-      is_login: false
-    };
+    return {};
   },
 
-  methods: {
-    checkLoginStatus() {
-      const api = `${process.env.API_PATH}/api/user/check`;
-      const vm = this;
-
-      this.$http.post(api).then(response => {
-        //console.log(response.data);
-        vm.is_login = response.data.success;
-      });
-    },
-
-    signOut() {
-      const api = `${process.env.API_PATH}/logout`;
-      const vm = this;
-      this.$http.post(api).then(response => {
-        //console.log(response.data);
-        if (response.data.success) {
-          vm.is_login = false;
-          vm.$router.push("/login");
-        }
-      });
-    }
-  },
-
-  created() {
-    this.checkLoginStatus();
-  }
+  methods: {}
 };
 </script>
 
 <style scoped>
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.container {
-  max-width: 960px;
-}
-
-.pricing-header {
-  max-width: 700px;
-}
-
-.card-deck .card {
-  min-width: 220px;
-}
-
-.bd-placeholder-img {
-  font-size: 1.125rem;
-  text-anchor: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-@media (min-width: 768px) {
-  .bd-placeholder-img-lg {
-    font-size: 3.5rem;
-  }
+body {
+  padding-top: 3.5rem;
 }
 </style>
