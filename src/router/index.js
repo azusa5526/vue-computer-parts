@@ -36,6 +36,7 @@ export default new Router({
           name: 'Home',
           component: FrontHome,
         },
+
       ]
     },
 
