@@ -9,6 +9,7 @@ import OrderList from '@/components/pages/OrderList';
 import Coupon from '@/components/pages/Coupon';
 import CustomerOrder from '@/components/pages/CostomerOrders';
 import CustomerCheckout from '@/components/pages/CustomerCheckout';
+import FrontHome from '@/components/pages/FrontHome';
 
 
 Vue.use(Router);
@@ -29,6 +30,13 @@ export default new Router({
       path: '/',
       name: 'FrontEnd',
       component: FrontEnd,
+      children: [
+        {
+          path: 'home',
+          name: 'Home',
+          component: FrontHome,
+        },
+      ]
     },
 
     {
