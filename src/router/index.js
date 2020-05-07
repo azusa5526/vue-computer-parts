@@ -9,7 +9,8 @@ import OrderList from '@/components/pages/OrderList';
 import Coupon from '@/components/pages/Coupon';
 import CustomerOrder from '@/components/pages/CostomerOrders';
 import CustomerCheckout from '@/components/pages/CustomerCheckout';
-import FrontHome from '@/components/pages/FrontHome';
+import FrontHome from '@/components/FrontPages/FrontHome';
+import FrontProducts from '@/components/FrontPages/FrontProducts';
 
 
 Vue.use(Router);
@@ -35,6 +36,11 @@ export default new Router({
           path: 'home',
           name: 'Home',
           component: FrontHome,
+        },
+        {
+          path: 'frontProducts',
+          name: 'FrontProducts',
+          component: FrontProducts,
         },
 
       ]

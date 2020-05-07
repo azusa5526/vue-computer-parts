@@ -17,13 +17,11 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">
-              Home
-              <span class="sr-only">(current)</span>
-            </a>
+            <router-link class="nav-link" to="home">Home</router-link>
+              <!-- <span class="sr-only">(current)</span> -->
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Products</a>
+            <router-link class="nav-link" to="frontProducts">Products</router-link>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>

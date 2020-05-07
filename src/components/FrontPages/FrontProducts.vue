@@ -1,11 +1,13 @@
 <template>
-  <div>
+  <div class="container">
     <!-- vue-loading-overlay -->
     <loading :active.sync="isLoading"></loading>
 
     <div class="text-right">
       <button class="btn btn-primary mt-4">查看購物車</button>
     </div>
+
+    <div class="container col-9"></div>
 
     <!-- BS card -->
     <div class="row mt-4">
@@ -99,135 +101,10 @@
         </div>
       </div>
     </div>
-
+    
     <!-- BS pagination -->
     <Pagination :pagination="pagination" @changePage="getProducts"></Pagination>
 
-    <!-- Shopping cart -->
-    <div class="my-5 row justify-content-center">
-      <div class="my-5 row justify-content-center">
-        <table class="table mt-4">
-          <thead>
-            <tr>
-              <th>品名</th>
-              <th>數量/單位</th>
-              <th>單價/小計</th>
-              <th>移除商品</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr v-for="item in shoppingCart.carts" :key="item.id">
-              <td class="align-middle">
-                {{item.product.title}}
-                <div class="text-success" v-if="item.coupon">已套用優惠券 {{item.coupon.title}}</div>
-              </td>
-              <td class="align-middle">{{item.qty}} / {{item.product.unit}}</td>
-              <td class="align-middle">{{item.product.price}} / {{item.total}}</td>
-              <td>
-                <button
-                  type="button"
-                  class="btn btn-outline-danger btn-sm"
-                  @click="removeCartItem(item.id)"
-                >
-                  <i class="far fa-trash-alt"></i>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="3" class="text-right">總計</td>
-              <td class="text-right">{{shoppingCart.total}}</td>
-            </tr>
-            <tr v-if="shoppingCart.total !== shoppingCart.final_total">
-              <td colspan="3" class="text-right text-success">優惠價</td>
-              <td class="text-right text-success">{{shoppingCart.final_total}}</td>
-            </tr>
-          </tfoot>
-        </table>
-
-        <div class="input-group mb-3 input-group-sm">
-          <input type="text" class="form-control" placeholder="請輸入優惠碼" v-model="couponCode" />
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" @click="addCouponCode">套用優惠碼</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Order list -->
-    <div class="my-5 row justify-content-center">
-      <form class="col-md-6" @submit.prevent="createOrder">
-        <div class="form-group">
-          <label for="useremail">Email</label>
-          <input
-            type="email"
-            class="form-control"
-            name="email"
-            id="useremail"
-            v-validate="'required|email'"
-            v-model="form.user.email"
-            :class="{'is-invalid' : errors.has('tel')}"
-            placeholder="請輸入 Email"
-          />
-          <span class="text-danger" v-if="errors.has('email')">{{ errors.first('email') }}</span>
-        </div>
-
-        <div class="form-group">
-          <label for="username">收件人姓名</label>
-          <input
-            type="text"
-            class="form-control"
-            name="name"
-            id="username"
-            v-model="form.user.name"
-            v-validate="'required'"
-            :class="{'is-invalid' : errors.has('name')}"
-            placeholder="輸入姓名"
-          />
-          <span class="text-danger" v-if="errors.has('name')">姓名必須輸入</span>
-        </div>
-
-        <div class="form-group">
-          <label for="usertel">收件人電話</label>
-          <input
-            type="tel"
-            class="form-control"
-            name="tel"
-            id="usertel"
-            v-model="form.user.tel"
-            v-validate="'required'"
-            :class="{'is-invalid' : errors.has('tel')}"
-            placeholder="請輸入電話"
-          />
-          <span class="text-danger" v-if="errors.has('tel')">收件人電話必須輸入</span>
-        </div>
-
-        <div class="form-group">
-          <label for="useraddress">收件人地址</label>
-          <input
-            type="address"
-            class="form-control"
-            name="address"
-            id="useraddress"
-            v-model="form.user.address"
-            v-validate="'required'"
-            :class="{'is-invalid' : errors.has('address')}"
-            placeholder="請輸入地址"
-          />
-          <span class="text-danger" v-if="errors.has('address')">收件人地址必須輸入</span>
-        </div>
-
-        <div class="form-group">
-          <label for="useraddress">留言</label>
-          <textarea name id class="form-control" cols="30" rows="10" v-model="form.message"></textarea>
-        </div>
-        <div class="text-right">
-          <button class="btn btn-danger">送出訂單</button>
-        </div>
-      </form>
-    </div>
   </div>
 </template>
 

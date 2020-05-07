@@ -6,6 +6,7 @@
       <router-view></router-view>
 
       <footer class="container">
+        <hr>
         <p>&copy; Company 2017-2019</p>
       </footer>
     </main>
