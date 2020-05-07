@@ -41,7 +41,7 @@ export default {
             //console.log(response.data);
             vm.isLoading = false;
             if(response.data.success) {
-                vm.$router.push('/');
+                vm.$router.push('/home');
             };
         });
       }

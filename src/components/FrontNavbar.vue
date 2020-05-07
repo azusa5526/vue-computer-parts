@@ -21,7 +21,7 @@
               <!-- <span class="sr-only">(current)</span> -->
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="frontProducts">Products</router-link>
+            <router-link class="nav-link" to="frontProducts/all">All Products</router-link>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -34,11 +34,11 @@
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
-            >Dropdown</a>
+            >Products</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
+              <router-link class="dropdown-item" to="frontProducts/parts">Parts</router-link>
+              <router-link class="dropdown-item" to="frontProducts/desktop">Desktop</router-link>
+              <router-link class="dropdown-item" to="frontProducts/laptop">Laptop</router-link>
             </div>
           </li>
         </ul>
@@ -49,6 +49,7 @@
 
         <ul class="navbar-nav ml-3">
           <li class="nav-item">
+            <button class="btn btn-outline-info mr-2">ShoppingCart</button>
             <a class="btn btn-outline-danger" href="#" v-if="is_login" @click="signOut">Sign out</a>
             <router-link class="btn btn-outline-primary" to="/login" v-else>Sign in</router-link>
           </li>

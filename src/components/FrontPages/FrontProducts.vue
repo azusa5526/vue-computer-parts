@@ -3,15 +3,11 @@
     <!-- vue-loading-overlay -->
     <loading :active.sync="isLoading"></loading>
 
-    <div class="text-right">
-      <button class="btn btn-primary mt-4">查看購物車</button>
-    </div>
-
     <div class="container col-9"></div>
 
     <!-- BS card -->
     <div class="row mt-4">
-      <div class="col-md-4 mb-4" v-for="item in activatedList" :key="item.id">
+      <div class="col-md-4 mb-4" v-for="item in categoryFilterList" :key="item.id">
         <div class="card border-0 shadow-sm">
           <div
             style="height: 150px; background-size: cover; background-position: center"
@@ -101,10 +97,9 @@
         </div>
       </div>
     </div>
-    
+
     <!-- BS pagination -->
     <Pagination :pagination="pagination" @changePage="getProducts"></Pagination>
-
   </div>
 </template>
 
@@ -137,7 +132,9 @@ export default {
           address: ""
         },
         message: ""
-      }
+      },
+
+      categoryFilter: ""
     };
   },
 
@@ -268,15 +265,28 @@ export default {
   },
 
   computed: {
-    activatedList() {
+     activatedList() {
+       const vm = this;
+       return vm.products.filter(function(item) {
+         return item.is_enabled;
+       });
+     },
+
+    categoryFilterList() {
       const vm = this;
-      return vm.products.filter(function(item) {
-        return item.is_enabled;
-      });
-    }
+      if (vm.categoryFilter == "all") {
+        return vm.products;
+      } else {
+        return vm.products.filter(function(item) {
+          return item.category == vm.categoryFilter;
+        });
+      }
+    },
+
   },
 
   created() {
+    this.categoryFilter = this.$route.params.categoryFilter;
     this.getProducts();
     this.getCart();
   }

@@ -38,7 +38,7 @@ export default new Router({
           component: FrontHome,
         },
         {
-          path: 'frontProducts',
+          path: 'frontProducts/:categoryFilter',
           name: 'FrontProducts',
           component: FrontProducts,
         },
