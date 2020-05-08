@@ -1,39 +1,57 @@
 <template>
   <div>
-    <div class="jumbotron">
-      <div class="container">
-        <h1 class="display-3">Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p>
-          <a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a>
-        </p>
-      </div>
-    </div>
+    <loading :active.sync="isLoading"></loading>
 
-    <div class="container">
+    <FrontSlideshow></FrontSlideshow>
+
+    <div class="mt-4">
       <div class="row">
-        <div class="col-md-4">
-          <h2>Computer Parts</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-          <p>
-            <a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
-          </p>
-        </div>
-        <div class="col-md-4">
-          <h2>Desktop</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-          <p>
-            <a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
-          </p>
-        </div>
-        <div class="col-md-4">
-          <h2>Laptop</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p>
-            <a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
-          </p>
+        <div class="col-md-3">
+          <div class="card" style="width: 25rem;">
+            <img class="card-img-top" src="@/assets/img/ryzen.png" alt="Card image cap" />
+            <div class="card-body">
+              <p
+                class="card-text"
+              >Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import FrontSlideshow from "./FrontSlideshow";
+
+export default {
+  components: {
+    FrontSlideshow
+  },
+
+  data() {
+    return {
+      isLoading: false,
+      products: {}
+    };
+  },
+
+  methods: {
+    getProducts() {
+      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/products`;
+      const vm = this;
+      vm.isLoading = true;
+
+      this.$http.get(api).then(response => {
+        //console.log(response.data);
+        vm.isLoading = false;
+        vm.products = response.data.products;
+      });
+    }
+  },
+
+  created() {
+    this.getProducts();
+  }
+};
+</script>

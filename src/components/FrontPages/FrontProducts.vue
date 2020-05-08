@@ -274,6 +274,7 @@ export default {
 
     categoryFilterList() {
       const vm = this;
+      vm.categoryFilter = vm.$route.params.categoryFilter;
       if (vm.categoryFilter == "all") {
         return vm.products;
       } else {
@@ -286,7 +287,6 @@ export default {
   },
 
   created() {
-    this.categoryFilter = this.$route.params.categoryFilter;
     this.getProducts();
     this.getCart();
   }
