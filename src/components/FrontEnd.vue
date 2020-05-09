@@ -2,15 +2,16 @@
   <div>
     <FrontNavbar></FrontNavbar>
 
-    <main role="main">
-      <router-view></router-view>
-
+    <div class="container-fluid">
+      <main role="main">
+        <router-view></router-view>
+      </main>
+      
       <footer class="container">
-        <hr>
+        <hr />
         <p>&copy; Company 2017-2019</p>
       </footer>
-    </main>
-    
+    </div>
   </div>
 </template>
 
