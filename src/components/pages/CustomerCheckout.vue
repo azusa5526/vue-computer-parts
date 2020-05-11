@@ -29,6 +29,10 @@
         <table class="table">
           <tbody>
             <tr>
+              <th width="100">訂單號碼</th>
+              <td>{{order.id}}</td>
+            </tr>
+            <tr>
               <th width="100">Email</th>
               <td>{{order.user.email}}</td>
             </tr>

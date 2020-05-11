@@ -4,13 +4,15 @@
     <loading :active.sync="isLoading"></loading>
 
     <div class="row">
-      <div class="col-md-2">
-        <FrontSidebar></FrontSidebar>
-      </div>
+      <img src="@/assets/img/G14.png"/>
+    </div>
+
+    <div class="row mt-4">
+      <FrontSidebar></FrontSidebar>
 
       <div class="col-md-10">
         <!-- BS card -->
-        <div class="row mt-4">
+        <div class="row">
           <div class="col-md-3 mb-4" v-for="item in categoryFilterList" :key="item.id">
             <div class="card border-0 shadow-sm">
               <div
@@ -117,7 +119,7 @@ import FrontSidebar from "../FrontSidebar";
 export default {
   components: {
     Pagination,
-    FrontSidebar,
+    FrontSidebar
   },
 
   data() {
@@ -299,3 +301,12 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+img{
+	border: 0;
+	max-width: 100%;
+	height: auto;
+}
+
+</style>
