@@ -49,7 +49,8 @@
 
         <ul class="navbar-nav ml-3">
           <li class="nav-item">
-            <button class="btn btn-outline-info mr-2">ShoppingCart</button>
+            <router-link class="btn btn-outline-info mr-2" to="/shopping_Cart">ShoppingCart</router-link>
+            <!-- <button class="btn btn-outline-info mr-2">ShoppingCart</button> -->
             <a class="btn btn-outline-danger" href="#" v-if="is_login" @click="signOut">Sign out</a>
             <router-link class="btn btn-outline-primary" to="/login" v-else>Sign in</router-link>
           </li>

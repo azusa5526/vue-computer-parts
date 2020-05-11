@@ -11,6 +11,9 @@ import CustomerOrder from '@/components/pages/CostomerOrders';
 import CustomerCheckout from '@/components/pages/CustomerCheckout';
 import FrontHome from '@/components/FrontPages/FrontHome';
 import FrontProducts from '@/components/FrontPages/FrontProducts';
+import FrontShoppingCart from '@/components/FrontPages/FrontShoppingCart';
+import FrontOrderList from '@/components/FrontPages/FrontOrderList';
+import FrontCheckout from '@/components/FrontPages/FrontCheckout';
 
 
 Vue.use(Router);
@@ -42,6 +45,22 @@ export default new Router({
           name: 'FrontProducts',
           component: FrontProducts,
         },
+        {
+          path: 'shopping_cart',
+          name: 'shoppingCart',
+          component: FrontShoppingCart,
+        },
+        {
+          path: 'front_orderlist',
+          name: 'FrontOrderList',
+          component: FrontOrderList,
+        },
+        {
+          path: 'front_checkout/:orderId',
+          name: 'FrontCheckout',
+          component: FrontCheckout,
+        },
+
 
       ]
     },
