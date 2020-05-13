@@ -2,7 +2,15 @@
   <div class="row justify-content-center">
     <loading :active.sync="isLoading"></loading>
 
-    <div class="col-lg-7">
+    <div class="col-lg-7" v-if="status.cartHasItem">
+
+      <div>
+        <ul>
+          <li>step1</li>
+          <li>step2</li>
+          <li>step3</li>
+        </ul>
+      </div>
       <table class="table mt-4">
         <thead>
           <tr>
@@ -53,6 +61,10 @@
         <router-link class="btn btn-outline-danger mr-2" to="/front_orderlist">填寫購買資料</router-link>
       </div>
     </div>
+    <div class="mt-4" v-else>
+      <img src="@/assets/img/shoppingCart.jpg">
+    </div>
+
   </div>
 
   <!-- <div class="my-5 row justify-content-center">
@@ -124,7 +136,8 @@ export default {
       isLoading: false,
       status: {
         loadingItem: "",
-        itemAdding: false
+        itemAdding: false,
+        cartHasItem: false
       },
       pagination: {},
       shoppingCart: [],
@@ -240,7 +253,14 @@ export default {
         console.log(response.data);
         vm.isLoading = false;
         vm.shoppingCart = response.data.data;
+
+        if(vm.shoppingCart.carts.length == 0) {
+          vm.status.cartHasItem = false;
+        } else {
+          vm.status.cartHasItem = true;
+        }
       });
+      
     },
 
     createOrder() {
@@ -264,7 +284,8 @@ export default {
           vm.isLoading = false;
         }
       });
-    }
+    },
+
   },
 
   computed: {
@@ -282,3 +303,6 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+</style>

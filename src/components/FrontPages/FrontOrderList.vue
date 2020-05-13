@@ -72,9 +72,9 @@
         <button class="btn btn-outline-danger mr-2" @click.prevent="createOrder">送出訂單</button>
       </div>
 
-      <div class="text-right">
+      <!-- <div class="text-right">
         <button class="btn btn-danger">送出訂單</button>
-      </div>
+      </div> -->
     </form>
   </div>
 </template>

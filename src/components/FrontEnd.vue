@@ -2,8 +2,8 @@
   <div>
     <FrontNavbar></FrontNavbar>
 
-    <div class="container-fluid">
-      <main role="main">
+    <div class="container-fluid px-0" style="padding-top: 3.99rem;">
+      <main>
         <router-view></router-view>
       </main>
       
@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style scoped>
-body {
-  padding-top: 3.5rem;
-}
+
+
+
 </style>

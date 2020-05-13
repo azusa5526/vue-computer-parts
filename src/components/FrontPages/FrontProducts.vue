@@ -3,11 +3,11 @@
     <!-- vue-loading-overlay -->
     <loading :active.sync="isLoading"></loading>
 
-    <div class="row">
+    <div>
       <img src="@/assets/img/G14.png"/>
     </div>
 
-    <div class="row mt-4">
+    <div class="row mt-4 mx-2">
       <FrontSidebar></FrontSidebar>
 
       <div class="col-md-10">
@@ -303,10 +303,15 @@ export default {
 </script>
 
 <style scoped>
-img{
-	border: 0;
-	max-width: 100%;
-	height: auto;
+img {
+  width: 100%;
+  height: auto;
 }
+
+/* .inner {
+  display: block;
+  max-width: 100%;
+  height: auto;
+} */
 
 </style>

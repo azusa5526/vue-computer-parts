@@ -1,63 +1,64 @@
 <template>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">VueComputerParts</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">VueComputerParts</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarsExampleDefault"
-        aria-controls="navbarsExampleDefault"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <router-link class="nav-link" to="/home">Home</router-link>
-              <!-- <span class="sr-only">(current)</span> -->
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/frontProducts/all">All Products</router-link>
-          </li>
-          <li class="nav-item">
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <router-link class="nav-link" to="/home">Home</router-link>
+          <!-- <span class="sr-only">(current)</span> -->
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/Front_check_order">Check Order</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/frontProducts/all">All Products</router-link>
+        </li>
+        <!-- <li class="nav-item">
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="dropdown01"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >Products</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <router-link class="dropdown-item" to="/frontProducts/parts">Parts</router-link>
-              <router-link class="dropdown-item" to="/frontProducts/desktop">Desktop</router-link>
-              <router-link class="dropdown-item" to="/frontProducts/laptop">Laptop</router-link>
-            </div>
-          </li>
-        </ul>
-        <!-- <form class="form-inline my-2 my-lg-0">
+        </li>-->
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="dropdown01"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Products</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <router-link class="dropdown-item" to="/frontProducts/parts">Parts</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/desktop">Desktop</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/laptop">Laptop</router-link>
+          </div>
+        </li>
+      </ul>
+      <!-- <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form> -->
+      </form>-->
 
-        <ul class="navbar-nav ml-3">
-          <li class="nav-item">
-            <router-link class="btn btn-outline-info mr-2" to="/shopping_Cart">ShoppingCart</router-link>
-            <!-- <button class="btn btn-outline-info mr-2">ShoppingCart</button> -->
-            <a class="btn btn-outline-danger" href="#" v-if="is_login" @click="signOut">Sign out</a>
-            <router-link class="btn btn-outline-primary" to="/login" v-else>Sign in</router-link>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
+      <ul class="navbar-nav ml-3">
+        <li class="nav-item">
+          <router-link class="btn btn-outline-info mr-2" to="/shopping_Cart">ShoppingCart</router-link>
+          <!-- <button class="btn btn-outline-info mr-2">ShoppingCart</button> -->
+          <a class="btn btn-outline-danger" href="#" v-if="is_login" @click="signOut">Sign out</a>
+          <router-link class="btn btn-outline-primary" to="/login" v-else>Sign in</router-link>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </template>
 
 <script>
