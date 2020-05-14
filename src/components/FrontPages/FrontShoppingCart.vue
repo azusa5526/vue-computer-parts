@@ -2,16 +2,23 @@
   <div class="row justify-content-center">
     <loading :active.sync="isLoading"></loading>
 
-    <div class="col-lg-7" v-if="status.cartHasItem">
-
-      <div>
-        <ul>
-          <li>step1</li>
-          <li>step2</li>
-          <li>step3</li>
-        </ul>
+    <div class="container mt-4" v-if="status.cartHasItem">
+      <div class="flex-container">
+        <div class="flex-item active-flex-item">
+          <h3>01.</h3>
+          <h4>查看購買清單</h4>
+        </div>
+        <div class="flex-item">
+          <h3>02.</h3>
+          <h4>查看購買清單</h4>
+        </div>
+        <div class="flex-item">
+          <h3>03.</h3>
+          <h4>查看購買清單</h4>
+        </div>
       </div>
-      <table class="table mt-4">
+
+      <table class="table mt-4 col-12">
         <thead>
           <tr>
             <th></th>
@@ -62,9 +69,8 @@
       </div>
     </div>
     <div class="mt-4" v-else>
-      <img src="@/assets/img/shoppingCart.jpg">
+      <img src="@/assets/img/shoppingCart.jpg" />
     </div>
-
   </div>
 
   <!-- <div class="my-5 row justify-content-center">
@@ -254,13 +260,12 @@ export default {
         vm.isLoading = false;
         vm.shoppingCart = response.data.data;
 
-        if(vm.shoppingCart.carts.length == 0) {
+        if (vm.shoppingCart.carts.length == 0) {
           vm.status.cartHasItem = false;
         } else {
           vm.status.cartHasItem = true;
         }
       });
-      
     },
 
     createOrder() {
@@ -284,8 +289,7 @@ export default {
           vm.isLoading = false;
         }
       });
-    },
-
+    }
   },
 
   computed: {
@@ -304,5 +308,30 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+li {
+  list-style: none;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  height: 8rem;
+  padding: 15px;
+}
+
+.flex-item {
+  flex: 1;
+  background-color: rgb(243, 242, 242);
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 3rem;
+}
+
+.active-flex-item {
+  background-color: rgb(94, 94, 94);
+  color: white;
+}
 </style>
