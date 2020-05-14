@@ -51,7 +51,7 @@
 
       <ul class="navbar-nav ml-3">
         <li class="nav-item">
-          <router-link class="btn btn-outline-info mr-2" to="/shopping_Cart">ShoppingCart</router-link>
+          <router-link class="btn btn-outline-info mr-2" to="/shopping_cart/front_cart_items">ShoppingCart</router-link>
           <!-- <button class="btn btn-outline-info mr-2">ShoppingCart</button> -->
           <a class="btn btn-outline-danger" href="#" v-if="is_login" @click="signOut">Sign out</a>
           <router-link class="btn btn-outline-primary" to="/login" v-else>Sign in</router-link>

@@ -68,7 +68,7 @@
       </div>
 
       <div class="d-flex justify-content-between">
-        <router-link class="btn btn-outline-info mr-2" to="/shopping_cart">返回購物車</router-link>
+        <router-link class="btn btn-outline-info mr-2" to="front_cart_items">返回購物車</router-link>
         <button class="btn btn-outline-danger mr-2" @click.prevent="createOrder">送出訂單</button>
       </div>
 
@@ -225,7 +225,7 @@ export default {
           this.$http.post(api, { data: order }).then(response => {
             console.log(response.data, "訂單已建立");
             if (response.data.success) {
-              vm.$router.push(`/front_checkout/${response.data.orderId}`);
+              vm.$router.push(`front_checkout/${response.data.orderId}`);
             }
             //vm.getCart();
             vm.isLoading = false;
