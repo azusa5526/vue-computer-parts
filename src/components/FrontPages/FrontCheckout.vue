@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="col-12">
     <loading :active.sync="isLoading"></loading>
 
     <!-- Checkout -->
-    <div class="my-5 row justify-content-center">
-      <form class="col-md-6" @submit.prevent="payOrder">
+    <div class="my-5">
+      <form @submit.prevent="payOrder">
         <table class="table">
           <thead>
             <th>品名</th>

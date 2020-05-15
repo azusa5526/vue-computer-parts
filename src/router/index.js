@@ -16,6 +16,7 @@ import FrontOrderList from '@/components/FrontPages/FrontOrderList';
 import FrontCheckout from '@/components/FrontPages/FrontCheckout';
 import FrontCheckOrder from '@/components/FrontPages/FrontCheckOrder';
 import FrontCartItems from '@/components/FrontPages/FrontCartItems';
+import testPage from '@/components/FrontPages/testPage';
 
 
 Vue.use(Router);
@@ -67,7 +68,14 @@ export default new Router({
               name: 'FrontCheckout',
               component: FrontCheckout,
             },
+
           ]
+        },
+        
+        {
+          path: 'test_page',
+          name: 'testPage',
+          component: testPage,
         },
 
 

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <table class="table mt-4 col-12">
+  <div class="col-12">
+    <table class="table my-5">
         <thead>
           <tr>
             <th></th>

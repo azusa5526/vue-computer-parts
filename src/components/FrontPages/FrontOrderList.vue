@@ -1,7 +1,7 @@
 <template>
   <!-- Order list -->
-  <div class="my-5 row justify-content-center">
-    <form class="col-md-6">
+  <div class="my-5 col-12">
+    <form>
       <div class="form-group">
         <label for="useremail">Email</label>
         <input

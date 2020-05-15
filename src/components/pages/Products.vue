@@ -266,7 +266,7 @@ export default {
 
     openModal(isNew, item) {
       if (isNew) {
-        // this.tempProduct = {};
+        this.tempProduct = {};
         this.isNew = true;
       } else {
         this.tempProduct = Object.assign({}, item); //避免傳參考

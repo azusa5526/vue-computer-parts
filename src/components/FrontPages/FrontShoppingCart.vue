@@ -14,7 +14,7 @@
         </div>
         <div class="flex-item" :class="{'active-flex-item' : activedPage == 'FrontCheckout'}">
           <h3>03.</h3>
-          <h4>送出訂單</h4>
+          <h4>付款清單</h4>
         </div>
       </div>
 

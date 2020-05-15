@@ -4,7 +4,7 @@
     <loading :active.sync="isLoading"></loading>
 
     <div>
-      <img src="@/assets/img/G14.png"/>
+      <img src="@/assets/img/G14.png" />
     </div>
 
     <div class="row mt-4 mx-2">
@@ -144,7 +144,7 @@ export default {
         message: ""
       },
 
-      categoryFilter: ""
+      categoryFilter: "",
     };
   },
 
@@ -162,6 +162,7 @@ export default {
         vm.products = response.data.products;
         vm.pagination = response.data.pagination;
       });
+
     },
 
     //Single product
@@ -293,6 +294,7 @@ export default {
         });
       }
     }
+
   },
 
   created() {
@@ -313,5 +315,4 @@ img {
   max-width: 100%;
   height: auto;
 } */
-
 </style>
