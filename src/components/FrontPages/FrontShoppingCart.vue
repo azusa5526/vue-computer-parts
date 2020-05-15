@@ -4,72 +4,23 @@
 
     <div class="container mt-4" v-if="status.cartHasItem">
       <div class="flex-container">
-        <div class="flex-item active-flex-item">
+        <div class="flex-item" :class="{'active-flex-item' : activedPage == 'FrontCartItems'}">
           <h3>01.</h3>
-          <h4>查看購買清單</h4>
+          <h4>查看購物清單</h4>
         </div>
-        <div class="flex-item">
+        <div class="flex-item" :class="{'active-flex-item' : activedPage == 'FrontOrderList'}">
           <h3>02.</h3>
-          <h4>查看購買清單</h4>
+          <h4>填寫購買資料</h4>
         </div>
-        <div class="flex-item">
+        <div class="flex-item" :class="{'active-flex-item' : activedPage == 'FrontCheckout'}">
           <h3>03.</h3>
-          <h4>查看購買清單</h4>
+          <h4>送出訂單</h4>
         </div>
       </div>
 
       <router-view></router-view>
-
-      <!-- <table class="table mt-4 col-12">
-        <thead>
-          <tr>
-            <th></th>
-            <th>品名</th>
-            <th>數量/單位</th>
-            <th>單價/小計</th>
-            <th>移除商品</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr v-for="item in shoppingCart.carts" :key="item.id">
-            <td width="150px" class="align-middle">
-              <img :src="item.product.imageUrl" style="height: 150px;" />
-            </td>
-            <td class="align-middle">
-              {{item.product.title}}
-              <div class="text-success" v-if="item.coupon">已套用優惠券 {{item.coupon.title}}</div>
-            </td>
-            <td class="align-middle">{{item.qty}} / {{item.product.unit}}</td>
-            <td class="align-middle">{{item.product.price}} / {{item.total}}</td>
-            <td class="align-middle">
-              <button
-                type="button"
-                class="btn btn-outline-danger btn-sm"
-                @click="removeCartItem(item.id)"
-              >
-                <i class="far fa-trash-alt"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="4" class="text-right">總計</td>
-            <td class="text-right">{{shoppingCart.total}}</td>
-          </tr>
-          <tr v-if="shoppingCart.total !== shoppingCart.final_total">
-            <td colspan="3" class="text-right text-success">優惠價</td>
-            <td class="text-right text-success">{{shoppingCart.final_total}}</td>
-          </tr>
-        </tfoot>
-      </table>
-
-      <div class="d-flex justify-content-between">
-        <router-link class="btn btn-outline-info mr-2" to="/frontProducts/all">繼續選購</router-link>
-        <router-link class="btn btn-outline-danger mr-2" to="/front_orderlist">填寫購買資料</router-link>
-      </div> -->
     </div>
+
     <div class="mt-4" v-else>
       <img src="@/assets/img/shoppingCart.jpg" />
     </div>
@@ -146,7 +97,8 @@ export default {
       status: {
         loadingItem: "",
         itemAdding: false,
-        cartHasItem: false
+        cartHasItem: false,
+        topProgress: '',
       },
       pagination: {},
       shoppingCart: [],
@@ -159,7 +111,9 @@ export default {
           address: ""
         },
         message: ""
-      }
+      },
+      activePage: this.$route.name,
+
     };
   },
 
@@ -293,6 +247,13 @@ export default {
     //     }
     //   });
     // }
+  },
+
+  computed: {
+    activedPage() {
+      const vm = this;
+      return this.$route.name;
+    }
   },
 
   created() {
