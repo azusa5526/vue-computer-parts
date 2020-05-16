@@ -7,13 +7,20 @@
       <img src="@/assets/img/G14.png" />
     </div>
 
+    <input type="checkbox" id="cpu" value="cpu" v-model="productsFilter" />
+    <label for="cpu">cpu</label>
+    <input type="checkbox" id="intel" value="intel" v-model="productsFilter" />
+    <label for="intel">intel</label>
+    <input type="checkbox" id="amd" value="amd" v-model="productsFilter" />
+    <label for="amd">amd</label>
+
     <div class="row mt-4 mx-2">
       <FrontSidebar></FrontSidebar>
 
       <div class="col-md-10">
         <!-- BS card -->
         <div class="row">
-          <div class="col-md-3 mb-4" v-for="item in categoryFilterList" :key="item.id">
+          <div class="col-md-3 mb-4" v-for="(item, index) in productsFilterList" :key="index">
             <div class="card border-0 shadow-sm">
               <div
                 style="height: 150px; background-size: cover; background-position: center"
@@ -32,6 +39,7 @@
                   <div class="h5" v-if="item.price">現在只要 {{item.price}} 元</div>
                 </div>
               </div>
+
               <div class="card-footer d-flex">
                 <button
                   type="button"
@@ -145,6 +153,7 @@ export default {
       },
 
       categoryFilter: "",
+      productsFilter: []
     };
   },
 
@@ -162,7 +171,6 @@ export default {
         vm.products = response.data.products;
         vm.pagination = response.data.pagination;
       });
-
     },
 
     //Single product
@@ -272,15 +280,6 @@ export default {
           vm.isLoading = false;
         }
       });
-    }
-  },
-
-  computed: {
-    activatedList() {
-      const vm = this;
-      return vm.products.filter(function(item) {
-        return item.is_enabled;
-      });
     },
 
     categoryFilterList() {
@@ -290,11 +289,57 @@ export default {
         return vm.products;
       } else {
         return vm.products.filter(function(item) {
-          return item.category == vm.categoryFilter;
+          return item.category.indexOf(vm.categoryFilter) !== -1;
         });
       }
     }
+  },
 
+  computed: {
+    // activatedList() {
+    //   const vm = this;
+    //   return vm.products.filter(function(item) {
+    //     return item.is_enabled;
+    //   });
+    // },
+
+    // categoryFilterList() {
+    //   const vm = this;
+    //   vm.categoryFilter = vm.$route.params.categoryFilter;
+    //   if (vm.categoryFilter == "all") {
+    //     return vm.products;
+    //   } else {
+    //     return vm.products.filter(function(item) {
+    //       return item.category == vm.categoryFilter;
+    //     });
+    //   }
+    // },
+
+    productsFilterList() {
+      const vm = this;
+      let tempProducts = vm.categoryFilterList();
+      console.log("productFilterList before > tempProduct", tempProducts);
+
+      if (vm.productsFilter.length === 0) {
+        return tempProducts;
+      } else {
+        // for (let filter of vm.productsFilter) {
+        //   tempProducts = tempProducts.concat(
+        //     tempProducts.filter(function(item) {
+        //       return item.category.indexOf(filter) !== -1;
+        //     })
+        //   );
+        // }
+        for (let filter of vm.productsFilter) {
+          tempProducts = tempProducts.filter(function(item) {
+              return item.category.indexOf(filter) !== -1;
+            })
+
+        }
+      }
+      console.log("productFilterList after > tempProduct", tempProducts);
+      return tempProducts;
+    }
   },
 
   created() {
