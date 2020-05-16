@@ -1,12 +1,13 @@
 <template>
   <div>
+
     <input type="checkbox" id="cpu" value="cpu" v-model="sideFilter" />
     <label for="cpu">cpu</label>
     <input type="checkbox" id="intel" value="intel" v-model="sideFilter" />
     <label for="intel">intel</label>
 
     <div class="row">
-      <div class="col-md-3 mb-4" v-for="item in sideFilterList" :key="item.id">
+      <div class="col-md-3 mb-4" v-for="(item, index) in sideFilterList" :key="index">
         <div class="card border-0 shadow-sm">
           <div
             style="height: 150px; background-size: cover; background-position: center"
@@ -36,7 +37,7 @@ export default {
   data() {
     return {
       sideFilter: [],
-      products: [],
+      products: []
     };
   },
 
@@ -56,13 +57,15 @@ export default {
       const vm = this;
       let tempProducts = [];
 
-      if(vm.sideFilter.length === 0) {
+      if (vm.sideFilter.length === 0) {
         return vm.products;
       } else {
-        for(let rule of vm.sideFilter) {
-          tempProducts = tempProducts.concat(vm.products.filter(function(item) {
-            return item.category.indexOf(rule) !== -1;
-          }));
+        for (let rule of vm.sideFilter) {
+          tempProducts = tempProducts.concat(
+            vm.products.filter(function(item) {
+              return item.category.indexOf(rule) !== -1;
+            })
+          );
         }
       }
       return tempProducts;
