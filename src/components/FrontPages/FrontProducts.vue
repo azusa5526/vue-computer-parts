@@ -6,16 +6,131 @@
     <div>
       <img src="@/assets/img/G14.png" />
     </div>
-
-    <input type="checkbox" id="cpu" value="cpu" v-model="productsFilter" />
-    <label for="cpu">cpu</label>
-    <input type="checkbox" id="intel" value="intel" v-model="productsFilter" />
-    <label for="intel">intel</label>
-    <input type="checkbox" id="amd" value="amd" v-model="productsFilter" />
-    <label for="amd">amd</label>
-
+    
     <div class="row mt-4 mx-2">
-      <FrontSidebar></FrontSidebar>
+      <!-- <FrontSidebar></FrontSidebar> -->
+
+      <nav class="col-md-2 d-none d-md-block bg-light">
+        <!-- <div class="form-group">
+          <legend>產品分類</legend>
+          <div>
+            <input type="checkbox" id="cpu" value="cpu" v-model="productsFilter" />
+            <label for="cpu">CPU</label>
+          </div>
+          <div>
+            <input type="checkbox" id="motherboard" value="motherboard" v-model="productsFilter" />
+            <label for="motherboard">Motherboard</label>
+          </div>
+          <div>
+            <input type="checkbox" id="ram" value="ram" v-model="productsFilter" />
+            <label for="ram">RAM</label>
+          </div>
+        </div> -->
+
+        <!-- BS Collapse -->
+        <div id="accordion">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                  <input
+                    type="checkbox"
+                    data-toggle="collapse"
+                    data-target="#collapseOne"
+                    aria-controls="collapseOne"
+                    value="cpu"
+                    id="cpu"
+                    v-model="productsFilter"
+
+                  />
+                  <label
+                    for="cpu"
+                    data-toggle="collapse"
+                    data-target="#collapseOne"
+
+                  >CPU</label>
+              </h5>
+            </div>
+
+            <div
+              id="collapseOne"
+              class="collapse"
+              aria-labelledby="headingOne"
+              data-parent="#accordion"
+            >
+              <div class="card-body">
+                <div>
+                  <input type="checkbox" id="intel" value="intel" v-model="productsFilter" />
+                  <label for="intel">intel</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="amd" value="amd" v-model="productsFilter" />
+                  <label for="amd">amd</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <input
+                    type="checkbox"
+                    data-toggle="collapse"
+                    data-target="#collapseTwo"
+                    aria-controls="collapseTwo"
+                    value="motherboard"
+                    id="motherboard"
+                    v-model="productsFilter"
+
+                  />
+                  <label
+                    for="motherboard"
+                    data-toggle="collapse"
+                    data-target="#collapseTwo"
+
+                  >Motherboard</label>
+              </h5>
+            </div>
+            <div
+              id="collapseTwo"
+              class="collapse"
+              aria-labelledby="headingTwo"
+              data-parent="#accordion"
+            >
+              <div class="card-body">
+                <div>
+                  <input type="checkbox" id="asus" value="asus" v-model="productsFilter" />
+                  <label for="asus">Asus</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button
+                  class="btn btn-link collapsed"
+                  data-toggle="collapse"
+                  data-target="#collapseThree"
+                  aria-expanded="false"
+                  aria-controls="collapseThree"
+                >Collapsible Group Item #3</button>
+              </h5>
+            </div>
+            <div
+              id="collapseThree"
+              class="collapse"
+              aria-labelledby="headingThree"
+              data-parent="#accordion"
+            >
+              <div
+                class="card-body"
+              >Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div>
+            </div>
+          </div>
+        </div>
+      </nav>
 
       <div class="col-md-10">
         <!-- BS card -->
@@ -153,7 +268,7 @@ export default {
       },
 
       categoryFilter: "",
-      productsFilter: []
+      productsFilter: [],
     };
   },
 
@@ -198,7 +313,7 @@ export default {
 
       this.$http.post(api, { data: cart }).then(response => {
         if (response.data.success) {
-          console.log(response.data);
+          //console.log(response.data);
           vm.status.itemAdding = false;
           vm.getCart();
           $("#productModal").modal("hide");
@@ -289,8 +404,19 @@ export default {
         return vm.products;
       } else {
         return vm.products.filter(function(item) {
+          //console.log('item.category :', item.category, '  vm.categoryFilter :', vm.categoryFilter);
+          //console.log(item.category.indexOf(vm.categoryFilter) !== -1);
           return item.category.indexOf(vm.categoryFilter) !== -1;
         });
+      }
+    },
+
+    pushToProductsFilter(rule) {
+      const vm = this;
+      if (vm.productsFilter.indexOf(rule) !== -1) {
+        vm.productsFilter.splice(rule, 1);
+      } else {
+        vm.productsFilter.push(rule);
       }
     }
   },
@@ -318,7 +444,7 @@ export default {
     productsFilterList() {
       const vm = this;
       let tempProducts = vm.categoryFilterList();
-      console.log("productFilterList before > tempProduct", tempProducts);
+      //console.log("productFilterList before > tempProduct", vm.categoryFilterList());
 
       if (vm.productsFilter.length === 0) {
         return tempProducts;
@@ -332,12 +458,11 @@ export default {
         // }
         for (let filter of vm.productsFilter) {
           tempProducts = tempProducts.filter(function(item) {
-              return item.category.indexOf(filter) !== -1;
-            })
-
+            return item.category.indexOf(filter) !== -1;
+          });
         }
       }
-      console.log("productFilterList after > tempProduct", tempProducts);
+      //console.log("productFilterList after > tempProduct", tempProducts);
       return tempProducts;
     }
   },
