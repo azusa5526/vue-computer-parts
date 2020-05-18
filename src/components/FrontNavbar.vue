@@ -25,9 +25,6 @@
         <li class="nav-item">
           <router-link class="nav-link" to="/frontProducts/all">All Products</router-link>
         </li>
-        <!-- <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>-->
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -38,21 +35,19 @@
             aria-expanded="false"
           >Products</a>
           <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <router-link class="dropdown-item" to="/frontProducts/parts">Parts</router-link>
-            <router-link class="dropdown-item" to="/frontProducts/desktop">Desktop</router-link>
-            <router-link class="dropdown-item" to="/frontProducts/laptop">Laptop</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/cpu">CPU</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/motherboard">Motherboard</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/ram">RAM</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/graphic_card">Graphic Card</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/psu">PSU</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/case">Case</router-link>
           </div>
         </li>
       </ul>
-      <!-- <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>-->
 
       <ul class="navbar-nav ml-3">
         <li class="nav-item">
           <router-link class="btn btn-outline-info mr-2" to="/shopping_cart/front_cart_items">ShoppingCart</router-link>
-          <!-- <button class="btn btn-outline-info mr-2">ShoppingCart</button> -->
           <a class="btn btn-outline-danger" href="#" v-if="is_login" @click="signOut">Sign out</a>
           <router-link class="btn btn-outline-primary" to="/login" v-else>Sign in</router-link>
         </li>

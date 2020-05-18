@@ -72,9 +72,6 @@
         <button class="btn btn-outline-danger mr-2" @click.prevent="createOrder">送出訂單</button>
       </div>
 
-      <!-- <div class="text-right">
-        <button class="btn btn-danger">送出訂單</button>
-      </div> -->
     </form>
   </div>
 </template>
@@ -114,8 +111,6 @@ export default {
 
   methods: {
     getProducts(page = 1) {
-      //default page 1
-      //console.log(process.env.API_PATH, process.env.CUSTOM_PATH);
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/products?page=${page}`;
       const vm = this;
       vm.isLoading = true;

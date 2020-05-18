@@ -6,65 +6,39 @@
     <div>
       <img src="@/assets/img/G14.png" />
     </div>
-    
+
     <div class="row mt-4 mx-2">
       <!-- <FrontSidebar></FrontSidebar> -->
-
+      
       <nav class="col-md-2 d-none d-md-block bg-light">
-        <!-- <div class="form-group">
-          <legend>產品分類</legend>
-          <div>
-            <input type="checkbox" id="cpu" value="cpu" v-model="productsFilter" />
-            <label for="cpu">CPU</label>
-          </div>
-          <div>
-            <input type="checkbox" id="motherboard" value="motherboard" v-model="productsFilter" />
-            <label for="motherboard">Motherboard</label>
-          </div>
-          <div>
-            <input type="checkbox" id="ram" value="ram" v-model="productsFilter" />
-            <label for="ram">RAM</label>
-          </div>
-        </div> -->
-
-        <!-- BS Collapse -->
         <div id="accordion">
           <div class="card">
             <div class="card-header" id="headingOne">
               <h5 class="mb-0">
-                  <input
-                    type="checkbox"
-                    data-toggle="collapse"
-                    data-target="#collapseOne"
-                    aria-controls="collapseOne"
-                    value="cpu"
-                    id="cpu"
-                    v-model="productsFilter"
-
-                  />
-                  <label
-                    for="cpu"
-                    data-toggle="collapse"
-                    data-target="#collapseOne"
-
-                  >CPU</label>
+                <button
+                  class="btn btn-link"
+                  data-toggle="collapse"
+                  data-target="#collapseCpuBrand"
+                  aria-expanded="true"
+                  aria-controls="collapseCpuBrand"
+                >CPU Brand</button>
               </h5>
             </div>
 
             <div
-              id="collapseOne"
-              class="collapse"
+              id="collapseCpuBrand"
+              class="collapse show"
               aria-labelledby="headingOne"
               data-parent="#accordion"
             >
               <div class="card-body">
                 <div>
                   <input type="checkbox" id="intel" value="intel" v-model="productsFilter" />
-                  <label for="intel">intel</label>
+                  <label for="intel">Intel</label>
                 </div>
                 <div>
                   <input type="checkbox" id="amd" value="amd" v-model="productsFilter" />
-                  <label for="amd">amd</label>
+                  <label for="amd">AMD</label>
                 </div>
               </div>
             </div>
@@ -73,22 +47,13 @@
           <div class="card">
             <div class="card-header" id="headingTwo">
               <h5 class="mb-0">
-                <input
-                    type="checkbox"
-                    data-toggle="collapse"
-                    data-target="#collapseTwo"
-                    aria-controls="collapseTwo"
-                    value="motherboard"
-                    id="motherboard"
-                    v-model="productsFilter"
-
-                  />
-                  <label
-                    for="motherboard"
-                    data-toggle="collapse"
-                    data-target="#collapseTwo"
-
-                  >Motherboard</label>
+                <button
+                  class="btn btn-link collapsed"
+                  data-toggle="collapse"
+                  data-target="#collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="collapseTwo"
+                >Socket type</button>
               </h5>
             </div>
             <div
@@ -99,34 +64,91 @@
             >
               <div class="card-body">
                 <div>
-                  <input type="checkbox" id="asus" value="asus" v-model="productsFilter" />
-                  <label for="asus">Asus</label>
+                  <input
+                    type="checkbox"
+                    id="socket-1151"
+                    value="socket-1151"
+                    v-model="productsFilter"
+                  />
+                  <label for="socket-1151">Socket-1151</label>
+                </div>
+                <div>
+                  <input
+                    type="checkbox"
+                    id="socket-AM4"
+                    value="socket-AM4"
+                    v-model="productsFilter"
+                  />
+                  <label for="socket-AM4">Socket-AM4</label>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="card">
-            <div class="card-header" id="headingThree">
-              <h5 class="mb-0">
-                <button
-                  class="btn btn-link collapsed"
-                  data-toggle="collapse"
-                  data-target="#collapseThree"
-                  aria-expanded="false"
-                  aria-controls="collapseThree"
-                >Collapsible Group Item #3</button>
-              </h5>
+        <div class="card">
+          <div class="card-header">
+            <h5 class="mb-0">
+              <button
+                class="btn btn-link"
+                data-toggle="collapse"
+                data-target="#collapseMohterboardBrand"
+                aria-expanded="true"
+                aria-controls="collapseMohterboardBrand"
+              >Motherboard Brand</button>
+            </h5>
+          </div>
+
+          <div id="collapseMohterboardBrand" class="collapse show" data-parent="#accordion">
+            <div class="card-body">
+              <div>
+                <input type="checkbox" id="asus" value="asus" v-model="productsFilter" />
+                <label for="asus">ASUS</label>
+              </div>
+              <div>
+                <input type="checkbox" id="msi" value="msi" v-model="productsFilter" />
+                <label for="msi">MSI</label>
+              </div>
+              <div>
+                <input type="checkbox" id="asrock" value="asrock" v-model="productsFilter" />
+                <label for="asrock">AsRock</label>
+              </div>
             </div>
-            <div
-              id="collapseThree"
-              class="collapse"
-              aria-labelledby="headingThree"
-              data-parent="#accordion"
-            >
-              <div
-                class="card-body"
-              >Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h5 class="mb-0">
+              <button
+                class="btn btn-link collapsed"
+                data-toggle="collapse"
+                data-target="#collapseMotherboardSocket"
+                aria-expanded="false"
+                aria-controls="collapseMotherboardSocket"
+              >Motherboard Socket</button>
+            </h5>
+          </div>
+          <div id="collapseMotherboardSocket" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+              <div>
+                <input
+                  type="checkbox"
+                  id="motherboardSocket-1151"
+                  value="motherboardSocket-1151"
+                  v-model="productsFilter"
+                />
+                <label for="motherboardSocket-1151">Socket-1151</label>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  id="motherboardSocket-AM4"
+                  value="motherboardSocket-AM4"
+                  v-model="productsFilter"
+                />
+                <label for="motherboardSocket-AM4">Socket-AM4</label>
+              </div>
             </div>
           </div>
         </div>
@@ -274,8 +296,6 @@ export default {
 
   methods: {
     getProducts(page = 1) {
-      //default page 1
-      //console.log(process.env.API_PATH, process.env.CUSTOM_PATH);
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/products?page=${page}`;
       const vm = this;
       vm.isLoading = true;
@@ -325,43 +345,6 @@ export default {
       });
     },
 
-    removeCartItem(id) {
-      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/cart/${id}`;
-      const vm = this;
-      vm.isLoading = true;
-
-      this.$http.delete(api).then(response => {
-        if (response.data.success) {
-          console.log(response.data);
-          vm.getCart();
-          vm.isLoading = false;
-        } else {
-          console.log("fail to delete item to cart");
-          vm.isLoading = false;
-        }
-      });
-    },
-
-    addCouponCode() {
-      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/coupon`;
-      const vm = this;
-      const coupon = {
-        code: vm.couponCode
-      };
-      vm.isLoading = true;
-
-      this.$http.post(api, { data: coupon }).then(response => {
-        if (response.data.success) {
-          console.log(response.data);
-          vm.getCart();
-          vm.isLoading = false;
-        } else {
-          console.log(response.data);
-          vm.isLoading = false;
-        }
-      });
-    },
-
     getCart() {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/cart`;
       const vm = this;
@@ -374,29 +357,6 @@ export default {
       });
     },
 
-    createOrder() {
-      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/order`;
-      const vm = this;
-      const order = vm.form;
-      vm.isLoading = true;
-
-      this.$validator.validate().then(valid => {
-        if (valid) {
-          this.$http.post(api, { data: order }).then(response => {
-            console.log(response.data, "訂單已建立");
-            if (response.data.success) {
-              vm.$router.push(`/customer_checkout/${response.data.orderId}`);
-            }
-            //vm.getCart();
-            vm.isLoading = false;
-          });
-        } else {
-          console.log("尚有欄位未填寫");
-          vm.isLoading = false;
-        }
-      });
-    },
-
     categoryFilterList() {
       const vm = this;
       vm.categoryFilter = vm.$route.params.categoryFilter;
@@ -404,21 +364,11 @@ export default {
         return vm.products;
       } else {
         return vm.products.filter(function(item) {
-          //console.log('item.category :', item.category, '  vm.categoryFilter :', vm.categoryFilter);
-          //console.log(item.category.indexOf(vm.categoryFilter) !== -1);
           return item.category.indexOf(vm.categoryFilter) !== -1;
         });
       }
     },
 
-    pushToProductsFilter(rule) {
-      const vm = this;
-      if (vm.productsFilter.indexOf(rule) !== -1) {
-        vm.productsFilter.splice(rule, 1);
-      } else {
-        vm.productsFilter.push(rule);
-      }
-    }
   },
 
   computed: {
@@ -429,40 +379,19 @@ export default {
     //   });
     // },
 
-    // categoryFilterList() {
-    //   const vm = this;
-    //   vm.categoryFilter = vm.$route.params.categoryFilter;
-    //   if (vm.categoryFilter == "all") {
-    //     return vm.products;
-    //   } else {
-    //     return vm.products.filter(function(item) {
-    //       return item.category == vm.categoryFilter;
-    //     });
-    //   }
-    // },
-
     productsFilterList() {
       const vm = this;
       let tempProducts = vm.categoryFilterList();
-      //console.log("productFilterList before > tempProduct", vm.categoryFilterList());
 
       if (vm.productsFilter.length === 0) {
         return tempProducts;
       } else {
-        // for (let filter of vm.productsFilter) {
-        //   tempProducts = tempProducts.concat(
-        //     tempProducts.filter(function(item) {
-        //       return item.category.indexOf(filter) !== -1;
-        //     })
-        //   );
-        // }
         for (let filter of vm.productsFilter) {
           tempProducts = tempProducts.filter(function(item) {
             return item.category.indexOf(filter) !== -1;
           });
         }
       }
-      //console.log("productFilterList after > tempProduct", tempProducts);
       return tempProducts;
     }
   },
@@ -479,10 +408,4 @@ img {
   width: 100%;
   height: auto;
 }
-
-/* .inner {
-  display: block;
-  max-width: 100%;
-  height: auto;
-} */
 </style>
