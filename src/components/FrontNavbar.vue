@@ -35,12 +35,12 @@
             aria-expanded="false"
           >Products</a>
           <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <router-link class="dropdown-item" to="/frontProducts/cpu">CPU</router-link>
-            <router-link class="dropdown-item" to="/frontProducts/motherboard">Motherboard</router-link>
-            <router-link class="dropdown-item" to="/frontProducts/ram">RAM</router-link>
-            <router-link class="dropdown-item" to="/frontProducts/graphic_card">Graphic Card</router-link>
-            <router-link class="dropdown-item" to="/frontProducts/psu">PSU</router-link>
-            <router-link class="dropdown-item" to="/frontProducts/case">Case</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/cpu" @click.native="clearSideFilter()">CPU</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/motherboard" @click.native="clearSideFilter()">Motherboard</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/ram" @click.native="clearSideFilter()">RAM</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/graphic_card" @click.native="clearSideFilter()">Graphic Card</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/psu" @click.native="clearSideFilter()">PSU</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/case" @click.native="clearSideFilter()">Case</router-link>
           </div>
         </li>
       </ul>
@@ -70,7 +70,7 @@ export default {
       const vm = this;
 
       this.$http.post(api).then(response => {
-        console.log("checkLoginStatus", response.data);
+        //console.log("checkLoginStatus", response.data);
         vm.is_login = response.data.success;
       });
     },
@@ -85,7 +85,14 @@ export default {
           vm.$router.push("/login");
         }
       });
-    }
+    },
+
+    clearSideFilter() {
+      const vm = this;
+      //console.log('navbar clear active');
+      vm.$bus.$emit('clearProductFilter');
+    },
+
   },
 
   created() {
