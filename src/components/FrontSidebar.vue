@@ -262,7 +262,7 @@ export default {
   },
 
   created() {
-    this.$on('clearFilter', this.clearProdsFilter);
+    this.$on('clearFilter');
   }
 
 };

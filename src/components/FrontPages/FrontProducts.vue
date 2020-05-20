@@ -464,7 +464,7 @@ export default {
       //console.log('FP update active');
       //console.log('prodsFilter', prodsFilter);
       const vm = this;
-      vm.productsFilter = prodsFilter;
+      vm.productsFilter = prodsFilter;  //prodsFilter為FrontSidebar傳入值
     },
 
   },
