@@ -240,7 +240,6 @@ export default {
       //console.log('prodsFilter in FS', vm.prodsFilter)
       //console.log("prodsFilter watch active");
     },
-
   },
 
   methods: {
@@ -261,6 +260,10 @@ export default {
     },
 
   },
+
+  created() {
+    this.$on('clearFilter', this.clearProdsFilter);
+  }
 
 };
 </script>

@@ -8,7 +8,7 @@
     </div>
 
     <div class="row mt-4 mx-2">
-      <FrontSidebar :cateFilter="categoryFilter" :prodFilter="productsFilter" @filterUpdate="updataProductsFilter"></FrontSidebar>
+      <FrontSidebar ref="frontSidebarComponent" :cateFilter="categoryFilter" :prodFilter="productsFilter" @filterUpdate="updateProductsFilter"></FrontSidebar>
 
       <!-- <nav class="col-md-2 d-none d-md-block bg-light">
         <div id="accordion">
@@ -375,7 +375,6 @@ export default {
 
       categoryFilter: "",
       productsFilter: [],
-      prodFilter: [],
     };
   },
 
@@ -457,11 +456,11 @@ export default {
     clearProductsFilter() {
       const vm = this;
       vm.productsFilter = [];
-      vm.$$refs.child.clearProdsFilter();
+      vm.$refs.frontSidebarComponent.clearProdsFilter();  //刪除Sidebar內部的filter
       //console.log('clearProductFilter active');
     },
 
-    updataProductsFilter(prodsFilter) {
+    updateProductsFilter(prodsFilter) {
       //console.log('FP update active');
       //console.log('prodsFilter', prodsFilter);
       const vm = this;
