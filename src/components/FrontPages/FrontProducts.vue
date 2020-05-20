@@ -8,9 +8,9 @@
     </div>
 
     <div class="row mt-4 mx-2">
-      <!-- <FrontSidebar></FrontSidebar> -->
+      <FrontSidebar :cateFilter="categoryFilter" @filterUpdate="updataProductsFilter"></FrontSidebar>
 
-      <nav class="col-md-2 d-none d-md-block bg-light">
+      <!-- <nav class="col-md-2 d-none d-md-block bg-light">
         <div id="accordion">
           <div class="card" v-if="categoryFilter === 'cpu'">
             <div class="card-header" id="headingOne">
@@ -238,7 +238,7 @@
             </div>
           </div>
         </div>
-      </nav>
+      </nav> -->
 
       <div class="col-md-10">
         <!-- BS card -->
@@ -348,7 +348,7 @@ import FrontSidebar from "../FrontSidebar";
 export default {
   components: {
     Pagination,
-    FrontSidebar
+    FrontSidebar,
   },
 
   data() {
@@ -374,7 +374,8 @@ export default {
       },
 
       categoryFilter: "",
-      productsFilter: []
+      productsFilter: [],
+      prodFilter: [],
     };
   },
 
@@ -457,6 +458,13 @@ export default {
       const vm = this;
       vm.productsFilter = [];
       console.log('clearProductFilter active');
+    },
+
+    updataProductsFilter(prodsFilter) {
+      console.log('FP update active');
+      console.log('prodsFilter', prodsFilter);
+      const vm = this;
+      vm.productsFilter = prodsFilter;
     },
 
   },
