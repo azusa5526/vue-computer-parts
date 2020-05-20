@@ -8,7 +8,7 @@
     </div>
 
     <div class="row mt-4 mx-2">
-      <FrontSidebar :cateFilter="categoryFilter" @filterUpdate="updataProductsFilter"></FrontSidebar>
+      <FrontSidebar :cateFilter="categoryFilter" :prodFilter="productsFilter" @filterUpdate="updataProductsFilter"></FrontSidebar>
 
       <!-- <nav class="col-md-2 d-none d-md-block bg-light">
         <div id="accordion">
@@ -457,12 +457,13 @@ export default {
     clearProductsFilter() {
       const vm = this;
       vm.productsFilter = [];
-      console.log('clearProductFilter active');
+      vm.$$refs.child.clearProdsFilter();
+      //console.log('clearProductFilter active');
     },
 
     updataProductsFilter(prodsFilter) {
-      console.log('FP update active');
-      console.log('prodsFilter', prodsFilter);
+      //console.log('FP update active');
+      //console.log('prodsFilter', prodsFilter);
       const vm = this;
       vm.productsFilter = prodsFilter;
     },

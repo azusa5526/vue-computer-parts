@@ -1,5 +1,8 @@
 <template>
   <nav class="col-md-2 d-none d-md-block bg-light">
+    <button @click="clearCheckbox">clear all</button>
+
+
     <div id="accordion">
       <div class="card" v-if="cateFilter === 'cpu'">
         <div class="card-header" id="headingOne">
@@ -226,7 +229,7 @@ export default {
 
   data() {
     return {
-      prodsFilter: []
+      prodsFilter: [],
     };
   },
 
@@ -234,21 +237,30 @@ export default {
     prodsFilter: function() {
       const vm = this;
       this.$emit("filterUpdate", vm.prodsFilter);
-      console.log('prodsFilter in FS', vm.prodsFilter)
-      console.log("prodsFilter watch active");
-    }
+      //console.log('prodsFilter in FS', vm.prodsFilter)
+      //console.log("prodsFilter watch active");
+    },
 
-    // prodsFilter: {
-    //   handler(newValue, oldValue) {
-    //     for (let i = 0; i < newValue.length; i++) {
-    //       if (oldValue[i] != newValue[i]) {
-    //         console.log(newValue);
-            
-    //       }
-    //     }
-    //   },
-    //   deep: true,
-    // }
-  }
+  },
+
+  methods: {
+    clearCheckbox() {
+      const vm = this;
+      let checkbox = document.getElementsByTagName('input');
+      for(let i = 0; i < checkbox.length; i++) {
+        checkbox[i].checked = false;
+      }
+      //console.log(checkbox);
+      vm.clearProdsFilter();
+      vm.$bus.$emit('clearProductFilter');
+    },
+
+    clearProdsFilter() {
+      const vm = this;
+      vm.prodsFilter = [];
+    },
+
+  },
+
 };
 </script>
