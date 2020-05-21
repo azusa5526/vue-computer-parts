@@ -9,6 +9,7 @@
           <th width="150">購買時間</th>
           <th>Email</th>
           <th>購買物品</th>
+          <th>訂單編號</th>
           <th width="130">應付金額</th>
           <th width="130">是否付款</th>
         </tr>
@@ -26,6 +27,7 @@
               </li>
             </ul>
           </td>
+          <td>{{item.id}}</td>
           <!-- to be fix -->
           <td class="text-right">{{item.total}}</td>
           <td>

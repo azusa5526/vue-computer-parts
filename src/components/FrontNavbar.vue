@@ -88,6 +88,7 @@ export default {
     },
 
     clearSideFilter() {
+      //二次載入畫面噴錯，但過濾有效 (FrontProducts -> $ref) 
       const vm = this;
       //console.log('navbar clear active');
       vm.$bus.$emit('clearProductFilter');
