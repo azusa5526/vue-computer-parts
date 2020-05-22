@@ -251,7 +251,7 @@ export default {
       }
       //console.log(checkbox);
       vm.clearProdsFilter();
-      vm.$bus.$emit('clearProductFilter');
+      vm.$bus.$emit('clearProductsFilter');
     },
 
     clearProdsFilter() {
@@ -259,10 +259,14 @@ export default {
       vm.prodsFilter = [];
     },
 
+    clear() {
+      console.log('clear active');
+    }
+
   },
 
   created() {
-    this.$on('clearFilter');
+    
   }
 
 };

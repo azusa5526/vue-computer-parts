@@ -9,7 +9,7 @@
 
     <div class="row mt-4 mx-2">
       <FrontSidebar
-        ref="frontSidebarComponent"
+        ref="frontSidebar"
         :cateFilter="categoryFilter"
         :prodFilter="productsFilter"
         @filterUpdate="updateProductsFilter"
@@ -259,8 +259,12 @@ export default {
     clearProductsFilter() {
       const vm = this;
       vm.productsFilter = [];
-      vm.$refs.frontSidebarComponent.clearProdsFilter(); //刪除Sidebar內部的filter
-      console.log("clearProductFilter active");
+
+      vm.$nextTick(() => {
+        vm.$refs.frontSidebar.clearProdsFilter();
+        console.log("clearProductFilter active");
+      });
+      //vm.$refs.sidebar.clearProdsFilter(); //刪除Sidebar內部的filter
     },
 
     updateProductsFilter(prodsFilter) {
@@ -300,6 +304,8 @@ export default {
       let tempProducts = vm.categoryFilterList();
       if (vm.productsFilter.length === 0) {
         vm.pgnationCounter(tempProducts);
+        console.log(vm.productsFilter);
+        console.log("filterLength = ", vm.productsFilter.length);
         return tempProducts;
       } else {
         for (let filter of vm.productsFilter) {
@@ -307,22 +313,23 @@ export default {
             return item.category.indexOf(filter) !== -1;
           });
         }
-         vm.pgnationCounter(tempProducts);
+        vm.pgnationCounter(tempProducts);
+        console.log("filterLength != 0 pgnation");
         return tempProducts;
       }
-      
     }
   },
 
   created() {
     const vm = this;
-    //this.getProducts();
+    vm.$bus.$on("clearProductsFilter", vm.clearProductsFilter());
     this.getAllProducts();
     this.getCart();
+    this.clearProductsFilter();
 
-    vm.$bus.$on("clearProductFilter", () => {
-      vm.clearProductsFilter();
-    });
+    // vm.$bus.$on("clearProductFilter", () => {
+    //   vm.clearProductsFilter();
+    // });
     //console.log('front product clear active');
   }
 };
