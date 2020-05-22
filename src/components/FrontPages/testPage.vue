@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <input type="checkbox" id="cpu" value="cpu" v-model="sideFilter" />
     <label for="cpu">cpu</label>
     <input type="checkbox" id="intel" value="intel" v-model="sideFilter" />
@@ -29,6 +28,9 @@
         </div>
       </div>
     </div>
+
+    <div id="data-container"></div>
+    <div id="pagination-container"></div>
   </div>
 </template>
 
@@ -69,7 +71,7 @@ export default {
         }
       }
       return tempProducts;
-    },
+    }
   },
 
   created() {

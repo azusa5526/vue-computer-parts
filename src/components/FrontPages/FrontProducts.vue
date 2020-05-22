@@ -138,6 +138,12 @@ export default {
         itemAdding: false
       },
       pagination: {},
+      pgnation: {
+        current_page: 1,
+        has_next: false,
+        has_pre: false,
+        total_pages: 1
+      },
       shoppingCart: [],
       couponCode: "",
       form: {
@@ -166,7 +172,18 @@ export default {
         vm.isLoading = false;
         vm.products = response.data.products;
         vm.pagination = response.data.pagination;
+      });
+    },
 
+    getAllProducts() {
+      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/products/all`;
+      const vm = this;
+      vm.isLoading = true;
+
+      this.$http.get(api).then(response => {
+        //console.log(response.data);
+        vm.isLoading = false;
+        vm.products = response.data.products;
       });
     },
 
@@ -177,7 +194,7 @@ export default {
       vm.status.loadingItem = id;
 
       this.$http.get(api).then(response => {
-        console.log(response.data);
+        //console.log(response.data);
         vm.product = response.data.product;
         $("#productModal").modal("show");
         vm.status.loadingItem = "";
@@ -213,7 +230,7 @@ export default {
       vm.isLoading = true;
 
       this.$http.get(api).then(response => {
-        console.log(response.data);
+        //console.log(response.data);
         vm.isLoading = false;
         vm.shoppingCart = response.data.data;
       });
@@ -251,6 +268,29 @@ export default {
       //console.log('prodsFilter', prodsFilter);
       const vm = this;
       vm.productsFilter = prodsFilter; //prodsFilter為FrontSidebar傳入值
+    },
+
+    pgnationCounter(productsInWindow) {
+      const vm = this;
+      const pageSize = 10;
+      let productsLength = productsInWindow.length;
+      console.log("productsLength", productsLength);
+      vm.pgnation.current_page = 1;
+      if (productsLength / pageSize > 1) {
+        vm.pgnation.total_pages = Math.floor(productsLength / pageSize) + 1;
+      }
+
+      if (vm.pgnation.current_page < vm.pgnation.total_pages) {
+        vm.pgnation.has_next = true;
+      } else {
+        vm.pgnation.has_next = false;
+      }
+
+      if (vm.pgnation.current_page > 1) {
+        vm.pagination.has_pre = true;
+      } else {
+        vm.pagination.has_pre = false;
+      }
     }
   },
 
@@ -258,8 +298,8 @@ export default {
     productsFilterList() {
       const vm = this;
       let tempProducts = vm.categoryFilterList();
-
       if (vm.productsFilter.length === 0) {
+        vm.pgnationCounter(tempProducts);
         return tempProducts;
       } else {
         for (let filter of vm.productsFilter) {
@@ -267,22 +307,25 @@ export default {
             return item.category.indexOf(filter) !== -1;
           });
         }
+         vm.pgnationCounter(tempProducts);
+        return tempProducts;
       }
-      return tempProducts;
+      
     }
   },
 
   created() {
     const vm = this;
-    this.getProducts();
+    //this.getProducts();
+    this.getAllProducts();
     this.getCart();
+
     vm.$bus.$on("clearProductFilter", () => {
       vm.clearProductsFilter();
     });
     //console.log('front product clear active');
   }
 };
-
 </script>
 
 <style scoped>
