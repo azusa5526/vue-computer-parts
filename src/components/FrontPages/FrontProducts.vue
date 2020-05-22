@@ -157,8 +157,7 @@ export default {
       },
 
       categoryFilter: "",
-      productsFilter: [],
-      productsInWindow: [],
+      productsFilter: []
     };
   },
 
@@ -180,7 +179,6 @@ export default {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/products/all`;
       const vm = this;
       vm.isLoading = true;
-      //console.log("getAllProduct active");
 
       this.$http.get(api).then(response => {
         //console.log(response.data);
@@ -260,9 +258,8 @@ export default {
 
     clearProductsFilter() {
       const vm = this;
-      vm.productsFilter = []; //應該不需要，side watch會清空
+      vm.productsFilter = [];
       vm.$refs.frontSidebarComponent.clearProdsFilter(); //刪除Sidebar內部的filter
-      vm.pgnationCounter(vm.productsInWindow);
       console.log("clearProductFilter active");
     },
 
@@ -302,7 +299,7 @@ export default {
       const vm = this;
       let tempProducts = vm.categoryFilterList();
       if (vm.productsFilter.length === 0) {
-        vm.productsInWindow = tempProducts;
+        vm.pgnationCounter(tempProducts);
         return tempProducts;
       } else {
         for (let filter of vm.productsFilter) {
@@ -310,9 +307,10 @@ export default {
             return item.category.indexOf(filter) !== -1;
           });
         }
-        vm.pgnationCounter(tempProducts);
+         vm.pgnationCounter(tempProducts);
         return tempProducts;
       }
+      
     }
   },
 
@@ -321,14 +319,9 @@ export default {
     //this.getProducts();
     this.getAllProducts();
     this.getCart();
-    this.pgnationCounter(vm.productsInWindow);
 
-    vm.$bus.$on("refreshProducts", () => {
-      vm.$nextTick(() => {
-        vm.clearProductsFilter();
-        //console.log('refreshProducts > next > clearProductsFilter active');
-      });
-      
+    vm.$bus.$on("clearProductFilter", () => {
+      vm.clearProductsFilter();
     });
     //console.log('front product clear active');
   }

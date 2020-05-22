@@ -256,13 +256,13 @@ export default {
 
     clearProdsFilter() {
       const vm = this;
-      //console.log('clearProdsFilter active');
       vm.prodsFilter = [];
     },
 
   },
 
   created() {
+    this.$on('clearFilter');
   }
 
 };
