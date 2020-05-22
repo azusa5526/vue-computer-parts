@@ -35,12 +35,12 @@
             aria-expanded="false"
           >Products</a>
           <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <router-link class="dropdown-item" to="/frontProducts/cpu" @click.native="refreshProductFilter()">CPU</router-link>
-            <router-link class="dropdown-item" to="/frontProducts/motherboard" @click.native="refreshProductFilter()">Motherboard</router-link>
-            <router-link class="dropdown-item" to="/frontProducts/ram" @click.native="refreshProductFilter()">RAM</router-link>
-            <router-link class="dropdown-item" to="/frontProducts/graphic_card" @click.native="refreshProductFilter()">Graphic Card</router-link>
-            <router-link class="dropdown-item" to="/frontProducts/psu" @click.native="refreshProductFilter()">PSU</router-link>
-            <router-link class="dropdown-item" to="/frontProducts/case" @click.native="refreshProductFilter()">Case</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/cpu" @click.native="clearSideFilter()">CPU</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/motherboard" @click.native="clearSideFilter()">Motherboard</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/ram" @click.native="clearSideFilter()">RAM</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/graphic_card" @click.native="clearSideFilter()">Graphic Card</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/psu" @click.native="clearSideFilter()">PSU</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/case" @click.native="clearSideFilter()">Case</router-link>
           </div>
         </li>
       </ul>
@@ -87,11 +87,11 @@ export default {
       });
     },
 
-    refreshProductFilter() {
+    clearSideFilter() {
       //二次載入畫面噴錯，但過濾有效 (FrontProducts -> $ref) 
       const vm = this;
       //console.log('navbar clear active');
-      vm.$bus.$emit('clearProductsFilter');
+      vm.$bus.$emit('clearProductFilter');
     },
 
   },
