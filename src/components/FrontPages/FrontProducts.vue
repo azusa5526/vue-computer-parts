@@ -60,8 +60,7 @@
 
         <!-- BS pagination -->
         <Pagination :pagination="pagination" @changePage="getProducts"></Pagination>
-
-        <div id="paginationJS"></div>
+        <Pgnation :pagination="pgnation"></Pgnation>
       </div>
     </div>
 
@@ -121,11 +120,13 @@
 import $ from "jquery";
 import Pagination from "../Pagination";
 import FrontSidebar from "../FrontSidebar";
+import Pgnation from "../Pgnation";
 
 export default {
   components: {
     Pagination,
-    FrontSidebar
+    FrontSidebar,
+    Pgnation
   },
 
   data() {
@@ -142,7 +143,8 @@ export default {
         current_page: 1,
         has_next: false,
         has_pre: false,
-        total_pages: 1
+        total_pages: 1,
+        page_size: 10,
       },
       shoppingCart: [],
       couponCode: "",
@@ -157,7 +159,10 @@ export default {
       },
 
       categoryFilter: "",
-      productsFilter: []
+      productsFilter: [],
+      filteredProducts: [],
+      productsInWindow: [],
+
     };
   },
 
@@ -263,16 +268,14 @@ export default {
       vm.productsFilter = prodsFilter; //prodsFilter為FrontSidebar傳入值
     },
 
-    pgnationCounter(productsInWindow) {
+    pgnationCounter() {
       const vm = this;
-      const pageSize = 10;
-      let productsLength = productsInWindow.length;
-      //console.log("productsLength", productsLength);
+      let productsLength = vm.filteredProducts.length;
+      console.log("productsLength", productsLength);
+      vm.pgnation.total_pages = Number(Math.floor(productsLength / vm.pgnation.page_size) + 1);
+      //console.log(Number(Math.floor(productsLength / pageSize) + 1))
       vm.pgnation.current_page = 1;
-      if (productsLength / pageSize > 1) {
-        vm.pgnation.total_pages = Math.floor(productsLength / pageSize) + 1;
-      }
-
+      
       if (vm.pgnation.current_page < vm.pgnation.total_pages) {
         vm.pgnation.has_next = true;
       } else {
@@ -284,7 +287,8 @@ export default {
       } else {
         vm.pagination.has_pre = false;
       }
-    }
+    },
+
   },
 
   computed: {
@@ -292,7 +296,8 @@ export default {
       const vm = this;
       let tempProducts = vm.categoryFilterList();
       if (vm.productsFilter.length === 0) {
-        vm.pgnationCounter(tempProducts);
+        vm.filteredProducts = tempProducts;
+        vm.pgnationCounter();
         return tempProducts;
       } else {
         for (let filter of vm.productsFilter) {
@@ -300,10 +305,10 @@ export default {
             return item.category.indexOf(filter) !== -1;
           });
         }
-         vm.pgnationCounter(tempProducts);
+        vm.filteredProducts = tempProducts;
+        vm.pgnationCounter();
         return tempProducts;
       }
-      
     }
   },
 

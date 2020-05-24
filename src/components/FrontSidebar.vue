@@ -36,7 +36,7 @@
         </div>
       </div>
 
-      <div class="card" v-if="cateFilter === 'cpu'">
+      <div class="card" v-if="cateFilter === 'cpu' || 'all'">
         <div class="card-header" id="headingTwo">
           <h5 class="mb-0">
             <button
@@ -269,7 +269,7 @@ export default {
   },
 
   created() {
-    this.$on('clearFilter');
+    //this.$on('clearFilter');
   }
 
 };
