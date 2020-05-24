@@ -256,13 +256,6 @@ export default {
       }
     },
 
-    clearProductsFilter() {
-      const vm = this;
-      vm.productsFilter = [];
-      vm.$refs.frontSidebarComponent.clearProdsFilter(); //刪除Sidebar內部的filter
-      console.log("clearProductFilter active");
-    },
-
     updateProductsFilter(prodsFilter) {
       //console.log('FP update active');
       //console.log('prodsFilter', prodsFilter);
@@ -274,7 +267,7 @@ export default {
       const vm = this;
       const pageSize = 10;
       let productsLength = productsInWindow.length;
-      console.log("productsLength", productsLength);
+      //console.log("productsLength", productsLength);
       vm.pgnation.current_page = 1;
       if (productsLength / pageSize > 1) {
         vm.pgnation.total_pages = Math.floor(productsLength / pageSize) + 1;
@@ -319,11 +312,6 @@ export default {
     //this.getProducts();
     this.getAllProducts();
     this.getCart();
-
-    vm.$bus.$on("clearProductFilter", () => {
-      vm.clearProductsFilter();
-    });
-    //console.log('front product clear active');
   }
 };
 </script>

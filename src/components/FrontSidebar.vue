@@ -225,7 +225,7 @@
 
 <script>
 export default {
-  props: ["cateFilter"],
+  props: ['cateFilter'],
 
   data() {
     return {
@@ -236,10 +236,18 @@ export default {
   watch: {
     prodsFilter: function() {
       const vm = this;
-      this.$emit("filterUpdate", vm.prodsFilter);
+      vm.$emit("filterUpdate", vm.prodsFilter);
       //console.log('prodsFilter in FS', vm.prodsFilter)
       //console.log("prodsFilter watch active");
     },
+
+    cateFilter: {
+      immediate: true,
+      handler() {
+        this.clearCheckbox();
+        this.clearProdsFilter();
+      }
+    }
   },
 
   methods: {
@@ -249,14 +257,13 @@ export default {
       for(let i = 0; i < checkbox.length; i++) {
         checkbox[i].checked = false;
       }
-      //console.log(checkbox);
-      vm.clearProdsFilter();
-      vm.$bus.$emit('clearProductFilter');
+      console.log('clearCheckbox active');
     },
 
     clearProdsFilter() {
       const vm = this;
       vm.prodsFilter = [];
+      console.log('clearProdsFilter active');
     },
 
   },

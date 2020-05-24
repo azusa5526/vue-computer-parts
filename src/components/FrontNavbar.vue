@@ -35,19 +35,22 @@
             aria-expanded="false"
           >Products</a>
           <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <router-link class="dropdown-item" to="/frontProducts/cpu" @click.native="clearSideFilter()">CPU</router-link>
-            <router-link class="dropdown-item" to="/frontProducts/motherboard" @click.native="clearSideFilter()">Motherboard</router-link>
-            <router-link class="dropdown-item" to="/frontProducts/ram" @click.native="clearSideFilter()">RAM</router-link>
-            <router-link class="dropdown-item" to="/frontProducts/graphic_card" @click.native="clearSideFilter()">Graphic Card</router-link>
-            <router-link class="dropdown-item" to="/frontProducts/psu" @click.native="clearSideFilter()">PSU</router-link>
-            <router-link class="dropdown-item" to="/frontProducts/case" @click.native="clearSideFilter()">Case</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/cpu">CPU</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/motherboard">Motherboard</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/ram">RAM</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/graphic_card">Graphic Card</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/psu">PSU</router-link>
+            <router-link class="dropdown-item" to="/frontProducts/case">Case</router-link>
           </div>
         </li>
       </ul>
 
       <ul class="navbar-nav ml-3">
         <li class="nav-item">
-          <router-link class="btn btn-outline-info mr-2" to="/shopping_cart/front_cart_items">ShoppingCart</router-link>
+          <router-link
+            class="btn btn-outline-info mr-2"
+            to="/shopping_cart/front_cart_items"
+          >ShoppingCart</router-link>
           <a class="btn btn-outline-danger" href="#" v-if="is_login" @click="signOut">Sign out</a>
           <router-link class="btn btn-outline-primary" to="/login" v-else>Sign in</router-link>
         </li>
@@ -85,15 +88,7 @@ export default {
           vm.$router.push("/login");
         }
       });
-    },
-
-    clearSideFilter() {
-      //二次載入畫面噴錯，但過濾有效 (FrontProducts -> $ref) 
-      const vm = this;
-      //console.log('navbar clear active');
-      vm.$bus.$emit('clearProductFilter');
-    },
-
+    }
   },
 
   created() {
