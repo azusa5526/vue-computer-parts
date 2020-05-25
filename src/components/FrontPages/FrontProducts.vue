@@ -18,7 +18,7 @@
       <div class="col-md-10">
         <!-- BS card -->
         <div class="row">
-          <div class="col-md-3 mb-4" v-for="(item, index) in productsFilterList" :key="index">
+          <div class="col-md-3 mb-4" v-for="(item, index) in productsInWindow" :key="index">
             <div class="card border-0 shadow-sm">
               <div
                 style="height: 150px; background-size: cover; background-position: center"
@@ -60,7 +60,7 @@
 
         <!-- BS pagination -->
         <Pagination :pagination="pagination" @changePage="getProducts"></Pagination>
-        <Pgnation :pagination="pgnation"></Pgnation>
+        <Pgnation :pagination="pgnation" @changePage="changeCurrentPage"></Pgnation>
       </div>
     </div>
 
@@ -144,7 +144,7 @@ export default {
         has_next: false,
         has_pre: false,
         total_pages: 1,
-        page_size: 10,
+        page_size: 10
       },
       shoppingCart: [],
       couponCode: "",
@@ -161,8 +161,7 @@ export default {
       categoryFilter: "",
       productsFilter: [],
       filteredProducts: [],
-      productsInWindow: [],
-
+      productsInWindow: []
     };
   },
 
@@ -272,10 +271,12 @@ export default {
       const vm = this;
       let productsLength = vm.filteredProducts.length;
       console.log("productsLength", productsLength);
-      vm.pgnation.total_pages = Number(Math.floor(productsLength / vm.pgnation.page_size) + 1);
+      vm.pgnation.total_pages = Number(
+        Math.floor(productsLength / vm.pgnation.page_size) + 1
+      );
       //console.log(Number(Math.floor(productsLength / pageSize) + 1))
-      vm.pgnation.current_page = 1;
-      
+      //vm.pgnation.current_page = 1;
+
       if (vm.pgnation.current_page < vm.pgnation.total_pages) {
         vm.pgnation.has_next = true;
       } else {
@@ -289,6 +290,32 @@ export default {
       }
     },
 
+    pageSpliter() {
+      const vm = this;
+      let pageMinIndex =
+        vm.pgnation.current_page * vm.pgnation.page_size -
+        vm.pgnation.page_size +
+        1;
+      let pageMaxIndex = vm.pgnation.current_page * vm.pgnation.page_size;
+      console.log("pageMinIndex", pageMinIndex);
+      console.log("pageMaxIndex", pageMaxIndex);
+
+      vm.productsInWindow = [];
+      vm.filteredProducts.forEach(function(item, index) {
+        const num = index + 1;
+        if (num >= pageMinIndex && num <= pageMaxIndex) {
+          vm.productsInWindow.push(item);
+        }
+      });
+    },
+
+    changeCurrentPage(targetPage) {
+      const vm = this;
+      console.log("targetPage", targetPage);
+      vm.pgnation.current_page = Number(targetPage);
+      console.log("vm.pgnation.current_page", vm.pgnation.current_page);
+      vm.pageSpliter();
+    }
   },
 
   computed: {
@@ -298,6 +325,7 @@ export default {
       if (vm.productsFilter.length === 0) {
         vm.filteredProducts = tempProducts;
         vm.pgnationCounter();
+        vm.pageSpliter();
         return tempProducts;
       } else {
         for (let filter of vm.productsFilter) {
@@ -307,16 +335,22 @@ export default {
         }
         vm.filteredProducts = tempProducts;
         vm.pgnationCounter();
+        vm.pageSpliter();
         return tempProducts;
       }
     }
   },
 
   created() {
-    const vm = this;
     //this.getProducts();
     this.getAllProducts();
+    this.pgnationCounter();
+    this.pageSpliter();
     this.getCart();
+  },
+
+  mounted() {
+    
   }
 };
 </script>
