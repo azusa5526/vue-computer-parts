@@ -18,7 +18,7 @@
       <div class="col-md-10">
         <!-- BS card -->
         <div class="row">
-          <div class="col-md-3 mb-4" v-for="(item, index) in productsInWindow" :key="index">
+          <div class="col-md-3 mb-4" v-for="(item, index) in productsInWindowList" :key="index">
             <div class="card border-0 shadow-sm">
               <div
                 style="height: 150px; background-size: cover; background-position: center"
@@ -172,7 +172,7 @@ export default {
       vm.isLoading = true;
 
       this.$http.get(api).then(response => {
-        console.log(response.data);
+        //console.log(response.data);
         vm.isLoading = false;
         vm.products = response.data.products;
         vm.pagination = response.data.pagination;
@@ -260,6 +260,21 @@ export default {
       }
     },
 
+    productsFilterList() {
+      const vm = this;
+      let tempProducts = vm.categoryFilterList();
+      if (vm.productsFilter.length === 0) {
+        return tempProducts;
+      } else {
+        for (let filter of vm.productsFilter) {
+          tempProducts = tempProducts.filter(function(item) {
+            return item.category.indexOf(filter) !== -1;
+          });
+        }
+        return tempProducts;
+      }
+    },
+
     updateProductsFilter(prodsFilter) {
       //console.log('FP update active');
       //console.log('prodsFilter', prodsFilter);
@@ -285,10 +300,8 @@ export default {
       }
 
       if (vm.pgnation.current_page > 1) {
-        console.log('---------has_pre if statement active');
         vm.pgnation.has_pre = true;
       } else {
-        console.log('---------has_pre else statement active');
         vm.pgnation.has_pre = false;
       }
     },
@@ -323,32 +336,60 @@ export default {
   },
 
   computed: {
-    productsFilterList() {
+    // productsFilterList() {
+    //   const vm = this;
+    //   let tempProducts = vm.categoryFilterList();
+    //   if (vm.productsFilter.length === 0) {
+    //     vm.filteredProducts = tempProducts;
+    //     vm.pgnationCounter();
+    //     vm.pageSpliter();
+    //     return tempProducts;
+    //   } else {
+    //     for (let filter of vm.productsFilter) {
+    //       tempProducts = tempProducts.filter(function(item) {
+    //         return item.category.indexOf(filter) !== -1;
+    //       });
+    //     }
+    //     vm.filteredProducts = tempProducts;
+    //     vm.pgnationCounter();
+    //     vm.pageSpliter();
+    //     return tempProducts;
+    //   }
+    // },
+
+    productsInWindowList() {
       const vm = this;
-      let tempProducts = vm.categoryFilterList();
-      if (vm.productsFilter.length === 0) {
-        vm.filteredProducts = tempProducts;
-        vm.pgnationCounter();
-        vm.pageSpliter();
-        return tempProducts;
-      } else {
-        for (let filter of vm.productsFilter) {
-          tempProducts = tempProducts.filter(function(item) {
-            return item.category.indexOf(filter) !== -1;
-          });
+      let productsInWindow = [];
+      let tempProducts = [];
+
+      vm.filteredProducts = vm.productsFilterList();
+      //console.log('filteredProducts',vm.filteredProducts);
+
+      let pageMinIndex =
+        vm.pgnation.current_page * vm.pgnation.page_size -
+        vm.pgnation.page_size +
+        1;
+      let pageMaxIndex = vm.pgnation.current_page * vm.pgnation.page_size;
+      console.log("pageMinIndex", pageMinIndex);
+      console.log("pageMaxIndex", pageMaxIndex);
+
+      vm.filteredProducts.forEach(function(item, index) {
+        const num = index + 1;
+        if (num >= pageMinIndex && num <= pageMaxIndex) {
+          productsInWindow.push(item);
         }
-        vm.filteredProducts = tempProducts;
-        vm.pgnationCounter();
-        vm.pageSpliter();
-        return tempProducts;
-      }
+      });
+      vm.pgnationCounter();
+      vm.pageSpliter();
+      return productsInWindow;
     }
   },
 
   watch: {
     categoryFilter: {
       handler() {
-        console.log('categoryFilter change to: ', this.categoryFilter);
+        //console.log('categoryFilter change to: ', this.categoryFilter);
+        this.pgnation.current_page = 1;
       }
     }
   },

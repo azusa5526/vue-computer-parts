@@ -1,6 +1,6 @@
 <template>
   <nav class="col-md-2 d-none d-md-block bg-light">
-    <button @click="clearCheckbox">clear all</button>
+    <button @click="clearAll">clear all</button>
 
 
     <div id="accordion">
@@ -238,14 +238,13 @@ export default {
       const vm = this;
       vm.$emit("filterUpdate", vm.prodsFilter);
       //console.log('prodsFilter in FS', vm.prodsFilter)
-      //console.log("prodsFilter watch active");
+      console.log("prodsFilter watch active");
     },
 
     cateFilter: {
       immediate: true,
       handler() {
-        this.clearCheckbox();
-        this.clearProdsFilter();
+        this.clearAll();
       }
     }
   },
@@ -266,11 +265,12 @@ export default {
       console.log('clearProdsFilter active');
     },
 
-  },
+    clearAll() {
+      this.clearCheckbox();
+      this.clearProdsFilter();
+    }
 
-  created() {
-    //this.$on('clearFilter');
-  }
+  },
 
 };
 </script>
