@@ -59,7 +59,7 @@
         </div>
 
         <!-- BS pagination -->
-        <Pagination :pagination="pagination" @changePage="getProducts"></Pagination>
+        <!-- <Pagination :pagination="pagination" @changePage="getProducts"></Pagination> -->
         <Pgnation :pagination="pgnation" @changePage="changeCurrentPage"></Pgnation>
       </div>
     </div>
@@ -271,6 +271,7 @@ export default {
       const vm = this;
       let productsLength = vm.filteredProducts.length;
       console.log("productsLength", productsLength);
+
       vm.pgnation.total_pages = Number(
         Math.floor(productsLength / vm.pgnation.page_size) + 1
       );
@@ -284,9 +285,11 @@ export default {
       }
 
       if (vm.pgnation.current_page > 1) {
-        vm.pagination.has_pre = true;
+        console.log('---------has_pre if statement active');
+        vm.pgnation.has_pre = true;
       } else {
-        vm.pagination.has_pre = false;
+        console.log('---------has_pre else statement active');
+        vm.pgnation.has_pre = false;
       }
     },
 
@@ -314,6 +317,7 @@ export default {
       console.log("targetPage", targetPage);
       vm.pgnation.current_page = Number(targetPage);
       console.log("vm.pgnation.current_page", vm.pgnation.current_page);
+      vm.pgnationCounter();
       vm.pageSpliter();
     }
   },
@@ -341,6 +345,14 @@ export default {
     }
   },
 
+  watch: {
+    categoryFilter: {
+      handler() {
+        console.log('categoryFilter change to: ', this.categoryFilter);
+      }
+    }
+  },
+
   created() {
     //this.getProducts();
     this.getAllProducts();
@@ -349,9 +361,7 @@ export default {
     this.getCart();
   },
 
-  mounted() {
-    
-  }
+  mounted() {}
 };
 </script>
 
