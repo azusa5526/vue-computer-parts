@@ -1,54 +1,61 @@
 <template>
   <div class="col-12">
-    <table class="table my-5">
-        <thead>
-          <tr>
-            <th></th>
-            <th>品名</th>
-            <th>數量/單位</th>
-            <th>單價/小計</th>
-            <th>移除商品</th>
-          </tr>
-        </thead>
+    <table class="table mt-5">
+      <thead>
+        <tr>
+          <th></th>
+          <th>品名</th>
+          <th>數量/單位</th>
+          <th>單價/小計</th>
+          <th>移除商品</th>
+        </tr>
+      </thead>
 
-        <tbody>
-          <tr v-for="item in shoppingCart.carts" :key="item.id">
-            <td width="150px" class="align-middle">
-              <img :src="item.product.imageUrl" style="height: 150px;" />
-            </td>
-            <td class="align-middle">
-              {{item.product.title}}
-              <div class="text-success" v-if="item.coupon">已套用優惠券 {{item.coupon.title}}</div>
-            </td>
-            <td class="align-middle">{{item.qty}} / {{item.product.unit}}</td>
-            <td class="align-middle">{{item.product.price}} / {{item.total}}</td>
-            <td class="align-middle">
-              <button
-                type="button"
-                class="btn btn-outline-danger btn-sm"
-                @click="removeCartItem(item.id)"
-              >
-                <i class="far fa-trash-alt"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="4" class="text-right">總計</td>
-            <td class="text-right">{{shoppingCart.total}}</td>
-          </tr>
-          <tr v-if="shoppingCart.total !== shoppingCart.final_total">
-            <td colspan="3" class="text-right text-success">優惠價</td>
-            <td class="text-right text-success">{{shoppingCart.final_total}}</td>
-          </tr>
-        </tfoot>
-      </table>
+      <tbody>
+        <tr v-for="item in shoppingCart.carts" :key="item.id">
+          <td width="150px" class="align-middle">
+            <img :src="item.product.imageUrl" style="height: 150px;" />
+          </td>
+          <td class="align-middle">
+            {{item.product.title}}
+            <div class="text-success" v-if="item.coupon">已套用優惠券 {{item.coupon.title}}</div>
+          </td>
+          <td class="align-middle">{{item.qty}} / {{item.product.unit}}</td>
+          <td class="align-middle">{{item.product.price}} / {{item.total}}</td>
+          <td class="align-middle">
+            <button
+              type="button"
+              class="btn btn-outline-danger btn-sm"
+              @click="removeCartItem(item.id)"
+            >
+              <i class="far fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4" class="text-right">總計</td>
+          <td class="text-right">{{shoppingCart.total}}</td>
+        </tr>
+        <tr v-if="shoppingCart.total !== shoppingCart.final_total">
+          <td colspan="4" class="text-right text-success">優惠價</td>
+          <td class="text-right text-success">{{shoppingCart.final_total}}</td>
+        </tr>
+      </tfoot>
+    </table>
 
-      <div class="d-flex justify-content-between">
-        <router-link class="btn btn-outline-info mr-2" to="/frontProducts/all">繼續選購</router-link>
-        <router-link class="btn btn-outline-danger mr-2" to="front_orderlist">填寫購買資料</router-link>
+    <div class="input-group mb-3 input-group-sm">
+      <input type="text" class="form-control" placeholder="請輸入優惠碼" v-model="couponCode" />
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" @click="addCouponCode">套用優惠碼</button>
       </div>
+    </div>
+
+    <div class="d-flex justify-content-between mt-4">
+      <router-link class="btn btn-outline-info mr-2" to="/frontProducts/all">繼續選購</router-link>
+      <router-link class="btn btn-outline-danger mr-2" to="front_orderlist">填寫購買資料</router-link>
+    </div>
   </div>
 </template>
 
@@ -82,7 +89,7 @@ export default {
           address: ""
         },
         message: ""
-      },
+      }
     };
   },
 
@@ -113,7 +120,6 @@ export default {
     //     vm.status.loadingItem = "";
     //   });
     // },
-
 
     removeCartItem(id) {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/cart/${id}`;
@@ -168,8 +174,7 @@ export default {
           vm.status.cartHasItem = true;
         }
       });
-    },
-
+    }
   },
 
   created() {
