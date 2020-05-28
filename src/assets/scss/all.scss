@@ -1,4 +1,6 @@
 @import "~bootstrap/scss/functions";    //套用變數的方法
-@import "./helpers/variables";   //自定義變數
+@import "./utils/variables";   //自定義變數
 @import "~bootstrap/scss/bootstrap";
-@import "./dashboard";
+
+@import "./base/base.scss";
+@import "./components/back/dashboard";
