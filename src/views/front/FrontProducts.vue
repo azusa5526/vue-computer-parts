@@ -118,13 +118,13 @@
 
 <script>
 import $ from "jquery";
-import Pagination from "../Pagination";
-import FrontSidebar from "../FrontSidebar";
-import Pgnation from "../Pgnation";
+//import Pagination from "../Pagination";
+import FrontSidebar from "@/components/front/FrontSidebar";
+import Pgnation from "@/components/front/Pgnation";
 
 export default {
   components: {
-    Pagination,
+    //Pagination,
     FrontSidebar,
     Pgnation
   },

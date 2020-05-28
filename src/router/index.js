@@ -1,22 +1,24 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import Login from '@/components/pages/Login';
-import Dashboard from '@/components/Dashboard';
-import FrontEnd from '@/components/FrontEnd';
-import Products from '@/components/pages/Products';
-import OrderList from '@/components/pages/OrderList';
-import Coupon from '@/components/pages/Coupon';
-import CustomerOrder from '@/components/pages/CostomerOrders';
-import CustomerCheckout from '@/components/pages/CustomerCheckout';
-import FrontHome from '@/components/FrontPages/FrontHome';
-import FrontProducts from '@/components/FrontPages/FrontProducts';
-import FrontShoppingCart from '@/components/FrontPages/FrontShoppingCart';
-import FrontOrderList from '@/components/FrontPages/FrontOrderList';
-import FrontCheckout from '@/components/FrontPages/FrontCheckout';
-import FrontCheckOrder from '@/components/FrontPages/FrontCheckOrder';
-import FrontCartItems from '@/components/FrontPages/FrontCartItems';
-import testPage from '@/components/FrontPages/testPage';
+
+import Login from '@/views/back/Login';
+import Dashboard from '@/components/back/Dashboard';
+import Products from '@/views/back/Products';
+import OrderList from '@/views/back/OrderList';
+import Coupon from '@/views/back/Coupon';
+import CustomerOrder from '@/views/back/CostomerOrders';
+import CustomerCheckout from '@/views/back/CustomerCheckout';
+
+import FrontEnd from '@/components/front/FrontEnd';
+import FrontHome from '@/views/front/FrontHome';
+import FrontProducts from '@/views/front/FrontProducts';
+import FrontShoppingCart from '@/views/front/FrontShoppingCart';
+import FrontOrderList from '@/views/front/FrontOrderList';
+import FrontCheckout from '@/views/front/FrontCheckout';
+import FrontCheckOrder from '@/views/front/FrontCheckOrder';
+import FrontCartItems from '@/views/front/FrontCartItems';
+import testPage from '@/views/front/testPage';
 
 Vue.use(Router);
 

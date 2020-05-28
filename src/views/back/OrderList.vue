@@ -46,7 +46,7 @@
 
 <script>
 import $ from "jquery";
-import Pagination from "../Pagination";
+import Pagination from "@/components/back/Pagination";
 
 export default {
   components: {
