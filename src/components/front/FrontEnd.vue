@@ -2,7 +2,7 @@
   <div>
     <FrontNavbar></FrontNavbar>
 
-    <div class="container-fluid px-0">
+    <div class="container-fluid px-0" style="padding-top: 3.99rem;">
       <main>
         <router-view></router-view>
       </main>
