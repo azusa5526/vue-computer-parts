@@ -1,11 +1,12 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#">VueComputerParts</a>
+    <!-- <a class="navbar-brand" href="#">VueComputerParts</a> -->
+    <router-link class="navbar-brand" to="/home">VueComputerParts</router-link>
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <router-link class="nav-link" to="/home">Home</router-link>
+          <!-- <router-link class="nav-link" to="/home">Home</router-link> -->
           <!-- <span class="sr-only">(current)</span> -->
         </li>
         <li class="nav-item">
@@ -60,7 +61,7 @@ export default {
     checkLoginStatus() {
       const api = `${process.env.API_PATH}/api/user/check`;
       const vm = this;
-      
+
       this.$http.post(api).then(response => {
         vm.is_login = response.data.success;
       });
