@@ -2,27 +2,26 @@
   <div>
     <FrontNavbar></FrontNavbar>
 
-    <div class="container-fluid px-0" style="padding-top: 3.99rem;">
-      <main>
+    <div class="container-fluid px-0">
+      <main id="main">
         <router-view></router-view>
       </main>
-      
-      <footer class="container">
-        <hr />
-        <p>&copy; Company 2017-2019</p>
-      </footer>
     </div>
+
+    <FrontFooter></FrontFooter>
   </div>
 </template>
 
 <script >
 import FrontNavbar from "./FrontNavbar";
 import FrontSidebar from "./FrontSidebar";
+import FrontFooter from "./FrontFooter";
 
 export default {
   components: {
     FrontNavbar,
-    FrontSidebar
+    FrontSidebar,
+    FrontFooter
   },
 
   data() {
