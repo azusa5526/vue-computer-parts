@@ -8,7 +8,7 @@
       </main>
     </div>
 
-    <FrontFooter></FrontFooter>
+    <FrontFooter class="mt-4"></FrontFooter>
   </div>
 </template>
 

@@ -4,7 +4,8 @@
 
     <FrontSlideshow class="mb-2"></FrontSlideshow>
     <FrontHomeMidBanner class="mb-2"></FrontHomeMidBanner>
-    <FrontHomeHero></FrontHomeHero>
+    <FrontHomeHero class="mb-2"></FrontHomeHero>
+    <FrontHomeBuildPC></FrontHomeBuildPC>
 
   </div>
 </template>
@@ -13,12 +14,14 @@
 import FrontSlideshow from "./FrontSlideshow";
 import FrontHomeMidBanner from "./FrontHomeMidBanner";
 import FrontHomeHero from "./FrontHomeHero";
+import FrontHomeBuildPC from "./FrontHomeBuildPC";
 
 export default {
   components: {
     FrontSlideshow,
     FrontHomeMidBanner,
-    FrontHomeHero
+    FrontHomeHero,
+    FrontHomeBuildPC
   },
 
   data() {

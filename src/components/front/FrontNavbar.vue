@@ -1,13 +1,9 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#">VueComputerParts</a>
+    <router-link class="navbar-brand" to="/home">VueComputerParts</router-link>
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <router-link class="nav-link" to="/home">Home</router-link>
-          <!-- <span class="sr-only">(current)</span> -->
-        </li>
         <li class="nav-item">
           <router-link class="nav-link" to="/Front_check_order">Check Order</router-link>
         </li>

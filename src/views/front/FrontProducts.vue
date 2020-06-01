@@ -3,64 +3,65 @@
     <!-- vue-loading-overlay -->
     <loading :active.sync="isLoading"></loading>
 
-    <div>
-      <img src="@/assets/img/G14.png" />
-    </div>
+    <div class="container">
+      <div class="row mt-4 mx-2">
+        
+        <div class="col-lg-2">
+          <FrontSidebar
+            ref="frontSidebarComponent"
+            :cateFilter="categoryFilter"
+            :prodFilter="productsFilter"
+            @filterUpdate="updateProductsFilter"
+          ></FrontSidebar>
+        </div>
 
-    <div class="row mt-4 mx-2">
-      <FrontSidebar
-        ref="frontSidebarComponent"
-        :cateFilter="categoryFilter"
-        :prodFilter="productsFilter"
-        @filterUpdate="updateProductsFilter"
-      ></FrontSidebar>
-
-      <div class="col-md-10">
-        <!-- BS card -->
-        <div class="row">
-          <div class="col-md-3 mb-4" v-for="(item, index) in productsInWindowList" :key="index">
-            <div class="card border-0 shadow-sm">
-              <div
-                style="height: 150px; background-size: cover; background-position: center"
-                :style="{backgroundImage: `url(${item.imageUrl})`}"
-              ></div>
-              <div class="card-body">
-                <span class="badge badge-secondary float-right ml-2">{{item.category}}</span>
-                <h5 class="card-title">{{item.title}}</h5>
-                <p class="card-text">{{item.content}}</p>
-                <div class="d-flex justify-content-between align-items-baseline">
-                  <!-- <div class="h5">2,800 元</div> -->
-                  <div class="h5" v-if="!item.price">現在只要 {{item.origin_price}} 元</div>
-                  <del class="h6" v-if="item.price">原價 {{item.origin_price}} 元</del>
-                  <div class="h5" v-if="item.price">現在只要 {{item.price}} 元</div>
+        <div class="col-lg-10">
+          <!-- BS card -->
+          <div class="row">
+            <div class="col-md-3 mb-4" v-for="(item, index) in productsInWindowList" :key="index">
+              <div class="card border-0 shadow-sm">
+                <div
+                  style="height: 150px; background-size: cover; background-position: center"
+                  :style="{backgroundImage: `url(${item.imageUrl})`}"
+                ></div>
+                <div class="card-body">
+                  <span class="badge badge-secondary float-right ml-2">{{item.category}}</span>
+                  <h5 class="card-title">{{item.title}}</h5>
+                  <p class="card-text">{{item.content}}</p>
+                  <div class="d-flex justify-content-between align-items-baseline">
+                    <!-- <div class="h5">2,800 元</div> -->
+                    <div class="h5" v-if="!item.price">現在只要 {{item.origin_price}} 元</div>
+                    <del class="h6" v-if="item.price">原價 {{item.origin_price}} 元</del>
+                    <div class="h5" v-if="item.price">現在只要 {{item.price}} 元</div>
+                  </div>
                 </div>
-              </div>
 
-              <div class="card-footer d-flex">
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary btn-sm"
-                  @click="getProduct(item.id)"
-                >
-                  <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
-                  查看更多
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-outline-danger btn-sm ml-auto"
-                  @click="addToCart(item.id)"
-                >
-                  <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
-                  加到購物車
-                </button>
+                <div class="card-footer d-flex">
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary btn-sm"
+                    @click="getProduct(item.id)"
+                  >
+                    <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
+                    查看更多
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-danger btn-sm ml-auto"
+                    @click="addToCart(item.id)"
+                  >
+                    <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
+                    加到購物車
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- BS pagination -->
-        <!-- <Pagination :pagination="pagination" @changePage="getProducts"></Pagination> -->
-        <Pgnation :pagination="pgnation" @changePage="changeCurrentPage"></Pgnation>
+          <!-- BS pagination -->
+          <!-- <Pagination :pagination="pagination" @changePage="getProducts"></Pagination> -->
+          <Pgnation :pagination="pgnation" @changePage="changeCurrentPage"></Pgnation>
+        </div>
       </div>
     </div>
 
