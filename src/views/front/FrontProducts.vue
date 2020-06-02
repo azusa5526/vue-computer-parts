@@ -18,7 +18,7 @@
         <div class="col-lg-10">
           <!-- BS card -->
           <div class="row">
-            <div class="col-md-4 mb-4" v-for="(item, index) in productsInWindowList" :key="index">
+            <div class="col-md-3 mb-4" v-for="(item, index) in productsInWindowList" :key="index">
               <div class="card border-0 shadow-sm">
                 <div
                   style="height: 150px; background-size: cover; background-position: center"
