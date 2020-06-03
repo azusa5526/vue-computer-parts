@@ -1,0 +1,57 @@
+//mid banner
+.mid-banner {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  padding: 30px 50px;
+  background-color: white;
+
+  h6 {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+  }
+}
+
+//build pc
+#build-pc {
+  .row {
+    background-color: $black;
+  }
+
+  h5 {
+    color: $gray-200;
+  }
+
+  p {
+    color: $gray-200;
+  }
+
+}
+
+//products hero
+.hero-col-4 {
+  flex: 0 0 33.33333%;
+  max-width: 33.33333%;
+  position: relative;
+  width: 100%;
+  padding: 0 3px;
+}
+
+#heroProducts {
+  .card-header {
+    position: absolute;
+    padding: 1.5rem 0 30px;
+    text-align: center;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+  }
+
+  .card-text {
+    position: absolute;
+  }
+
+}
+
