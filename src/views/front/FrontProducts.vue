@@ -2,10 +2,10 @@
   <div>
     <!-- vue-loading-overlay -->
     <loading :active.sync="isLoading"></loading>
-    <FrontProductSlideShow></FrontProductSlideShow>
-   
+    <FrontProductSlideShow class="adjust-height"></FrontProductSlideShow>
+
     <div class="row mt-4 mx-2 justify-content-center">
-      <div class="col-xl-2 col-lg-3 col-md-3">
+      <div class="col-xl-2 col-lg-3 col-md-3 col-sm-12 col-12">
         <FrontSidebar
           ref="frontSidebarComponent"
           :cateFilter="categoryFilter"
@@ -24,7 +24,7 @@
           >
             <div class="card border-0 shadow-sm">
               <div
-                style="height: 200px; background-size: cover; background-position: center"
+                style="height: 300px; background-size: contain; background-position: center; background-repeat: no-repeat;"
                 :style="{backgroundImage: `url(${item.imageUrl})`}"
               ></div>
               <div class="card-body">
@@ -61,10 +61,19 @@
           </div>
         </div>
 
-        <!-- BS pagination -->
-        <!-- <Pagination :pagination="pagination" @changePage="getProducts"></Pagination> -->
-        <Pgnation class="mt-4" :pagination="pgnation" @changePage="changeCurrentPage"></Pgnation>
+        <div class="row justify-content-center">
+          <Pgnation
+            v-if="filteredProducts.length !== 0"
+            class="mt-4"
+            :pagination="pgnation"
+            @changePage="changeCurrentPage"
+          ></Pgnation>
+        </div>
       </div>
+
+      <!-- <div class="no-product-found col-xl-10 col-lg-9 col-md-9 col-sm-12 col-11" v-if="filteredProducts.length == 0">
+        <h4>No products found</h4>
+      </div> -->
     </div>
 
     <!-- BS modal -->
@@ -202,9 +211,14 @@ export default {
 
       this.$http.get(api).then(response => {
         //console.log(response.data);
-        vm.product = response.data.product;
-        $("#productModal").modal("show");
-        vm.status.loadingItem = "";
+        if (response.data.success) {
+          vm.$router.push(
+            `../front_single_product/${response.data.product.id}`
+          );
+        }
+        // vm.product = response.data.product;
+        // $("#productModal").modal("show");
+        // vm.status.loadingItem = "";
       });
     },
 

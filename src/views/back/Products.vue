@@ -346,7 +346,8 @@ export default {
             this.$bus.$emit("message:push", response.data.message, "danger");
           }
         });
-    }
+    },
+
   },
 
   created() {

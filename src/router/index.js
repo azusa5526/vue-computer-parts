@@ -19,15 +19,16 @@ import FrontCheckout from '@/views/front/FrontCheckout';
 import FrontCheckOrder from '@/views/front/FrontCheckOrder';
 import FrontCartItems from '@/views/front/FrontCartItems';
 import testPage from '@/views/front/testPage';
+import FrontSingleProduct from '@/views/front/frontSingleProduct';
 
 Vue.use(Router);
 
 export default new Router({
   routes: [
-    {
-      path: '*',
-      redirect: '/login',
-    },
+    // {
+    //   path: '*',
+    //   redirect: '/login',
+    // },
 
     {
       path: '/login',
@@ -49,6 +50,14 @@ export default new Router({
           name: 'FrontProducts',
           component: FrontProducts,
         },
+
+        {
+          path: 'front_single_product/:productID',
+          name: 'FrontSingleProduct',
+          component: FrontSingleProduct,
+        },
+
+
         {
           path: 'shopping_cart',
           name: 'shoppingCart',
