@@ -5,11 +5,22 @@ body {
 }
 
 #main {
-  padding-top: 3.6656rem;
+  padding-top: 3.66rem;
 }
 
 img{
 	border: 0;
 	max-width: 100%;
 	height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: $black;
+
+  &:hover {
+    text-decoration: none;
+    color: $black;
+  }
+  
 }

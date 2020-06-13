@@ -4,6 +4,10 @@
     <loading :active.sync="isLoading"></loading>
     <FrontProductSlideShow class="adjust-height"></FrontProductSlideShow>
 
+    <div>
+      <button @click="randomProduct(categoryFilteredList, 4)">test btn</button>
+    </div>
+
     <div class="row mt-4 mx-2 justify-content-center">
       <div class="col-xl-2 col-lg-3 col-md-3 col-sm-12 col-12">
         <FrontSidebar
@@ -18,46 +22,53 @@
         <!-- BS card -->
         <div class="row">
           <div
-            class="col-2xl-3 col-xl-4 col-lg-6 col-md-6 col-sm-6 mb-4"
+            class="col-2xl-3 col-xl-4 col-lg-6 col-md-6 col-sm-6 mb-4 testclass"
             v-for="(item, index) in productsInWindowList"
             :key="index"
           >
-            <div class="card border-0 shadow-sm">
-              <div
-                style="height: 300px; background-size: contain; background-position: center; background-repeat: no-repeat;"
-                :style="{backgroundImage: `url(${item.imageUrl})`}"
-              ></div>
-              <div class="card-body">
-                <span class="badge badge-secondary float-right ml-2">{{item.category}}</span>
-                <h5 class="card-title">{{item.title}}</h5>
-                <p class="card-text">{{item.content}}</p>
-                <div class="d-flex justify-content-between align-items-baseline">
-                  <!-- <div class="h5">2,800 元</div> -->
+            <a class="link-block" href="#" @click.prevent="getProduct(item.id)">
+              <div class="card border-0 shadow-sm">
+                <div
+                  style="height: 300px; background-size: contain; background-position: center; background-repeat: no-repeat;"
+                  :style="{backgroundImage: `url(${item.imageUrl})`}"
+                ></div>
+                <div class="card-body">
+                  <!-- <span class="badge badge-secondary float-right ml-2">{{item.category}}</span> -->
+                  <h5 class="card-title">{{item.title}}</h5>
+                  <p class="card-text">{{item.content}}</p>
+                  <!-- <div class="d-flex justify-content-between align-items-baseline">
+                    <div class="h5" v-if="!item.price">現在只要 {{item.origin_price}} 元</div>
+                    <del class="h6" v-if="item.price">原價 {{item.origin_price}} 元</del>
+                    <div class="h5" v-if="item.price">現在只要 {{item.price}} 元</div>
+                  </div>-->
+                </div>
+
+                <div class="card-footer d-flex justify-content-between align-items-baseline">
                   <div class="h5" v-if="!item.price">現在只要 {{item.origin_price}} 元</div>
                   <del class="h6" v-if="item.price">原價 {{item.origin_price}} 元</del>
                   <div class="h5" v-if="item.price">現在只要 {{item.price}} 元</div>
                 </div>
-              </div>
 
-              <div class="card-footer d-flex">
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary btn-sm"
-                  @click="getProduct(item.id)"
-                >
-                  <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
-                  查看更多
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-outline-danger btn-sm ml-auto"
-                  @click="addToCart(item.id)"
-                >
-                  <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
-                  加到購物車
-                </button>
+                <!-- <div class="card-footer d-flex">
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary btn-sm"
+                    @click="getProduct(item.id)"
+                  >
+                    <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
+                    查看更多
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-danger btn-sm ml-auto"
+                    @click="addToCart(item.id)"
+                  >
+                    <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
+                    加到購物車
+                  </button>
+                </div>-->
               </div>
-            </div>
+            </a>
           </div>
         </div>
 
@@ -73,7 +84,7 @@
 
       <!-- <div class="no-product-found col-xl-10 col-lg-9 col-md-9 col-sm-12 col-11" v-if="filteredProducts.length == 0">
         <h4>No products found</h4>
-      </div> -->
+      </div>-->
     </div>
 
     <!-- BS modal -->
@@ -100,9 +111,9 @@
               <footer class="blockquote-footer text-right">{{ product.description }}</footer>
             </blockquote>
             <div class="d-flex justify-content-between align-items-baseline">
-              <div class="h4" v-if="!product.price">{{ product.origin_price }} 元</div>
+              <div class="h4" v-if="!product.price">折扣價 {{ product.origin_price }} 元</div>
               <del class="h6" v-if="product.price">原價 {{ product.origin_price }} 元</del>
-              <div class="h4" v-if="product.price">現在只要 {{ product.price }} 元</div>
+              <div class="h4" v-if="product.price">折扣價 {{ product.price }} 元</div>
             </div>
             <select name class="form-control mt-3" v-model="product.num">
               <option :value="num" v-for="num in 10" :key="num">選購 {{num}} {{product.unit}}</option>
@@ -173,7 +184,8 @@ export default {
       categoryFilter: "",
       productsFilter: [],
       filteredProducts: [],
-      productsInWindow: []
+      productsInWindow: [],
+      categoryFilteredList: [],
     };
   },
 
@@ -216,10 +228,34 @@ export default {
             `../front_single_product/${response.data.product.id}`
           );
         }
-        // vm.product = response.data.product;
-        // $("#productModal").modal("show");
-        // vm.status.loadingItem = "";
       });
+    },
+
+    randomProduct(arr, num) {
+      let newArr = [];
+      rand(num);
+
+      function rand(selectQty) {
+        if (selectQty == 0) {
+          return;
+        }
+
+        let index = Math.floor(Math.random() * arr.length);
+        let flag = true;
+
+        newArr.forEach(function(item) {
+          if(item == arr[index]) {
+            flag = false;
+          }
+        });
+
+        if(flag) {
+          newArr.push(arr[index]);
+          selectQty--;
+        }
+        rand(selectQty);
+      }
+      return newArr;
     },
 
     addToCart(id, qty = 1) {
@@ -280,6 +316,8 @@ export default {
     productsFilterList() {
       const vm = this;
       let tempProducts = vm.categoryFilterList();
+      vm.categoryFilteredList = tempProducts; //待移位
+
       if (vm.productsFilter.length === 0) {
         return tempProducts;
       } else {
@@ -302,7 +340,7 @@ export default {
     pgnationCounter() {
       const vm = this;
       let productsLength = vm.filteredProducts.length;
-      console.log("productsLength", productsLength);
+      //console.log("productsLength", productsLength);
 
       vm.pgnation.total_pages = Number(
         Math.floor(productsLength / vm.pgnation.page_size) + 1
@@ -330,8 +368,8 @@ export default {
         vm.pgnation.page_size +
         1;
       let pageMaxIndex = vm.pgnation.current_page * vm.pgnation.page_size;
-      console.log("pageMinIndex", pageMinIndex);
-      console.log("pageMaxIndex", pageMaxIndex);
+      //console.log("pageMinIndex", pageMinIndex);
+      //console.log("pageMaxIndex", pageMaxIndex);
 
       vm.productsInWindow = [];
       vm.filteredProducts.forEach(function(item, index) {
@@ -344,36 +382,15 @@ export default {
 
     changeCurrentPage(targetPage) {
       const vm = this;
-      console.log("targetPage", targetPage);
+      //console.log("targetPage", targetPage);
       vm.pgnation.current_page = Number(targetPage);
-      console.log("vm.pgnation.current_page", vm.pgnation.current_page);
+      //console.log("vm.pgnation.current_page", vm.pgnation.current_page);
       vm.pgnationCounter();
       vm.pageSpliter();
     }
   },
 
   computed: {
-    // productsFilterList() {
-    //   const vm = this;
-    //   let tempProducts = vm.categoryFilterList();
-    //   if (vm.productsFilter.length === 0) {
-    //     vm.filteredProducts = tempProducts;
-    //     vm.pgnationCounter();
-    //     vm.pageSpliter();
-    //     return tempProducts;
-    //   } else {
-    //     for (let filter of vm.productsFilter) {
-    //       tempProducts = tempProducts.filter(function(item) {
-    //         return item.category.indexOf(filter) !== -1;
-    //       });
-    //     }
-    //     vm.filteredProducts = tempProducts;
-    //     vm.pgnationCounter();
-    //     vm.pageSpliter();
-    //     return tempProducts;
-    //   }
-    // },
-
     productsInWindowList() {
       const vm = this;
       let productsInWindow = [];
@@ -387,8 +404,8 @@ export default {
         vm.pgnation.page_size +
         1;
       let pageMaxIndex = vm.pgnation.current_page * vm.pgnation.page_size;
-      console.log("pageMinIndex", pageMinIndex);
-      console.log("pageMaxIndex", pageMaxIndex);
+      //console.log("pageMinIndex", pageMinIndex);
+      //console.log("pageMaxIndex", pageMaxIndex);
 
       vm.filteredProducts.forEach(function(item, index) {
         const num = index + 1;
@@ -412,14 +429,11 @@ export default {
   },
 
   created() {
-    //this.getProducts();
     this.getAllProducts();
     this.pgnationCounter();
     this.pageSpliter();
     this.getCart();
-  },
-
-  mounted() {}
+  }
 };
 </script>
 

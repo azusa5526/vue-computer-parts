@@ -1,8 +1,12 @@
-.card:hover {
-  
-}
-
 .no-product-found {
   background-color: white;
-  
+}
+
+.link-block {
+  display: block;
+}
+
+.testclass:hover {
+  transform: scale(1.01);
+  transition: .1s;
 }

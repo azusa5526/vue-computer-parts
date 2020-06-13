@@ -12,7 +12,8 @@
               data-target="#collapseCpuBrand"
               aria-expanded="true"
               aria-controls="collapseCpuBrand"
-            >CPU Brand</button>
+            >CPU Brand
+            </button>
           </h5>
         </div>
 
