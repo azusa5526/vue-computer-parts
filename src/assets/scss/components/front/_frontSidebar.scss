@@ -1,0 +1,50 @@
+.nav-color {
+  background-color: #343a40;
+}
+
+.side-title {
+  h6 {
+    padding: 1.25rem;
+    color:$gray-100;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+
+.side-clear {
+  background-color: $gray-600;
+
+  .btn {
+    width: 100%;
+    height: 45px;
+    color: $gray-100;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+
+#accordion {
+  .card {
+    border-radius: 0;
+  }
+
+  .btn {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .btn-link {
+    color: $black;
+    text-decoration: none;
+  }
+
+  .card-header {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: $white;
+    border-radius: 0;
+  }
+}

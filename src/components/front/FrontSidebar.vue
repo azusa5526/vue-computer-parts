@@ -1,21 +1,26 @@
 <template>
-  <nav class="d-none d-md-block bg-light">
-    <button @click="clearAll">clear all</button>
+  <nav class="d-none d-md-block nav-color">
+    <div class="side-title">
+      <h6>Advanced Filter</h6>
+    </div>
+
+    <div class="side-clear">
+      <button class="btn" @click="clearAll">Clear Filter</button>
+    </div>
 
     <div id="accordion">
       <div class="card" v-if="cateFilter === 'cpu'">
-        <div class="card-header" id="headingOne">
-          <h5 class="mb-0">
-            <button
-              class="btn btn-link"
-              data-toggle="collapse"
-              data-target="#collapseCpuBrand"
-              aria-expanded="true"
-              aria-controls="collapseCpuBrand"
-            >CPU Brand
-            </button>
-          </h5>
-        </div>
+        <h5 class="mb-0">
+          <button
+            class="btn btn-link"
+            data-toggle="collapse"
+            data-target="#collapseCpuBrand"
+            aria-expanded="true"
+            aria-controls="collapseCpuBrand"
+          >
+            <div class="card-header" id="headingOne">CPU Brand</div>
+          </button>
+        </h5>
 
         <div
           id="collapseCpuBrand"
@@ -225,11 +230,11 @@
 
 <script>
 export default {
-  props: ['cateFilter'],
+  props: ["cateFilter"],
 
   data() {
     return {
-      prodsFilter: [],
+      prodsFilter: []
     };
   },
 
@@ -252,25 +257,23 @@ export default {
   methods: {
     clearCheckbox() {
       const vm = this;
-      let checkbox = document.getElementsByTagName('input');
-      for(let i = 0; i < checkbox.length; i++) {
+      let checkbox = document.getElementsByTagName("input");
+      for (let i = 0; i < checkbox.length; i++) {
         checkbox[i].checked = false;
       }
-      console.log('clearCheckbox active');
+      console.log("clearCheckbox active");
     },
 
     clearProdsFilter() {
       const vm = this;
       vm.prodsFilter = [];
-      console.log('clearProdsFilter active');
+      console.log("clearProdsFilter active");
     },
 
     clearAll() {
       this.clearCheckbox();
       this.clearProdsFilter();
     }
-
-  },
-
+  }
 };
 </script>

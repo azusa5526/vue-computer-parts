@@ -4,9 +4,9 @@
     <loading :active.sync="isLoading"></loading>
     <FrontProductSlideShow class="adjust-height"></FrontProductSlideShow>
 
-    <div>
+    <!-- <div>
       <button @click="randomProduct(categoryFilteredList, 4)">test btn</button>
-    </div>
+    </div>-->
 
     <div class="row mt-4 mx-2 justify-content-center">
       <div class="col-xl-2 col-lg-3 col-md-3 col-sm-12 col-12">
@@ -26,7 +26,7 @@
             v-for="(item, index) in productsInWindowList"
             :key="index"
           >
-            <a class="link-block" href="#" @click.prevent="getProduct(item.id)">
+            <a class="link-block" href="#"  @click="getProduct(item.id)">
               <div class="card border-0 shadow-sm">
                 <div
                   style="height: 300px; background-size: contain; background-position: center; background-repeat: no-repeat;"
@@ -185,7 +185,7 @@ export default {
       productsFilter: [],
       filteredProducts: [],
       productsInWindow: [],
-      categoryFilteredList: [],
+      categoryFilteredList: []
     };
   },
 
@@ -244,12 +244,12 @@ export default {
         let flag = true;
 
         newArr.forEach(function(item) {
-          if(item == arr[index]) {
+          if (item == arr[index]) {
             flag = false;
           }
         });
 
-        if(flag) {
+        if (flag) {
           newArr.push(arr[index]);
           selectQty--;
         }
