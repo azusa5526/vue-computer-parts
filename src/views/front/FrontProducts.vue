@@ -22,7 +22,7 @@
         <!-- BS card -->
         <div class="row">
           <div
-            class="col-2xl-3 col-xl-4 col-lg-6 col-md-6 col-sm-6 mb-4 hover-effect"
+            class="col-2xl-3 col-xl-4 col-lg-6 col-md-6 col-sm-6 mb-4 testclass"
             v-for="(item, index) in productsInWindowList"
             :key="index"
           >
