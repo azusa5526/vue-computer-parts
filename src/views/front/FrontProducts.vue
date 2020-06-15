@@ -185,7 +185,7 @@ export default {
       productsFilter: [],
       filteredProducts: [],
       productsInWindow: [],
-      categoryFilteredList: []
+      //categoryFilteredList: []
     };
   },
 
@@ -303,11 +303,15 @@ export default {
     categoryFilterList() {
       const vm = this;
       let tempProducts = vm.activatedProductFilterList();
+      console.log('categoryFilterList active tempProducts', tempProducts);
       vm.categoryFilter = vm.$route.params.categoryFilter;
+      console.log('vm.categoryFilter', vm.categoryFilter);
       if (vm.categoryFilter == "all") {
         return tempProducts;
       } else {
         return tempProducts.filter(function(item) {
+          console.log('item.category', item.category);
+          console.log('vm.categoryFilter', vm.categoryFilter);
           return item.category.indexOf(vm.categoryFilter) !== -1;
         });
       }
@@ -316,7 +320,8 @@ export default {
     productsFilterList() {
       const vm = this;
       let tempProducts = vm.categoryFilterList();
-      vm.categoryFilteredList = tempProducts; //待移位
+      console.log('productsFilterList active tempProducts', tempProducts);
+      //vm.categoryFilteredList = tempProducts; //待移位
 
       if (vm.productsFilter.length === 0) {
         return tempProducts;
