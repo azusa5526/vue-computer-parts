@@ -6,7 +6,11 @@
   display: block;
 }
 
-.testclass:hover {
+.hover-effect:hover {
   transform: scale(1.01);
   transition: .1s;
+}
+
+.card-body {
+  height: 150px;
 }
