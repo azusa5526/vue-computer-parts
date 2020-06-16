@@ -143,7 +143,8 @@ export default {
       this.$http.get(api).then(response => {
         if (response.data.success) {
           vm.product = response.data.product;
-          vm.product.num = 1;
+          //vm.product.num = 1;
+          vm.$set(vm.product, 'num', 1);
           console.log(vm.product);
         }
       });

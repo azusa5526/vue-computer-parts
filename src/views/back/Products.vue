@@ -4,6 +4,7 @@
     <loading :active.sync="isLoading"></loading>
 
     <div class="text-right">
+      <button class="btn btn-danger mt-4 mr-2" @click="deleteAllProducts()">刪除全部產品</button>
       <button class="btn btn-primary mt-4" @click="openModal(true)">建立新的產品</button>
     </div>
 
@@ -238,6 +239,7 @@ export default {
   data() {
     return {
       products: [],
+      allProducts: [],
       tempProduct: {},
       isNew: false,
       isLoading: false,
@@ -261,6 +263,18 @@ export default {
         vm.isLoading = false;
         vm.products = response.data.products;
         vm.pagination = response.data.pagination;
+      });
+    },
+
+    getAllProducts() {
+      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/admin/products/all`;
+      const vm = this;
+      vm.isLoading = true;
+
+      this.$http.get(api).then(response => {
+        //console.log(response.data);
+        vm.isLoading = false;
+        vm.allProducts = response.data.products;
       });
     },
 
@@ -307,6 +321,7 @@ export default {
     deleteProduct() {
       const vm = this;
       let api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/admin/product/${vm.tempProduct.id}`;
+      console.log(api);
       this.$http.delete(api).then(response => {
         if (response.data.success) {
           console.log(response.data);
@@ -319,6 +334,24 @@ export default {
         }
       });
     },
+
+    // deleteAllProducts() {
+    //   const vm = this;
+    //   console.log(vm.allProducts);
+
+    //   $.each(vm.allProducts, function(index, value) {
+    //     let api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/admin/product/${value.id}`;
+    //     console.log(api);
+    //     this.$http.delete(api).then(response => {
+    //       if (response.data.success) {
+    //         console.log(response.data);
+    //         vm.getProducts(vm.pagination.current_page);
+    //       } else {
+    //         console.log("刪除產品失敗");
+    //       }
+    //     });
+    //   });
+    // },
 
     uploadFile() {
       console.log(this);
@@ -346,12 +379,12 @@ export default {
             this.$bus.$emit("message:push", response.data.message, "danger");
           }
         });
-    },
-
+    }
   },
 
   created() {
     this.getProducts();
+    this.getAllProducts();
   }
 };
 </script>

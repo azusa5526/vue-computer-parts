@@ -6,7 +6,21 @@
   display: block;
 }
 
-.testclass:hover {
+.product-hover:hover {
   transform: scale(1.01);
   transition: .1s;
+}
+
+.card-body {
+  height: 150px;
+}
+
+.card-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  white-space: normal;
 }

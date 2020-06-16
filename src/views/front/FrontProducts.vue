@@ -22,11 +22,11 @@
         <!-- BS card -->
         <div class="row">
           <div
-            class="col-2xl-3 col-xl-4 col-lg-6 col-md-6 col-sm-6 mb-4 testclass"
+            class="col-2xl-3 col-xl-4 col-lg-6 col-md-6 col-sm-6 mb-4 product-hover"
             v-for="(item, index) in productsInWindowList"
             :key="index"
           >
-            <a class="link-block" href="#"  @click="getProduct(item.id)">
+            <a class="link-block" :href="'#/front_single_product/' + item.id" @click="getProduct(item.id)">
               <div class="card border-0 shadow-sm">
                 <div
                   style="height: 300px; background-size: contain; background-position: center; background-repeat: no-repeat;"
