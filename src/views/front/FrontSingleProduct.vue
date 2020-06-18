@@ -63,7 +63,7 @@
         </div>
 
 
-          <div class="col-6 col-md-3" v-for="(item, index) in recommandProducts" :key="index">
+          <div class="col-6 col-md-3" v-for="(item, index) in sessionStorageProducts" :key="index">
             <div class="card border-0 shadow-sm">
               <div
                 style="height: 200px; background-size: contain; background-repeat: no-repeat; background-position: center;"
@@ -92,6 +92,7 @@ export default {
       isLoading: false,
       productId: "",
       recommandProducts: [],
+      sessionStorageProducts: [],
       product: {
         num: 1
       },
@@ -169,6 +170,8 @@ export default {
       vm.recommandProducts = randomProducts;
       console.log("recommandProducts", vm.recommandProducts);
     });
+
+    vm.sessionStorageProducts = JSON.parse(sessionStorage.getItem('rndProds'));
   }
 };
 </script>

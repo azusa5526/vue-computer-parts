@@ -186,23 +186,23 @@ export default {
       filteredProducts: [],
       productsInWindow: [],
       categoryFilteredList: [],
-      tempRandomProducts: [],
+      tempRandomProducts: []
     };
   },
 
   methods: {
-    getProducts(page = 1) {
-      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/products?page=${page}`;
-      const vm = this;
-      vm.isLoading = true;
+    // getProducts(page = 1) {
+    //   const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/products?page=${page}`;
+    //   const vm = this;
+    //   vm.isLoading = true;
 
-      this.$http.get(api).then(response => {
-        //console.log(response.data);
-        vm.isLoading = false;
-        vm.products = response.data.products;
-        vm.pagination = response.data.pagination;
-      });
-    },
+    //   this.$http.get(api).then(response => {
+    //     //console.log(response.data);
+    //     vm.isLoading = false;
+    //     vm.products = response.data.products;
+    //     vm.pagination = response.data.pagination;
+    //   });
+    // },
 
     getAllProducts() {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/products/all`;
@@ -229,14 +229,16 @@ export default {
           vm.$router.push(
             `../front_single_product/${response.data.product.id}`
           );
-          vm.$bus.$emit('getRandomProds', vm.tempRandomProducts);
+
+          sessionStorage.setItem("rndProds", JSON.stringify(vm.tempRandomProducts));
+          vm.$bus.$emit("getRandomProds", vm.tempRandomProducts);
         }
       });
     },
 
     randomProduct(arr, num) {
       let newArr = [];
-      if(arr.length <= num) {
+      if (arr.length <= num) {
         num = arr.length;
       }
 
@@ -429,17 +431,12 @@ export default {
   },
 
   watch: {
-    $route (to, from) {
-      console.log('watch router change active');
-      this.$bus.$emit('getRandomProds', this.randomProduct(this.categoryFilteredList, 4));
-    },
-
     categoryFilter: {
       handler() {
         //console.log('categoryFilter change to: ', this.categoryFilter);
         this.pgnation.current_page = 1;
       }
-    },
+    }
   },
 
   created() {
