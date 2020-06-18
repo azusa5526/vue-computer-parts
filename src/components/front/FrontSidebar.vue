@@ -122,18 +122,13 @@
             <input
               type="checkbox"
               id="motherboardSocket-1151"
-              value="motherboardSocket-1151"
+              value="mb-1151"
               v-model="prodsFilter"
             />
             <label for="motherboardSocket-1151">Socket-1151</label>
           </div>
           <div>
-            <input
-              type="checkbox"
-              id="motherboardSocket-AM4"
-              value="motherboardSocket-AM4"
-              v-model="prodsFilter"
-            />
+            <input type="checkbox" id="motherboardSocket-AM4" value="mb-am4" v-model="prodsFilter" />
             <label for="motherboardSocket-AM4">Socket-AM4</label>
           </div>
         </div>
@@ -221,6 +216,88 @@
           <div>
             <input type="checkbox" id="3600Hz-ram" value="3600Hz" v-model="prodsFilter" />
             <label for="3600Hz-ram">3600 Hz</label>
+          </div>
+          <div>
+            <input type="checkbox" id="4000Hz-ram" value="4000Hz" v-model="prodsFilter" />
+            <label for="4000Hz-ram">4000 Hz</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" v-if="cateFilter === 'graphic_card'">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <button
+            class="btn btn-link collapsed"
+            data-toggle="collapse"
+            data-target="#collapseChipProducer"
+            aria-expanded="false"
+            aria-controls="collapseChipProducer"
+          >Chip Producer</button>
+        </h5>
+      </div>
+      <div id="collapseChipProducer" class="collapse" data-parent="#accordion">
+        <div class="card-body">
+          <div>
+            <input type="checkbox" id="amd" value="amd" v-model="prodsFilter" />
+            <label for="amd">AMD</label>
+          </div>
+          <div>
+            <input type="checkbox" id="nvidia" value="nvidia" v-model="prodsFilter" />
+            <label for="nvidia">NVIDIA</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" v-if="cateFilter === 'graphic_card'">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <button
+            class="btn btn-link collapsed"
+            data-toggle="collapse"
+            data-target="#collapseGpuBrand"
+            aria-expanded="false"
+            aria-controls="collapseGpuBrand"
+          >GPU Brand</button>
+        </h5>
+      </div>
+      <div id="collapseGpuBrand" class="collapse" data-parent="#accordion">
+        <div class="card-body">
+          <div>
+            <input type="checkbox" id="asus" value="asus" v-model="prodsFilter" />
+            <label for="asus">ASUS</label>
+          </div>
+          <div>
+            <input type="checkbox" id="msi" value="msi" v-model="prodsFilter" />
+            <label for="msi">MSI</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" v-if="cateFilter === 'graphic_card'">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <button
+            class="btn btn-link collapsed"
+            data-toggle="collapse"
+            data-target="#collapseGpuSeries"
+            aria-expanded="false"
+            aria-controls="collapseGpuSeries"
+          >GPU Series</button>
+        </h5>
+      </div>
+      <div id="collapseGpuSeries" class="collapse" data-parent="#accordion">
+        <div class="card-body">
+          <div>
+            <input type="checkbox" id="radeon-VII" value="radeon-VII" v-model="prodsFilter" />
+            <label for="radeon-VII">Radeon VII</label>
+          </div>
+          <div>
+            <input type="checkbox" id="radeon-5000-series" value="radeon-5000-series" v-model="prodsFilter" />
+            <label for="radeon-5000-series">Radeon 5000</label>
           </div>
         </div>
       </div>

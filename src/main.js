@@ -9,6 +9,8 @@ import 'vue-loading-overlay/dist/vue-loading.css';
 import VeeValidate from 'vee-validate';
 import zhTWValidate from 'vee-validate/dist/locale/zh_TW';
 
+import Router from 'vue-router'
+
 import App from './App';
 import router from './router';
 import './bus';
@@ -58,3 +60,9 @@ router.beforeEach((to, from, next) => {
   }
 
 });
+
+//this.$router.push相同地址報錯的解決辦法
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}

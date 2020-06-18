@@ -62,58 +62,24 @@
           <h5>也許您同樣也會喜歡...</h5>
         </div>
 
-        <div class="card border-0 shadow-sm col-6 col-md-3">
-          <div
-            style="height: 200px; background-size: contain; background-repeat: no-repeat; background-position: center;"
-            :style="{backgroundImage: `url(${product.imageUrl})`}"
-          ></div>
-          <div class="card-body">
-            <h6 class="card-title">{{product.title}}</h6>
-            <div class="d-flex justify-content-end">
-              <div class="h6" v-if="!product.price">{{product.origin_price}} 元</div>
-              <div class="h6" v-if="product.price">{{product.price}} 元</div>
+
+          <div class="col-6 col-md-3" v-for="(item, index) in recommandProducts" :key="index">
+            <div class="card border-0 shadow-sm">
+              <div
+                style="height: 200px; background-size: contain; background-repeat: no-repeat; background-position: center;"
+                :style="{backgroundImage: `url(${item.imageUrl})`}"
+              ></div>
+              <div class="card-body">
+                <h6 class="card-title">{{item.title}}</h6>
+              </div>
+
+              <div class="card-footer d-flex justify-content-end">
+                <div class="h6" v-if="!item.price">{{item.origin_price}} 元</div>
+                <div class="h6" v-if="item.price">{{item.price}} 元</div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="card border-0 shadow-sm col-6 col-md-3">
-          <div
-            style="height: 200px; background-size: cover; background-position: center"
-            :style="{backgroundImage: `url(${product.imageUrl})`}"
-          ></div>
-          <div class="card-body">
-            <h6 class="card-title">{{product.title}}</h6>
-            <div class="d-flex justify-content-end">
-              <div class="h6" v-if="!product.price">{{product.origin_price}} 元</div>
-              <div class="h6" v-if="product.price">{{product.price}} 元</div>
-            </div>
-          </div>
-        </div>
-        <div class="card border-0 shadow-sm col-6 col-md-3">
-          <div
-            style="height: 200px; background-size: cover; background-position: center"
-            :style="{backgroundImage: `url(${product.imageUrl})`}"
-          ></div>
-          <div class="card-body">
-            <h6 class="card-title">{{product.title}}</h6>
-            <div class="d-flex justify-content-end">
-              <div class="h6" v-if="!product.price">{{product.origin_price}} 元</div>
-              <div class="h6" v-if="product.price">{{product.price}} 元</div>
-            </div>
-          </div>
-        </div>
-        <div class="card border-0 shadow-sm col-6 col-md-3">
-          <div
-            style="height: 200px; background-size: cover; background-position: center"
-            :style="{backgroundImage: `url(${product.imageUrl})`}"
-          ></div>
-          <div class="card-body">
-            <h6 class="card-title">{{product.title}}</h6>
-            <div class="d-flex justify-content-end">
-              <div class="h6" v-if="!product.price">{{product.origin_price}} 元</div>
-              <div class="h6" v-if="product.price">{{product.price}} 元</div>
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
   </div>
@@ -125,7 +91,7 @@ export default {
     return {
       isLoading: false,
       productId: "",
-      products: [],
+      recommandProducts: [],
       product: {
         num: 1
       },
@@ -144,11 +110,11 @@ export default {
         if (response.data.success) {
           vm.product = response.data.product;
           //vm.product.num = 1;
-          vm.$set(vm.product, 'num', 1);
+          vm.$set(vm.product, "num", 1);
           console.log(vm.product);
         }
       });
-      console.log("create pdn", vm.product.num);
+      //console.log("create pdn", vm.product.num);
     },
 
     addToCart(id, direct, qty = 1) {
@@ -182,7 +148,7 @@ export default {
       if (vm.product.num > 1) {
         vm.product.num--;
       }
-      console.log('vm.product.num' ,vm.product.num);
+      console.log("vm.product.num", vm.product.num);
     },
 
     quantityPlus(product) {
@@ -190,15 +156,19 @@ export default {
       if (vm.product.num < 5) {
         vm.product.num++;
       }
-      console.log('vm.product.num' ,vm.product.num);
-    },
-    
+      console.log("vm.product.num", vm.product.num);
+    }
   },
 
   created() {
+    const vm = this;
     this.productId = this.$route.params.productID;
     this.getProduct();
-  },
 
+    vm.$bus.$on("getRandomProds", randomProducts => {
+      vm.recommandProducts = randomProducts;
+      console.log("recommandProducts", vm.recommandProducts);
+    });
+  }
 };
 </script>

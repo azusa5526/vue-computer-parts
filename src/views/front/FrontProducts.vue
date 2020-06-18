@@ -4,10 +4,6 @@
     <loading :active.sync="isLoading"></loading>
     <FrontProductSlideShow class="adjust-height"></FrontProductSlideShow>
 
-    <!-- <div>
-      <button @click="randomProduct(categoryFilteredList, 4)">test btn</button>
-    </div>-->
-
     <div class="row mt-4 mx-2 justify-content-center">
       <div class="col-xl-2 col-lg-3 col-md-3 col-sm-12 col-12">
         <FrontSidebar
@@ -26,7 +22,11 @@
             v-for="(item, index) in productsInWindowList"
             :key="index"
           >
-            <a class="link-block" :href="'#/front_single_product/' + item.id" @click="getProduct(item.id)">
+            <a
+              class="link-block"
+              :href="'#/front_single_product/' + item.id"
+              @click="getProduct(item.id)"
+            >
               <div class="card border-0 shadow-sm">
                 <div
                   style="height: 300px; background-size: contain; background-position: center; background-repeat: no-repeat;"
@@ -45,7 +45,7 @@
 
                 <div class="card-footer d-flex justify-content-between align-items-baseline">
                   <div class="h5" v-if="!item.price">現在只要 {{item.origin_price}} 元</div>
-                  <del class="h6" v-if="item.price">原價 {{item.origin_price}} 元</del>
+                  <del class="h6" v-if="item.price">{{item.origin_price}} 元</del>
                   <div class="h5" v-if="item.price">現在只要 {{item.price}} 元</div>
                 </div>
 
@@ -185,7 +185,8 @@ export default {
       productsFilter: [],
       filteredProducts: [],
       productsInWindow: [],
-      //categoryFilteredList: []
+      categoryFilteredList: [],
+      tempRandomProducts: [],
     };
   },
 
@@ -220,6 +221,7 @@ export default {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/product/${id}`;
       const vm = this;
       vm.status.loadingItem = id;
+      vm.randomProduct(vm.categoryFilteredList, 4);
 
       this.$http.get(api).then(response => {
         //console.log(response.data);
@@ -227,12 +229,17 @@ export default {
           vm.$router.push(
             `../front_single_product/${response.data.product.id}`
           );
+          vm.$bus.$emit('getRandomProds', vm.tempRandomProducts);
         }
       });
     },
 
     randomProduct(arr, num) {
       let newArr = [];
+      if(arr.length <= num) {
+        num = arr.length;
+      }
+
       rand(num);
 
       function rand(selectQty) {
@@ -255,7 +262,9 @@ export default {
         }
         rand(selectQty);
       }
-      return newArr;
+
+      this.tempRandomProducts = newArr;
+      //return newArr;
     },
 
     addToCart(id, qty = 1) {
@@ -303,15 +312,11 @@ export default {
     categoryFilterList() {
       const vm = this;
       let tempProducts = vm.activatedProductFilterList();
-      console.log('categoryFilterList active tempProducts', tempProducts);
       vm.categoryFilter = vm.$route.params.categoryFilter;
-      console.log('vm.categoryFilter', vm.categoryFilter);
       if (vm.categoryFilter == "all") {
         return tempProducts;
       } else {
         return tempProducts.filter(function(item) {
-          console.log('item.category', item.category);
-          console.log('vm.categoryFilter', vm.categoryFilter);
           return item.category.indexOf(vm.categoryFilter) !== -1;
         });
       }
@@ -320,8 +325,7 @@ export default {
     productsFilterList() {
       const vm = this;
       let tempProducts = vm.categoryFilterList();
-      console.log('productsFilterList active tempProducts', tempProducts);
-      //vm.categoryFilteredList = tempProducts; //待移位
+      vm.categoryFilteredList = tempProducts; //待移位
 
       if (vm.productsFilter.length === 0) {
         return tempProducts;
@@ -425,15 +429,21 @@ export default {
   },
 
   watch: {
+    $route (to, from) {
+      console.log('watch router change active');
+      this.$bus.$emit('getRandomProds', this.randomProduct(this.categoryFilteredList, 4));
+    },
+
     categoryFilter: {
       handler() {
         //console.log('categoryFilter change to: ', this.categoryFilter);
         this.pgnation.current_page = 1;
       }
-    }
+    },
   },
 
   created() {
+    const vm = this;
     this.getAllProducts();
     this.pgnationCounter();
     this.pageSpliter();
