@@ -6,7 +6,8 @@
       <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
-      <div class="carousel-item active">
+
+      <!-- <div class="carousel-item active">
         <img class="d-block w-100" src="@/assets/img/sli.png" alt="First slide" />
       </div>
       <div class="carousel-item">
@@ -14,7 +15,18 @@
       </div>
       <div class="carousel-item">
         <img class="d-block w-100" src="@/assets/img/sli3.png" alt="Third slide" />
+      </div>-->
+
+      <div class="carousel-item active">
+        <div class="rwdimg" :style="{ backgroundImage: 'url(' + require('@/assets/img/home1.png') + ')' }"></div>
       </div>
+      <div class="carousel-item">
+        <div class="rwdimg" :style="{ backgroundImage: 'url(' + require('@/assets/img/home2.jpg') + ')' }"></div>
+      </div>
+      <div class="carousel-item">
+        <div class="rwdimg" :style="{ backgroundImage: 'url(' + require('@/assets/img/home3.jpg') + ')' }"></div>
+      </div>
+      
     </div>
     <a
       class="carousel-control-prev"
@@ -34,9 +46,6 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
+    
   </div>
 </template>
-
-<style scoped>
-
-</style>

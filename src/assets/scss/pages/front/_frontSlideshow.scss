@@ -1,0 +1,19 @@
+.carousel {
+  height: calc(100vh - 58px);
+}
+
+.carousel-inner {
+  height: 100% !important;
+}
+
+.carousel-item {
+  height: 100%;
+}
+
+.rwdimg {
+  display: block;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
