@@ -1,5 +1,8 @@
 <template>
   <div class="fsp-container-fluid">
+    <!-- vue-loading-overlay -->
+    <loading :active.sync="isLoading"></loading>
+
     <div class="product-header">
       <div class="row mb-3 justify-content-center">
         <div class="product-img col-12 col-md-6">
@@ -61,25 +64,23 @@
         <div class="recommand-title mb-2 col-12">
           <h5>也許您同樣也會喜歡...</h5>
         </div>
+        
+        <div class="col-6 col-md-3 col-12 mb-4" v-for="(item, index) in sessionStorageProducts" :key="index">
+          <div class="card border-0 shadow-sm">
+            <div
+              style="height: 200px; background-size: contain; background-repeat: no-repeat; background-position: center;"
+              :style="{backgroundImage: `url(${item.imageUrl})`}"
+            ></div>
+            <div class="card-body">
+              <h6 class="card-title">{{item.title}}</h6>
+            </div>
 
-
-          <div class="col-6 col-md-3" v-for="(item, index) in sessionStorageProducts" :key="index">
-            <div class="card border-0 shadow-sm">
-              <div
-                style="height: 200px; background-size: contain; background-repeat: no-repeat; background-position: center;"
-                :style="{backgroundImage: `url(${item.imageUrl})`}"
-              ></div>
-              <div class="card-body">
-                <h6 class="card-title">{{item.title}}</h6>
-              </div>
-
-              <div class="card-footer d-flex justify-content-end">
-                <div class="h6" v-if="!item.price">{{item.origin_price}} 元</div>
-                <div class="h6" v-if="item.price">{{item.price}} 元</div>
-              </div>
+            <div class="card-footer d-flex justify-content-end">
+              <div class="h6" v-if="!item.price">{{item.origin_price}} 元</div>
+              <div class="h6" v-if="item.price">{{item.price}} 元</div>
             </div>
           </div>
-
+        </div>
       </div>
     </div>
   </div>
@@ -106,13 +107,16 @@ export default {
     getProduct() {
       const vm = this;
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/product/${vm.productId}`;
+      vm.isLoading = true;
 
       this.$http.get(api).then(response => {
         if (response.data.success) {
           vm.product = response.data.product;
           //vm.product.num = 1;
           vm.$set(vm.product, "num", 1);
-          console.log(vm.product);
+
+          vm.isLoading = false;
+          //console.log(vm.product);
         }
       });
       //console.log("create pdn", vm.product.num);
@@ -171,7 +175,7 @@ export default {
       console.log("recommandProducts", vm.recommandProducts);
     });
 
-    vm.sessionStorageProducts = JSON.parse(sessionStorage.getItem('rndProds'));
+    vm.sessionStorageProducts = JSON.parse(sessionStorage.getItem("rndProds"));
   }
 };
 </script>

@@ -10,32 +10,59 @@
 
     <div id="heroProducts">
       <div class="row mb-2">
-        <div class="hero-col-4">
+        <div class="col-lg-3 col-md-6 mb-2">
           <div class="card">
-            <img src="@/assets/img/mb.png" class="card-img" />
-            <div class="card-header card-img-overlay">
-              <h3>Card header</h3>
-              <p>This is a wider card with supporting text below</p>
+            <div class="card-header">
+              <h4>STRIX B450-F GAMING12131231123131</h4>
+              <p>This is a wider card</p>
+            </div>
+            <div
+              class="card-img"
+              :style="{ backgroundImage: 'url(' + require('@/assets/img/ROG.jpg') + ')' }"
+            >
+              <!-- <img src="@/assets/img/RAM1.png" /> -->
             </div>
           </div>
         </div>
 
-        <div class="hero-col-4">
+        <div class="col-lg-3 col-md-6 mb-2">
           <div class="card">
-            <img src="@/assets/img/mb.png" class="card-img" />
-            <div class="card-header card-img-overlay">
-              <h3>Card header</h3>
-              <p>This is a wider card with supporting text below</p>
+            <div class="card-header">
+              <h4>STRIX B450-F GAMING</h4>
+              <p>This is a wider card</p>
+            </div>
+            <div
+              class="card-img"
+              :style="{ backgroundImage: 'url(' + require('@/assets/img/RAM1.png') + ')' }"
+            >
+              <!-- <img src="@/assets/img/mb.png" /> -->
             </div>
           </div>
         </div>
 
-        <div class="hero-col-4">
+        <div class="col-lg-3 col-md-6 mb-2">
           <div class="card">
-            <img src="@/assets/img/mb.png" class="card-img" />
-            <div class="card-header card-img-overlay">
-              <h3>Card header</h3>
-              <p>This is a wider card with supporting text below</p>
+            <div class="card-header">
+              <h4>Card header</h4>
+              <p>This is a wider card</p>
+            </div>
+            <div
+              class="card-img"
+              :style="{ backgroundImage: 'url(' + require('@/assets/img/MSI_VII.png') + ')' }"
+            >
+              <!-- <img src="@/assets/img/mb.png" /> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-2">
+          <div class="card">
+            <div class="card-header">
+              <h4>Card header</h4>
+              <p>This is a wider card</p>
+            </div>
+            <div class="card-img">
+              <!-- <img src="@/assets/img/mb.png" /> -->
             </div>
           </div>
         </div>
@@ -62,10 +89,9 @@
 <script>
 import FrontSlideshow from "./FrontSlideshow";
 
-
 export default {
   components: {
-    FrontSlideshow,
+    FrontSlideshow
   },
 
   data() {

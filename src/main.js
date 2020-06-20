@@ -17,7 +17,7 @@ import './bus';
 import currencyFilter from './filters/currency';
 import timestampToDate from './filters/timestampToDate';
 //import dateToTimestamp from './filters/dateToTimestamp';
- 
+
 Vue.use(VueAxios, axios);
 Vue.use(VeeValidate);
 VeeValidate.Validator.localize('zh_TW', zhTWValidate);
@@ -34,26 +34,28 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: {
+    App
+  },
   template: '<App/>'
 });
 
 router.beforeEach((to, from, next) => {
   //console.log('to', to, 'from', from, 'next', next);
 
-  if(to.meta.requiresAuth) {
+  if (to.meta.requiresAuth) {
     console.log('needs auth');
 
     const api = `${process.env.API_PATH}/api/user/check`;
     axios.post(api).then((response) => {
-        console.log(response.data);
-        if(response.data.success) {
-          next();
-        } else {
-          next({
-            path: '/',
-          });
-        }
+      console.log(response.data);
+      if (response.data.success) {
+        next();
+      } else {
+        next({
+          path: '/',
+        });
+      }
     });
   } else {
     next();
@@ -66,3 +68,8 @@ const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 }
+
+//切換路由後畫面置頂
+router.afterEach((to, from, next) => {
+  window.scrollTo(0, 0);
+});

@@ -14,11 +14,11 @@
         ></FrontSidebar>
       </div>
 
-      <div class="col-xl-10 col-lg-9 col-md-9 col-sm-12 col-11">
+      <div class="col-xl-10 col-lg-9 col-md-9 col-sm-12 col-12">
         <!-- BS card -->
         <div class="row">
           <div
-            class="col-2xl-3 col-xl-4 col-lg-6 col-md-6 col-sm-6 mb-4 product-hover"
+            class="col-2xl-3 col-xl-4 col-lg-6 col-md-6 col-sm-6 mb-4 product-hover card-wrap"
             v-for="(item, index) in productsInWindowList"
             :key="index"
           >
