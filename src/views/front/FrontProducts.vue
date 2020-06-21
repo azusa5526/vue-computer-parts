@@ -2,7 +2,7 @@
   <div>
     <!-- vue-loading-overlay -->
     <loading :active.sync="isLoading"></loading>
-    <FrontProductSlideShow class="adjust-height"></FrontProductSlideShow>
+    <FrontSlidesProducts></FrontSlidesProducts>
 
     <div class="row mt-4 mx-2 justify-content-center">
       <div class="col-xl-2 col-lg-3 col-md-3 col-sm-12 col-12">
@@ -143,13 +143,13 @@
 import $ from "jquery";
 import FrontSidebar from "@/components/front/FrontSidebar";
 import Pgnation from "@/components/front/Pgnation";
-import FrontProductSlideShow from "./FrontProductSlideShow";
+import FrontSlidesProducts from "./FrontSlidesProducts";
 
 export default {
   components: {
     FrontSidebar,
     Pgnation,
-    FrontProductSlideShow
+    FrontSlidesProducts
   },
 
   data() {

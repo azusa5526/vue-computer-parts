@@ -43,7 +43,11 @@
 
       <ul class="navbar-nav align-items-center ml-3">
         <li class="nav-item">
-          <router-link class="btn btn-outline-info mr-2" to="/shopping_cart/front_cart_items" style="width:120px;">
+          <router-link
+            class="btn btn-outline-info mr-2"
+            to="/shopping_cart/front_cart_items"
+            style="width:120px;"
+          >
             Cart
             <i class="fas fa-shopping-cart ml-2"></i>
           </router-link>
@@ -62,6 +66,8 @@
 </template>
 
 <script>
+import $ from "jquery";
+
 export default {
   data() {
     return {

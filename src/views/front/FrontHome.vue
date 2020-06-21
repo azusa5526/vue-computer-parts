@@ -69,7 +69,7 @@
       </div>
     </div>
 
-    <div id="build-pc">
+    <div class="build-pc">
       <div class="row mb-2">
         <div class="col-6">
           <div class="build-pc-text">
