@@ -29,7 +29,7 @@
             >
               <div class="card border-0 shadow-sm">
                 <div
-                  style="height: 300px; background-size: contain; background-position: center; background-repeat: no-repeat;"
+                  style="height: 300px; background-size: contain; background-position: center; background-repeat: no-repeat; background-color: #FFFFFF;"
                   :style="{backgroundImage: `url(${item.imageUrl})`}"
                 ></div>
                 <div class="card-body">
@@ -405,7 +405,7 @@ export default {
     productsInWindowList() {
       const vm = this;
       let productsInWindow = [];
-      let tempProducts = [];
+      let tempProducts = []; 
 
       vm.filteredProducts = vm.productsFilterList();
       //console.log('filteredProducts',vm.filteredProducts);
@@ -440,7 +440,6 @@ export default {
   },
 
   created() {
-    const vm = this;
     this.getAllProducts();
     this.pgnationCounter();
     this.pageSpliter();

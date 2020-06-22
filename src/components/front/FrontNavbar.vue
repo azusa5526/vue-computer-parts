@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top ">
     <router-link class="navbar-brand" to="/home">VueComputerParts</router-link>
     <button
       class="navbar-toggler"

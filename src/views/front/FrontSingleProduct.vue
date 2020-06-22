@@ -64,22 +64,32 @@
         <div class="recommand-title mb-2 col-12">
           <h5>也許您同樣也會喜歡...</h5>
         </div>
-        
-        <div class="col-6 col-md-3 col-12 mb-4" v-for="(item, index) in sessionStorageProducts" :key="index">
-          <div class="card border-0 shadow-sm">
-            <div
-              style="height: 200px; background-size: contain; background-repeat: no-repeat; background-position: center;"
-              :style="{backgroundImage: `url(${item.imageUrl})`}"
-            ></div>
-            <div class="card-body">
-              <h6 class="card-title">{{item.title}}</h6>
-            </div>
 
-            <div class="card-footer d-flex justify-content-end">
-              <div class="h6" v-if="!item.price">{{item.origin_price}} 元</div>
-              <div class="h6" v-if="item.price">{{item.price}} 元</div>
+        <div
+          class="col-6 col-md-3 col-12 mb-4 recommand-hover"
+          v-for="(item, index) in sessionStorageProducts"
+          :key="index"
+        >
+          <a
+            class="link-block"
+            :href="'#/front_single_product/' + item.id"
+            @click="getRecommandProduct(item.id)"
+          >
+            <div class="card border-0 shadow-sm">
+              <div
+                style="height: 200px; background-size: contain; background-repeat: no-repeat; background-position: center;"
+                :style="{backgroundImage: `url(${item.imageUrl})`}"
+              ></div>
+              <div class="card-body">
+                <h6 class="card-title">{{item.title}}</h6>
+              </div>
+
+              <div class="card-footer d-flex justify-content-end">
+                <div class="h6" v-if="!item.price">{{item.origin_price}} 元</div>
+                <div class="h6" v-if="item.price">{{item.price}} 元</div>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
@@ -103,8 +113,15 @@ export default {
     };
   },
 
+  watch: {
+    $route(to, from) {
+      this.productId = this.$route.params.productID;
+      this.getSingleProduct();
+    }
+  },
+
   methods: {
-    getProduct() {
+    getSingleProduct() {
       const vm = this;
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/product/${vm.productId}`;
       vm.isLoading = true;
@@ -120,6 +137,25 @@ export default {
         }
       });
       //console.log("create pdn", vm.product.num);
+    },
+
+    getRecommandProduct(id) {
+      console.log("recommand id", id);
+      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/product/${id}`;
+      const vm = this;
+      //vm.randomProduct(vm.categoryFilteredList, 4);
+
+      this.$http.get(api).then(response => {
+        console.log(response.data);
+        if (response.data.success) {
+          vm.$router.push(
+            `../front_single_product/${response.data.product.id}`
+          );
+
+          //sessionStorage.setItem("rndProds", JSON.stringify(vm.tempRandomProducts));
+          //vm.$bus.$emit("getRandomProds", vm.tempRandomProducts);
+        }
+      });
     },
 
     addToCart(id, direct, qty = 1) {
@@ -168,7 +204,7 @@ export default {
   created() {
     const vm = this;
     this.productId = this.$route.params.productID;
-    this.getProduct();
+    this.getSingleProduct();
 
     vm.$bus.$on("getRandomProds", randomProducts => {
       vm.recommandProducts = randomProducts;

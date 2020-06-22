@@ -2,87 +2,90 @@
   <div>
     <loading :active.sync="isLoading"></loading>
 
-    <FrontSlideshow class="mb-2"></FrontSlideshow>
+    <FrontSlideshow class="mb-3"></FrontSlideshow>
 
-    <div class="mid-banner mb-2">
-      <h6>mid banner text</h6>
+    <div class="mid-banner mb-3">
+      <div class="mid-banner-img">
+        <div class="mid-banner-content">
+          <h4>Build your own PC</h4>
+          <p>All Products 10% off this month!</p>
+        </div>
+      </div>
     </div>
 
     <div id="heroProducts">
-      <div class="row mb-2">
-        <div class="col-lg-3 col-md-6 mb-2">
-          <div class="card">
-            <div class="card-header">
-              <h4>STRIX B450-F GAMING12131231123131</h4>
-              <p>This is a wider card</p>
+      <div class="row my-3">
+        <div class="col-lg-3 col-md-6 mb-3 hero-hover">
+          <a class="link-block">
+            <div class="card">
+              <div class="card-header">
+                <h4>RADEON VII 16G</h4>
+                <p>First 7nm GPU</p>
+              </div>
+              <div
+                class="card-img"
+                style="backgroundImage: url(https://storage.googleapis.com/vue-course-api.appspot.com/andrew%2F1592393648391.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=n7SmEJ2h6TtwsEW7XTbWb4lzBvfsrFqpz37ePzRuzT%2BcrpMn1SMsrsA0tkMk0rnY3oVjX0B0Ed7et38rCBffO9iPiCiOJqjyF1XWDPDdIDfL0B0dYvreMHj28f%2BJ03BCYX%2Ba73jOSoI%2F%2FNVG5QVQdLPnqeU84XLfwkZN9apxrBqhbMm0vBGUAER3LHIFGNFRb6rVZZOfko10ejwCzt0jzwOe%2FLgPVqZJFMsB3%2B58boeGNdNftauAaNJFY1pmdWmqlnD%2FGUE2rqlts1vITBT2yHftbUS5GpPqchJJSpXKzQ6r1YPMZbY45BvPwaMiJd1eX5lTwY%2B%2BBZjTDyNfltM1uw%3D%3D)"
+              >
+                <!-- <img src="@/assets/img/RAM1.png" /> -->
+              </div>
             </div>
-            <div
-              class="card-img"
-              :style="{ backgroundImage: 'url(' + require('@/assets/img/ROG.jpg') + ')' }"
-            >
-              <!-- <img src="@/assets/img/RAM1.png" /> -->
-            </div>
-          </div>
+          </a>
         </div>
 
-        <div class="col-lg-3 col-md-6 mb-2">
-          <div class="card">
-            <div class="card-header">
-              <h4>STRIX B450-F GAMING</h4>
-              <p>This is a wider card</p>
+        <div class="col-lg-3 col-md-6 mb-3 hero-hover">
+          <a class="link-block">
+            <div class="card">
+              <div class="card-header">
+                <h4>X570 AQUA</h4>
+                <p>Full Water Cooling System</p>
+              </div>
+              <div
+                class="card-img"
+                style="backgroundImage: url(https://storage.googleapis.com/vue-course-api.appspot.com/andrew%2F1592327410828.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=W3TWo7fHRjye%2Bab2gBDehcX4tA0RmiHaq22QWO%2BAYcb1om7cWEqNKgxVFseLMp0ucFu5ynYFOB6Tvk7pkndCQ2QT32pFppDoyw1aadNSLkkeDGOi3pHiRPlQEjl5bqnk04kaI0oi7JN4xpnTJDVWG5VBJPnOjKTNE5tYYfwcPhL%2FB6OSolKvYLKLw5bFi9YD7LswSo%2Bzp87LNk%2Ff9bSVC568xil98fTHyO5PyrIXiDHKqXitkiisdx9hhtypaqfht9a7HJfImcKSvdIqYPJqGewZHBkv%2BetQv3oUSxvMAS37Aue0lpfK%2Fkw95S1ltn%2FhvJB%2FitDzutj%2BQeL0r4nyGg%3D%3D)"
+              >
+                <!-- <img src="@/assets/img/RAM1.png" /> -->
+              </div>
             </div>
-            <div
-              class="card-img"
-              :style="{ backgroundImage: 'url(' + require('@/assets/img/RAM1.png') + ')' }"
-            >
-              <!-- <img src="@/assets/img/mb.png" /> -->
-            </div>
-          </div>
+          </a>
         </div>
 
-        <div class="col-lg-3 col-md-6 mb-2">
-          <div class="card">
-            <div class="card-header">
-              <h4>Card header</h4>
-              <p>This is a wider card</p>
+        <div class="col-lg-3 col-md-6 mb-3 hero-hover">
+          <a class="link-block">
+            <div class="card">
+              <div class="card-header">
+                <h4>RADEON VII 16G</h4>
+                <p>First 7nm GPU</p>
+              </div>
+              <div
+                class="card-img"
+                style="backgroundImage: url(https://storage.googleapis.com/vue-course-api.appspot.com/andrew%2F1592393648391.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=n7SmEJ2h6TtwsEW7XTbWb4lzBvfsrFqpz37ePzRuzT%2BcrpMn1SMsrsA0tkMk0rnY3oVjX0B0Ed7et38rCBffO9iPiCiOJqjyF1XWDPDdIDfL0B0dYvreMHj28f%2BJ03BCYX%2Ba73jOSoI%2F%2FNVG5QVQdLPnqeU84XLfwkZN9apxrBqhbMm0vBGUAER3LHIFGNFRb6rVZZOfko10ejwCzt0jzwOe%2FLgPVqZJFMsB3%2B58boeGNdNftauAaNJFY1pmdWmqlnD%2FGUE2rqlts1vITBT2yHftbUS5GpPqchJJSpXKzQ6r1YPMZbY45BvPwaMiJd1eX5lTwY%2B%2BBZjTDyNfltM1uw%3D%3D)"
+              >
+                <!-- <img src="@/assets/img/RAM1.png" /> -->
+              </div>
             </div>
-            <div
-              class="card-img"
-              :style="{ backgroundImage: 'url(' + require('@/assets/img/MSI_VII.png') + ')' }"
-            >
-              <!-- <img src="@/assets/img/mb.png" /> -->
-            </div>
-          </div>
+          </a>
         </div>
 
-        <div class="col-lg-3 col-md-6 mb-2">
-          <div class="card">
-            <div class="card-header">
-              <h4>Card header</h4>
-              <p>This is a wider card</p>
+        <div class="col-lg-3 col-md-6 mb-3 hero-hover">
+          <a class="link-block">
+            <div class="card">
+              <div class="card-header">
+                <h4>X570 AQUA</h4>
+                <p>Full Water Cooling System</p>
+              </div>
+              <div
+                class="card-img"
+                style="backgroundImage: url(https://storage.googleapis.com/vue-course-api.appspot.com/andrew%2F1592327410828.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=W3TWo7fHRjye%2Bab2gBDehcX4tA0RmiHaq22QWO%2BAYcb1om7cWEqNKgxVFseLMp0ucFu5ynYFOB6Tvk7pkndCQ2QT32pFppDoyw1aadNSLkkeDGOi3pHiRPlQEjl5bqnk04kaI0oi7JN4xpnTJDVWG5VBJPnOjKTNE5tYYfwcPhL%2FB6OSolKvYLKLw5bFi9YD7LswSo%2Bzp87LNk%2Ff9bSVC568xil98fTHyO5PyrIXiDHKqXitkiisdx9hhtypaqfht9a7HJfImcKSvdIqYPJqGewZHBkv%2BetQv3oUSxvMAS37Aue0lpfK%2Fkw95S1ltn%2FhvJB%2FitDzutj%2BQeL0r4nyGg%3D%3D)"
+              >
+                <!-- <img src="@/assets/img/RAM1.png" /> -->
+              </div>
             </div>
-            <div class="card-img">
-              <!-- <img src="@/assets/img/mb.png" /> -->
-            </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
 
-    <div class="build-pc">
-      <div class="row mb-2">
-        <div class="col-6">
-          <div class="build-pc-text">
-            <h5>Why don't you Build your PC now ?</h5>
-            <p>Building your own PC might sound intimidating — but if you're a gamer, we know the thought has crossed your mind at least once. After all, a custom-built gaming rig is the only surefire way to get exactly what you want, exactly the way you want it.</p>
-          </div>
-        </div>
-
-        <div class="col-6">
-          <img src="@/assets/img/pc.jpg" />
-        </div>
-      </div>
-    </div>
+    <div class="build-pc"></div>
   </div>
 </template>
 
@@ -96,27 +99,12 @@ export default {
 
   data() {
     return {
-      isLoading: false,
-      products: {}
+      isLoading: false
     };
   },
 
-  methods: {
-    getProducts() {
-      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/products`;
-      const vm = this;
-      vm.isLoading = true;
+  methods: {},
 
-      this.$http.get(api).then(response => {
-        //console.log(response.data);
-        vm.isLoading = false;
-        vm.products = response.data.products;
-      });
-    }
-  },
-
-  created() {
-    this.getProducts();
-  }
+  created() {}
 };
 </script>
