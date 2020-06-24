@@ -3,86 +3,34 @@
     <loading :active.sync="isLoading"></loading>
 
     <div class="container mt-4" v-if="status.cartHasItem">
-      <div class="flex-container">
-        <div class="flex-item" :class="{'active-flex-item' : activedPage == 'FrontCartItems'}">
-          <h3>01.</h3>
-          <h4>查看購物清單</h4>
+      <div class="cart-wrap">
+        <div class="shopping-step">
+          <div class="step" :class="{'active-step' : activedPage == 'FrontCartItems'}">
+            <h5>查看購物清單</h5>
+          </div>
+          <div class="step" :class="{'active-step' : activedPage == 'FrontOrderList'}">
+            <h5>填寫購買資料</h5>
+          </div>
+          <div class="step" :class="{'active-step' : activedPage == 'FrontCheckout'}">
+            <h5>付款清單</h5>
+          </div>
         </div>
-        <div class="flex-item" :class="{'active-flex-item' : activedPage == 'FrontOrderList'}">
-          <h3>02.</h3>
-          <h4>填寫購買資料</h4>
-        </div>
-        <div class="flex-item" :class="{'active-flex-item' : activedPage == 'FrontCheckout'}">
-          <h3>03.</h3>
-          <h4>付款清單</h4>
+
+        <div class="item-wrap">
+          <router-view></router-view>
         </div>
       </div>
-
-      <router-view></router-view>
     </div>
 
     <div class="mt-4" v-else>
       <img src="@/assets/img/shoppingCart.jpg" />
     </div>
   </div>
-
-  <!-- <div class="my-5 row justify-content-center">
-    <div class="my-5 row justify-content-center">
-      <table class="table mt-4">
-        <thead>
-          <tr>
-            <th>品名</th>
-            <th>數量/單位</th>
-            <th>單價/小計</th>
-            <th>移除商品</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr v-for="item in shoppingCart.carts" :key="item.id">
-            <td class="align-middle">
-              {{item.product.title}}
-              <div class="text-success" v-if="item.coupon">已套用優惠券 {{item.coupon.title}}</div>
-            </td>
-            <td class="align-middle">{{item.qty}} / {{item.product.unit}}</td>
-            <td class="align-middle">{{item.product.price}} / {{item.total}}</td>
-            <td>
-              <button
-                type="button"
-                class="btn btn-outline-danger btn-sm"
-                @click="removeCartItem(item.id)"
-              >
-                <i class="far fa-trash-alt"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="3" class="text-right">總計</td>
-            <td class="text-right">{{shoppingCart.total}}</td>
-          </tr>
-          <tr v-if="shoppingCart.total !== shoppingCart.final_total">
-            <td colspan="3" class="text-right text-success">優惠價</td>
-            <td class="text-right text-success">{{shoppingCart.final_total}}</td>
-          </tr>
-        </tfoot>
-      </table>
-
-      <div class="input-group mb-3 input-group-sm">
-        <input type="text" class="form-control" placeholder="請輸入優惠碼" v-model="couponCode" />
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" @click="addCouponCode">套用優惠碼</button>
-        </div>
-      </div>
-    </div>
-  </div>-->
 </template>
 
 <script>
 import $ from "jquery";
 //import Pagination from "../Pagination";
-
 
 export default {
   components: {
@@ -98,7 +46,7 @@ export default {
         loadingItem: "",
         itemAdding: false,
         cartHasItem: false,
-        topProgress: '',
+        topProgress: ""
       },
       pagination: {},
       shoppingCart: [],
@@ -214,7 +162,6 @@ export default {
 
       this.$http.get(api).then(response => {
         console.log(response.data);
-        vm.isLoading = false;
         vm.shoppingCart = response.data.data;
 
         if (vm.shoppingCart.carts.length == 0) {
@@ -222,8 +169,18 @@ export default {
         } else {
           vm.status.cartHasItem = true;
         }
+        vm.isLoading = false;
       });
     },
+
+    onResize() {
+      const vm = this;
+      if (window.innerWidth < 768) {
+        vm.imageDisplay = false;
+      } else {
+        vm.imageDisplay = true;
+      }
+    }
 
     // createOrder() {
     //   const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/order`;
@@ -259,34 +216,7 @@ export default {
   created() {
     this.getProducts();
     this.getCart();
-  }
+  },
+
 };
 </script>
-
-<style lang="scss" scoped>
-li {
-  list-style: none;
-}
-
-.flex-container {
-  display: flex;
-  flex-direction: row;
-  height: 8rem;
-  padding: 15px;
-}
-
-.flex-item {
-  flex: 1;
-  background-color: rgb(243, 242, 242);
-  margin: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem 3rem;
-}
-
-.active-flex-item {
-  background-color: rgb(94, 94, 94);
-  color: white;
-}
-</style>

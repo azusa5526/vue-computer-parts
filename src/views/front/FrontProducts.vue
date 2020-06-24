@@ -4,7 +4,7 @@
     <loading :active.sync="isLoading"></loading>
     <FrontSlidesProducts></FrontSlidesProducts>
 
-    <div class="row mt-4 mx-2 justify-content-center">
+    <div class="row mt-4  justify-content-center">
       <div class="col-xl-2 col-lg-3 col-md-3 col-sm-12 col-12">
         <FrontSidebar
           ref="frontSidebarComponent"
@@ -14,7 +14,7 @@
         ></FrontSidebar>
       </div>
 
-      <div class="col-xl-10 col-lg-9 col-md-9 col-sm-12 col-12">
+      <div id="product-wrap" class="col-xl-10 col-lg-9 col-md-9 col-sm-12 col-12">
         <!-- BS card -->
         <div class="row">
           <div

@@ -12,13 +12,14 @@
 
   .mid-banner-img {
     height: 100%;
-    background-image: url('~@/assets/img/midBanner.jpg');
+    background-image: url('~@/assets/img/midBanner_fixed.jpg');
+    //background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: 40%;
+    background-position: 50%;
     width: 55%;
     margin-left: auto;
-    
+
     @media screen and (max-width: 991px) {
       width: 100%;
     }
@@ -53,7 +54,7 @@
 
     @media screen and (max-width: 991px) {
       width: 90%;
-      background-color: rgba(0,0,0,0.7);
+      background-color: rgba(0, 0, 0, 0.7);
     }
 
   }
@@ -84,6 +85,7 @@
     padding-right: 15px;
     padding-left: 15px;
   }
+
   .card {
     background-color: #181818;
 

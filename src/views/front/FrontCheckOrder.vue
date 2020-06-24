@@ -88,7 +88,7 @@ export default {
       inputOrderId: "",
       order: {
         user: {} //預先定義user，避免出現(eamil)not define
-      }
+      },
     };
   },
 
@@ -140,6 +140,7 @@ export default {
         }
       });
     }
-  }
+  },
+
 };
 </script>

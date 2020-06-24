@@ -44,7 +44,7 @@
       <ul class="navbar-nav align-items-center ml-3">
         <li class="nav-item">
           <router-link
-            class="btn btn-outline-info mr-2"
+            class="btn btn-outline-primary mr-2"
             to="/shopping_cart/front_cart_items"
             style="width:120px;"
           >
@@ -55,7 +55,7 @@
             Sign out
             <i class="fas fa-sign-out-alt ml-2"></i>
           </a>
-          <router-link class="btn btn-outline-gray" to="/login" v-else>
+          <router-link class="btn btn-outline-secondary" to="/login" v-else>
             Sign in
             <i class="fas fa-sign-in-alt ml-2"></i>
           </router-link>

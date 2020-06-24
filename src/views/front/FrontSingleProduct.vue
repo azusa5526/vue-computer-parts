@@ -25,15 +25,15 @@
           <div class="product-input">
             <div class="quantity">
               <span class="quantity-title">數量</span>
-              <button class="btn btn-outline-secondary" @click="quantitySub(product)">-</button>
+              <button class="btn btn-outline-third" @click="quantitySub(product)">-</button>
               <input type="text" :value="product.num" readonly="readonly" />
-              <button class="btn btn-outline-secondary" @click="quantityPlus(product)">+</button>
+              <button class="btn btn-outline-third" @click="quantityPlus(product)">+</button>
             </div>
 
             <div class="buy-option">
               <button
                 type="button"
-                class="btn btn-outline-info"
+                class="btn btn-outline-primary"
                 @click="addToCart(product.id, true, product.num)"
               >直接購買</button>
               <button

@@ -2,51 +2,74 @@
   <div>
     <loading :active.sync="isLoading"></loading>
 
-    <form class="form-signin" @submit.prevent="signin">
-        <h1 class="h3 mb-3 font-weight-normal">VueComputerParts.com</h1>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" v-model="user.username" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" v-model="user.password" placeholder="Password" required>
-        <div class="checkbox mb-3">
-            <label>
-            <input type="checkbox" value="remember-me"> Remember me
-            </label>
+    <div class="login-wrap">
+      <form class="login" @submit.prevent="signin">
+        <div class="login-img">
+          <h1><i class="fab fa-vuejs"></i>CP.com</h1>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
-    </form>
+
+        <div class="login-content">
+          <label for="inputEmail" class="sr-only">Email address</label>
+          <input
+            type="email"
+            id="inputEmail"
+            class="form-control mb-3"
+            v-model="user.username"
+            placeholder="Email address"
+            required
+            autofocus
+          />
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input
+            type="password"
+            id="inputPassword "
+            class="form-control mb-4"
+            v-model="user.password"
+            placeholder="Password"
+            required
+          />
+          <div class="checkbox mb-3">
+            <label class="remember-text">
+              <input type="checkbox" value="remember-me" /> Remember me
+            </label>
+          </div>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+          <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
+        </div>
+        <!-- <h1 class="h3 mb-3 font-weight-normal">VueComputerParts.com</h1> -->
+      </form>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Login',
-  data () {
+  name: "Login",
+  data() {
     return {
       user: {
-          username: '',
-          password: '',
+        username: "",
+        password: ""
       },
-      isLoading: false,
-    }
+      isLoading: false
+    };
   },
   methods: {
-      signin() {
-        const api = `${process.env.API_PATH}/admin/signin`;
-        const vm = this;
-        vm.isLoading = true;
+    signin() {
+      const api = `${process.env.API_PATH}/admin/signin`;
+      const vm = this;
+      vm.isLoading = true;
 
-        this.$http.post(api, vm.user).then((response) => {
-            //console.log(response.data);
-            vm.isLoading = false;
-            if(response.data.success) {
-                vm.$router.push('/home');
-            };
-        });
-      }
+      this.$http.post(api, vm.user).then(response => {
+        //console.log(response.data);
+        vm.isLoading = false;
+        if (response.data.success) {
+          vm.$router.push("/home");
+        }
+      });
+    }
   }
-}
+};
 </script>
 
 <style scoped>

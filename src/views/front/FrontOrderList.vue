@@ -68,8 +68,8 @@
       </div>
 
       <div class="d-flex justify-content-between">
-        <router-link class="btn btn-outline-info mr-2" to="front_cart_items">返回購物車</router-link>
-        <button class="btn btn-outline-danger mr-2" @click.prevent="createOrder">送出訂單</button>
+        <router-link class="btn btn-outline-primary" to="front_cart_items">返回購物車</router-link>
+        <button class="btn btn-outline-danger" @click.prevent="createOrder">送出訂單</button>
       </div>
 
     </form>

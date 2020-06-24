@@ -1,0 +1,46 @@
+.cart-wrap {
+  background-color: $secondary;
+  padding: 2rem;
+
+  @media screen and (max-width: 767px) {
+    padding: 1.5rem 0.7rem 1.5rem 0.7rem;
+  }
+
+  .shopping-step {
+    display: flex;
+    flex-direction: row;
+
+    @media screen and (max-width: 767px) {
+      flex-direction: column;
+    }
+
+    h5 {
+      margin: 0;
+    }
+
+    .step {
+      display: flex;
+      flex: 1;
+      margin-left: 10px;
+      margin-right: 10px;
+      padding: 1rem;
+      background-color: $third;
+      color: $secondary;
+      justify-content: center;
+      align-items: center;
+
+      @media screen and (max-width: 767px) {
+        margin: 0 0 6px 0;
+      }
+    }
+
+    .active-step {
+      background-color: $primary;
+      color: $third;
+    }
+  }
+
+
+
+
+}

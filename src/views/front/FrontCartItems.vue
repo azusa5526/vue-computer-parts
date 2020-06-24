@@ -3,7 +3,7 @@
     <table class="table mt-5">
       <thead>
         <tr>
-          <th></th>
+          <th>瀏覽圖</th>
           <th>品名</th>
           <th>數量/單位</th>
           <th>單價/小計</th>
@@ -48,13 +48,13 @@
     <div class="input-group mb-3 input-group-sm">
       <input type="text" class="form-control" placeholder="請輸入優惠碼" v-model="couponCode" />
       <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button" @click="addCouponCode">套用優惠碼</button>
+        <button class="btn btn-outline-third" type="button" @click="addCouponCode">套用優惠碼</button>
       </div>
     </div>
 
     <div class="d-flex justify-content-between mt-4">
-      <router-link class="btn btn-outline-info mr-2" to="/frontProducts/all">繼續選購</router-link>
-      <router-link class="btn btn-outline-danger mr-2" to="front_orderlist">填寫購買資料</router-link>
+      <router-link class="btn btn-outline-primary" to="/frontProducts/all">繼續選購</router-link>
+      <router-link class="btn btn-outline-danger" to="front_orderlist">填寫購買資料</router-link>
     </div>
   </div>
 </template>
@@ -183,31 +183,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-li {
-  list-style: none;
-}
-
-.flex-container {
-  display: flex;
-  flex-direction: row;
-  height: 8rem;
-  padding: 15px;
-}
-
-.flex-item {
-  flex: 1;
-  background-color: rgb(243, 242, 242);
-  margin: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem 3rem;
-}
-
-.active-flex-item {
-  background-color: rgb(94, 94, 94);
-  color: white;
-}
-</style>
