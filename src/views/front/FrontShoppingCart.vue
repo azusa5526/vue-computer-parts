@@ -16,9 +16,8 @@
           </div>
         </div>
 
-        <div class="item-wrap">
-          <router-view></router-view>
-        </div>
+        <router-view></router-view>
+        
       </div>
     </div>
 
@@ -60,8 +59,7 @@ export default {
         },
         message: ""
       },
-      activePage: this.$route.name,
-
+      activePage: this.$route.name
     };
   },
 
@@ -216,7 +214,6 @@ export default {
   created() {
     this.getProducts();
     this.getCart();
-  },
-
+  }
 };
 </script>

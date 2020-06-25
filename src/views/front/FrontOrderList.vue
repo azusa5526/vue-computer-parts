@@ -1,6 +1,6 @@
 <template>
   <!-- Order list -->
-  <div class="my-5 col-12">
+  <div class="px-3 mt-4">
     <form>
       <div class="form-group">
         <label for="useremail">Email</label>
@@ -64,7 +64,7 @@
 
       <div class="form-group">
         <label for="useraddress">留言</label>
-        <textarea name id class="form-control" cols="30" rows="10" v-model="form.message"></textarea>
+        <textarea name id class="form-control" cols="30" rows="5" v-model="form.message"></textarea>
       </div>
 
       <div class="d-flex justify-content-between">

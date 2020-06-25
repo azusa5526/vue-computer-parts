@@ -4,7 +4,7 @@
     <loading :active.sync="isLoading"></loading>
 
     <div class="product-header">
-      <div class="row mb-3 justify-content-center">
+      <div class="row my-3 justify-content-center">
         <div class="product-img col-12 col-md-6">
           <img :src="product.imageUrl" class alt />
         </div>
@@ -61,12 +61,12 @@
 
     <div class="recommand-products">
       <div class="row p-4 mb-3">
-        <div class="recommand-title mb-2 col-12">
+        <div class="recommand-title my-2 col-12">
           <h5>也許您同樣也會喜歡...</h5>
         </div>
 
         <div
-          class="col-6 col-md-3 col-12 mb-4 recommand-hover"
+          class="col-md-3 col-sm-6 col-12 mb-4 recommand-hover"
           v-for="(item, index) in sessionStorageProducts"
           :key="index"
         >

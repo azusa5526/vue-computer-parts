@@ -1,20 +1,20 @@
 <template>
-  <div class="col-12">
-    <table class="table mt-5">
+  <div class="item-wrap">
+    <table class="table mt-4">
       <thead>
         <tr>
-          <th>瀏覽圖</th>
+          <th class="d-md-table-cell d-none">瀏覽</th>
           <th>品名</th>
-          <th>數量/單位</th>
-          <th>單價/小計</th>
-          <th>移除商品</th>
+          <th width="20%">數量</th>
+          <th width="20%">小計</th>
+          <th width="15%">移除</th>
         </tr>
       </thead>
 
-      <tbody>
+      <tbody id="cart-items">
         <tr v-for="item in shoppingCart.carts" :key="item.id">
-          <td width="150px" class="align-middle">
-            <img :src="item.product.imageUrl" style="height: 150px;" />
+          <td class="align-middle d-md-table-cell d-none">
+            <div class="product-preview d-md-table-cell d-none" :style="{backgroundImage: `url(${item.product.imageUrl})`}"></div>
           </td>
           <td class="align-middle">
             {{item.product.title}}
@@ -35,11 +35,13 @@
       </tbody>
       <tfoot>
         <tr>
-          <td colspan="4" class="text-right">總計</td>
+          <td class="d-md-table-cell d-none"></td>
+          <td colspan="3" class="text-right ">總計</td>
           <td class="text-right">{{shoppingCart.total}}</td>
         </tr>
         <tr v-if="shoppingCart.total !== shoppingCart.final_total">
-          <td colspan="4" class="text-right text-success">優惠價</td>
+          <td class="d-md-table-cell d-none"></td>
+          <td colspan="3" class="text-right text-success">優惠價</td>
           <td class="text-right text-success">{{shoppingCart.final_total}}</td>
         </tr>
       </tfoot>
@@ -57,6 +59,7 @@
       <router-link class="btn btn-outline-danger" to="front_orderlist">填寫購買資料</router-link>
     </div>
   </div>
+
 </template>
 
 <script>

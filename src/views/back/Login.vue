@@ -23,7 +23,7 @@
           <input
             type="password"
             id="inputPassword "
-            class="form-control mb-4"
+            class="form-control mb-3"
             v-model="user.password"
             placeholder="Password"
             required
