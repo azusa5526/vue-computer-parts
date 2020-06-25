@@ -1,5 +1,5 @@
 <template>
-  <nav class="d-none d-md-block nav-color">
+  <nav class="d-none nav-color">
     <div class="side-title">
       <h6>Advanced Filter</h6>
     </div>
