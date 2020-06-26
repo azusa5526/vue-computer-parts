@@ -59,6 +59,11 @@
       padding: 1rem;
       margin-bottom: 0.75rem;
     }
+
+    .h4 {
+      margin-bottom: 0;
+    }
+
   }
 
   .product-title {
@@ -67,16 +72,19 @@
 
   .product-input {
     .buy-option {
+      
+      @media screen and (max-width: 767px) {
+        text-align: center;
+      }
 
       .btn {
         border-radius: 0rem;
-        margin-right: 5px;
-        width: 200px;
+        width: 45%;
         height: 44px;
+      }
 
-        @media screen and (max-width: 991px) {
-          width: 140px;
-        }
+      .mr-1percent {
+        margin-right: 1%;
       }
     }
 
@@ -96,12 +104,12 @@
 
       .btn {
         border-radius: 0rem;
-        width: 40px;
+        width: 45px;
         height: 38px;
       }
 
       input {
-        width: 50px;
+        width: 55px;
         height: 38px;
         vertical-align: middle;
         text-align: center;
@@ -146,8 +154,9 @@
   }
 
   .card-footer {
+    background-color: $secondary;
+    border-top: none;
 
-    //vertical-align: middle;
     .h6 {
       margin-bottom: 0;
       color: $danger;

@@ -26,7 +26,6 @@
                 class="card-img"
                 style="backgroundImage: url(https://storage.googleapis.com/vue-course-api.appspot.com/andrew%2F1592393648391.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=n7SmEJ2h6TtwsEW7XTbWb4lzBvfsrFqpz37ePzRuzT%2BcrpMn1SMsrsA0tkMk0rnY3oVjX0B0Ed7et38rCBffO9iPiCiOJqjyF1XWDPDdIDfL0B0dYvreMHj28f%2BJ03BCYX%2Ba73jOSoI%2F%2FNVG5QVQdLPnqeU84XLfwkZN9apxrBqhbMm0vBGUAER3LHIFGNFRb6rVZZOfko10ejwCzt0jzwOe%2FLgPVqZJFMsB3%2B58boeGNdNftauAaNJFY1pmdWmqlnD%2FGUE2rqlts1vITBT2yHftbUS5GpPqchJJSpXKzQ6r1YPMZbY45BvPwaMiJd1eX5lTwY%2B%2BBZjTDyNfltM1uw%3D%3D)"
               >
-                <!-- <img src="@/assets/img/RAM1.png" /> -->
               </div>
             </div>
           </a>
@@ -43,7 +42,6 @@
                 class="card-img"
                 style="backgroundImage: url(https://storage.googleapis.com/vue-course-api.appspot.com/andrew%2F1592327410828.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=W3TWo7fHRjye%2Bab2gBDehcX4tA0RmiHaq22QWO%2BAYcb1om7cWEqNKgxVFseLMp0ucFu5ynYFOB6Tvk7pkndCQ2QT32pFppDoyw1aadNSLkkeDGOi3pHiRPlQEjl5bqnk04kaI0oi7JN4xpnTJDVWG5VBJPnOjKTNE5tYYfwcPhL%2FB6OSolKvYLKLw5bFi9YD7LswSo%2Bzp87LNk%2Ff9bSVC568xil98fTHyO5PyrIXiDHKqXitkiisdx9hhtypaqfht9a7HJfImcKSvdIqYPJqGewZHBkv%2BetQv3oUSxvMAS37Aue0lpfK%2Fkw95S1ltn%2FhvJB%2FitDzutj%2BQeL0r4nyGg%3D%3D)"
               >
-                <!-- <img src="@/assets/img/RAM1.png" /> -->
               </div>
             </div>
           </a>
@@ -60,7 +58,6 @@
                 class="card-img"
                 style="backgroundImage: url(https://storage.googleapis.com/vue-course-api.appspot.com/andrew%2F1592393648391.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=n7SmEJ2h6TtwsEW7XTbWb4lzBvfsrFqpz37ePzRuzT%2BcrpMn1SMsrsA0tkMk0rnY3oVjX0B0Ed7et38rCBffO9iPiCiOJqjyF1XWDPDdIDfL0B0dYvreMHj28f%2BJ03BCYX%2Ba73jOSoI%2F%2FNVG5QVQdLPnqeU84XLfwkZN9apxrBqhbMm0vBGUAER3LHIFGNFRb6rVZZOfko10ejwCzt0jzwOe%2FLgPVqZJFMsB3%2B58boeGNdNftauAaNJFY1pmdWmqlnD%2FGUE2rqlts1vITBT2yHftbUS5GpPqchJJSpXKzQ6r1YPMZbY45BvPwaMiJd1eX5lTwY%2B%2BBZjTDyNfltM1uw%3D%3D)"
               >
-                <!-- <img src="@/assets/img/RAM1.png" /> -->
               </div>
             </div>
           </a>
@@ -77,7 +74,6 @@
                 class="card-img"
                 style="backgroundImage: url(https://storage.googleapis.com/vue-course-api.appspot.com/andrew%2F1592327410828.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=W3TWo7fHRjye%2Bab2gBDehcX4tA0RmiHaq22QWO%2BAYcb1om7cWEqNKgxVFseLMp0ucFu5ynYFOB6Tvk7pkndCQ2QT32pFppDoyw1aadNSLkkeDGOi3pHiRPlQEjl5bqnk04kaI0oi7JN4xpnTJDVWG5VBJPnOjKTNE5tYYfwcPhL%2FB6OSolKvYLKLw5bFi9YD7LswSo%2Bzp87LNk%2Ff9bSVC568xil98fTHyO5PyrIXiDHKqXitkiisdx9hhtypaqfht9a7HJfImcKSvdIqYPJqGewZHBkv%2BetQv3oUSxvMAS37Aue0lpfK%2Fkw95S1ltn%2FhvJB%2FitDzutj%2BQeL0r4nyGg%3D%3D)"
               >
-                <!-- <img src="@/assets/img/RAM1.png" /> -->
               </div>
             </div>
           </a>

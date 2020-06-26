@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
+  <div class="container mt-4">
     <loading :active.sync="isLoading"></loading>
 
-    <div class="">
+    <div class="order-wrap">
       <div class="input-group">
         <input
           type="text"
@@ -13,11 +13,11 @@
           v-model="inputOrderId"
         />
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" @click="getOrderById">Button</button>
+          <button class="btn btn-outline-third" type="button" @click="getOrderById">Button</button>
         </div>
       </div>
 
-      <div class="my-5">
+      <div class="mt-4">
         <form @submit.prevent="payOrder">
           <table class="table">
             <thead>

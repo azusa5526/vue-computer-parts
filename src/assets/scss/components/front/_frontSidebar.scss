@@ -12,13 +12,20 @@
 }
 
 .side-title {
+
   h6 {
     padding: 1.25rem;
     color: $third;
     margin: 0 auto;
     text-align: center;
     background-color: $primary;
+
+    @media screen and (max-width: 768px) {
+      padding: 0.8rem;
+    }
   }
+
+
 }
 
 .side-clear {
@@ -62,5 +69,9 @@
     background-color: $secondary;
     border: none;
     border-radius: 0;
+
+    @media screen and (max-width: 768px) {
+      padding: 0.7rem;
+    }
   }
 }

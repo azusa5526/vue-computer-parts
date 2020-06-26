@@ -33,7 +33,7 @@
             <div class="buy-option">
               <button
                 type="button"
-                class="btn btn-outline-primary"
+                class="btn btn-outline-primary mr-1percent"
                 @click="addToCart(product.id, true, product.num)"
               >直接購買</button>
               <button
