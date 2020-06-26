@@ -1,6 +1,6 @@
 <template>
   <div class="item-wrap">
-    <table class="table mt-4">
+    <table class="table">
       <thead>
         <tr>
           <th class="d-md-table-cell d-none">瀏覽</th>

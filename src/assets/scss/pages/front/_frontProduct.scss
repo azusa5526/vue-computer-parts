@@ -1,8 +1,13 @@
 .no-product-found {
   background-color: white;
 }
+.side-wrap {
+  @media screen and (min-width: 768px) {
+    padding-right: 0;
+  }
+}
 
-#product-wrap {
+.product-wrap {
 
   .card-body {
     height: 155px;

@@ -3,7 +3,7 @@
     <loading :active.sync="isLoading"></loading>
 
     <div class="">
-      <div class="input-group my-4">
+      <div class="input-group">
         <input
           type="text"
           class="form-control"
@@ -74,6 +74,7 @@
           <div class="text-right">
             <button class="btn btn-danger" v-if="!order.is_paid">確認付款去</button>
           </div>
+
         </form>
       </div>
     </div>

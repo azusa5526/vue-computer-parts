@@ -4,7 +4,7 @@
 
     <div class="container mt-4" v-if="status.cartHasItem">
       <div class="cart-wrap">
-        <div class="shopping-step">
+        <div class="shopping-step mb-4">
           <div class="step" :class="{'active-step' : activedPage == 'FrontCartItems'}">
             <h5>查看購物清單</h5>
           </div>

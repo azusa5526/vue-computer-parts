@@ -4,8 +4,8 @@
     <loading :active.sync="isLoading"></loading>
     <FrontSlidesProducts></FrontSlidesProducts>
 
-    <div class="row mt-4   justify-content-center">
-      <div class="col-xl-2 col-lg-3 col-md-3 col-sm-12 col-12">
+    <div class="row mt-4 justify-content-center">
+      <div class="col-xl-2 col-lg-3 col-md-3 col-sm-12 col-12 mb-3 side-wrap">
         <FrontSidebar
           ref="frontSidebarComponent"
           :cateFilter="categoryFilter"
@@ -14,7 +14,7 @@
         ></FrontSidebar>
       </div>
 
-      <div id="product-wrap" class="col-xl-10 col-lg-9 col-md-9 col-sm-12 col-12">
+      <div id="" class="col-xl-10 col-lg-9 col-md-9 col-sm-12 col-12 product-wrap">
         <!-- BS card -->
         <div class="row">
           <div

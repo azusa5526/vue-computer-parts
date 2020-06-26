@@ -1,18 +1,28 @@
-.nav-color {
-  background-color: #343a40;
+.nav-wrap {
+  @media screen and (max-width: 767px) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  @media screen and (max-width: 575px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
 }
 
 .side-title {
   h6 {
     padding: 1.25rem;
-    color:$gray-100;
+    color: $third;
     margin: 0 auto;
     text-align: center;
+    background-color: $primary;
   }
 }
 
 .side-clear {
-  background-color: $gray-600;
+  background-color: $third;
 
   .btn {
     width: 100%;
@@ -24,8 +34,13 @@
 }
 
 #accordion {
+
   .card {
     border-radius: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    border-top: none;
+    border-right: none;
+    border-left: none;
   }
 
   .btn {
@@ -44,7 +59,8 @@
   .card-header {
     padding-top: 1rem;
     padding-bottom: 1rem;
-    background-color: $white;
+    background-color: $secondary;
+    border: none;
     border-radius: 0;
   }
 }

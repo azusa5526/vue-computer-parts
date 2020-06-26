@@ -1,6 +1,6 @@
 <template>
   <!-- Order list -->
-  <div class="px-3 mt-4">
+  <div class="px-3">
     <form>
       <div class="form-group">
         <label for="useremail">Email</label>
