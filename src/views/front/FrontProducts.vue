@@ -7,15 +7,13 @@
     <div class="row mt-4 justify-content-center">
       <div class="col-xl-2 col-lg-3 col-md-3 col-sm-12 col-12 mb-3 side-wrap">
         <FrontSidebar
-          ref="frontSidebarComponent"
           :cateFilter="categoryFilter"
           :prodFilter="productsFilter"
           @filterUpdate="updateProductsFilter"
         ></FrontSidebar>
       </div>
 
-      <div id="" class="col-xl-10 col-lg-9 col-md-9 col-sm-12 col-12 product-wrap">
-        <!-- BS card -->
+      <div class="col-xl-10 col-lg-9 col-md-9 col-sm-12 col-12 product-wrap">
         <div class="row">
           <div
             class="col-2xl-3 col-xl-4 col-lg-6 col-md-6 col-sm-6 mb-4 product-hover card-wrap"
