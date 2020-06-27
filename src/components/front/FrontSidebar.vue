@@ -8,6 +8,22 @@
       <button class="btn" @click="clearAll">Clear Filter</button>
     </div>
 
+    <div class="side-categoryFilter" v-if="cateFilter === 'all'">
+      <!-- <button class="btn">CPU</button>
+      <button class="btn">Motherboard</button>
+      <button class="btn">RAM</button>
+      <button class="btn">Graphic Card</button>
+      <button class="btn">PSU</button>
+      <button class="btn">Case</button> -->
+
+      <router-link class="btn" to="/frontProducts/cpu">CPU</router-link>
+      <router-link class="btn" to="/frontProducts/motherboard">Motherboard</router-link>
+      <router-link class="btn" to="/frontProducts/ram">RAM</router-link>
+      <router-link class="btn" to="/frontProducts/graphic_card">Graphic Card</router-link>
+      <router-link class="btn" to="/frontProducts/psu">PSU</router-link>
+      <router-link class="btn" to="/frontProducts/case">Case</router-link>
+    </div>
+
     <div id="accordion">
       <div class="card" v-if="cateFilter === 'cpu'">
         <h5 class="mb-0">
@@ -296,7 +312,12 @@
             <label for="radeon-VII">Radeon VII</label>
           </div>
           <div>
-            <input type="checkbox" id="radeon-5000-series" value="radeon-5000-series" v-model="prodsFilter" />
+            <input
+              type="checkbox"
+              id="radeon-5000-series"
+              value="radeon-5000-series"
+              v-model="prodsFilter"
+            />
             <label for="radeon-5000-series">Radeon 5000</label>
           </div>
         </div>

@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top ">
-    <router-link class="navbar-brand" to="/home">VueComputerParts</router-link>
+    <router-link class="navbar-logo" to="/home"><span><i class="fab fa-vuejs"></i>CP.com</span></router-link>
     <button
       class="navbar-toggler"
       type="button"
@@ -19,9 +19,9 @@
           <router-link class="nav-link" to="/Front_check_order">Check Order</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/frontProducts/all">All Products</router-link>
+          <router-link class="nav-link" to="/frontProducts/all">Products</router-link>
         </li>
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
             href="#"
@@ -38,7 +38,7 @@
             <router-link class="dropdown-item" to="/frontProducts/psu">PSU</router-link>
             <router-link class="dropdown-item" to="/frontProducts/case">Case</router-link>
           </div>
-        </li>
+        </li> -->
       </ul>
 
       <ul class="navbar-nav align-items-center ml-3">

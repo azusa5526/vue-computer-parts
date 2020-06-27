@@ -11,6 +11,26 @@
 
 }
 
+.side-categoryFilter {
+  .btn {
+    width: 100%;
+    color: $third;
+    margin: 0 auto;
+    text-align: center;
+    background-color: $secondary;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 1rem;
+
+    &:hover {
+      background-color: darken($color: $secondary, $amount: 5);
+    }
+
+    @media screen and (max-width: 768px) {
+      padding: 0.6rem;
+    }
+  }
+}
+
 .side-title {
 
   h6 {
@@ -25,11 +45,14 @@
     }
   }
 
-
 }
 
 .side-clear {
   background-color: $third;
+
+  &:hover {
+    background-color: lighten($color: $third, $amount: 5);
+  }
 
   .btn {
     width: 100%;
@@ -37,6 +60,8 @@
     color: $gray-100;
     margin: 0 auto;
     text-align: center;
+
+
   }
 }
 
