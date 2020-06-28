@@ -1,6 +1,7 @@
 .no-product-found {
   background-color: white;
 }
+
 .side-wrap {
   @media screen and (min-width: 768px) {
     padding-right: 0;
@@ -40,11 +41,13 @@
 
 .product-hover {
   transform: scale(1.00);
-  transition: .2s;
+  transition: ease-out;
+  transition-duration: 0.2s;
 
   &:hover {
     transform: scale(1.01);
-    transition: .2s;
+    transition: ease-out;
+    transition-duration: 0.2s;
   }
 }
 
@@ -54,5 +57,3 @@
     padding-right: 0;
   }
 }
-
-

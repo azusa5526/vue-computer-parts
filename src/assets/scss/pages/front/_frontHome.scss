@@ -97,11 +97,13 @@
 
   .hero-hover {
     transform: scale(1.00);
-    transition: .2s;
+    transition: ease-out;
+    transition-duration: 0.2s;
 
     &:hover {
       transform: scale(1.01);
-      transition: .2s;
+      transition: ease-out;
+      transition-duration: 0.2s;
     }
   }
 

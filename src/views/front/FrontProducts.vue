@@ -40,7 +40,6 @@
                   <del class="h6" v-if="item.price">{{item.origin_price}} 元</del>
                   <div class="h5" v-if="item.price">現在只要 {{item.price}} 元</div>
                 </div>
-
               </div>
             </a>
           </div>
@@ -55,9 +54,7 @@
           ></Pgnation>
         </div>
       </div>
-
     </div>
-
   </div>
 </template>
 
@@ -137,7 +134,10 @@ export default {
             `../front_single_product/${response.data.product.id}`
           );
 
-          sessionStorage.setItem("rndProds", JSON.stringify(vm.tempRandomProducts));
+          sessionStorage.setItem(
+            "rndProds",
+            JSON.stringify(vm.tempRandomProducts)
+          );
           vm.$bus.$emit("getRandomProds", vm.tempRandomProducts);
         }
       });
@@ -310,7 +310,7 @@ export default {
     productsInWindowList() {
       const vm = this;
       let productsInWindow = [];
-      let tempProducts = []; 
+      let tempProducts = [];
 
       vm.filteredProducts = vm.productsFilterList();
       //console.log('filteredProducts',vm.filteredProducts);

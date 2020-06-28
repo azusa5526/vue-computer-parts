@@ -23,6 +23,8 @@
 
     &:hover {
       background-color: darken($color: $secondary, $amount: 5);
+      transition: ease-in-out;
+      transition-duration: 0.3s;
     }
 
     @media screen and (max-width: 768px) {
@@ -51,7 +53,9 @@
   background-color: $third;
 
   &:hover {
-    background-color: lighten($color: $third, $amount: 5);
+    background-color: lighten($color: $third, $amount: 10);
+    transition: ease-in-out;
+    transition-duration: 0.3s;
   }
 
   .btn {
@@ -60,8 +64,6 @@
     color: $gray-100;
     margin: 0 auto;
     text-align: center;
-
-
   }
 }
 
