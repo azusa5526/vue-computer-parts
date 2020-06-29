@@ -68,7 +68,7 @@
 
         <div
           class="col-md-3 col-sm-6 col-12 mb-4 recommand-hover"
-          v-for="(item, index) in sessionStorageProducts"
+          v-for="(item, index) in localStorageProducts"
           :key="index"
         >
           <a
@@ -104,7 +104,8 @@ export default {
       isLoading: false,
       productId: "",
       recommandProducts: [],
-      sessionStorageProducts: [],
+      localStorageProducts: [],
+      localCateProducts: [],
       product: {
         num: 1
       },
@@ -152,9 +153,6 @@ export default {
           vm.$router.push(
             `../front_single_product/${response.data.product.id}`
           );
-
-          //sessionStorage.setItem("rndProds", JSON.stringify(vm.tempRandomProducts));
-          //vm.$bus.$emit("getRandomProds", vm.tempRandomProducts);
         }
       });
     },
@@ -202,17 +200,19 @@ export default {
     }
   },
 
+  computed: {},
+
   created() {
     const vm = this;
     this.productId = this.$route.params.productID;
     this.getSingleProduct();
 
+    vm.localStorageProducts = JSON.parse(localStorage.getItem("rndProds"));
+    vm.localCateProducts = JSON.parse(localStorage.getItem("cateFilteredList"));
     vm.$bus.$on("getRandomProds", randomProducts => {
       vm.recommandProducts = randomProducts;
       console.log("recommandProducts", vm.recommandProducts);
     });
-
-    vm.sessionStorageProducts = JSON.parse(sessionStorage.getItem("rndProds"));
   }
 };
 </script>

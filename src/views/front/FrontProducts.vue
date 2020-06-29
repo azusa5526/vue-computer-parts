@@ -134,10 +134,16 @@ export default {
             `../front_single_product/${response.data.product.id}`
           );
 
-          sessionStorage.setItem(
+          localStorage.setItem(
             "rndProds",
             JSON.stringify(vm.tempRandomProducts)
           );
+
+          localStorage.setItem(
+            "cateFilteredList",
+            JSON.stringify(vm.categoryFilteredList)
+          );
+
           vm.$bus.$emit("getRandomProds", vm.tempRandomProducts);
         }
       });
