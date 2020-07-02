@@ -16,7 +16,11 @@
     <div id="heroProducts">
       <div class="row my-3">
         <div class="col-lg-3 col-md-6 mb-3 hero-hover">
-          <a class="link-block" @click="getProduct('-MA13AwgWT1qNex6b85M')" href="#/front_single_product/-MA13AwgWT1qNex6b85M">
+          <a
+            class="link-block"
+            @click="getProduct('-MA13AwgWT1qNex6b85M')"
+            href="#/front_single_product/-MA13AwgWT1qNex6b85M"
+          >
             <div class="card">
               <div class="card-header">
                 <h4>RADEON VII 16G</h4>
@@ -91,32 +95,61 @@ export default {
 
   data() {
     return {
+      products: [],
       isLoading: false
     };
   },
 
   methods: {
+    getAllProducts() {
+      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/products/all`;
+      const vm = this;
+      vm.isLoading = true;
+
+      this.$http.get(api).then(response => {
+        vm.isLoading = false;
+        console.log(response.data.products);
+        vm.products = response.data.products;
+      });
+    },
+
     getProduct(id) {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/product/${id}`;
       const vm = this;
-      //vm.randomProduct(vm.categoryFilteredList, 4);
+      let heroProducts = vm.categoryFilterList();
+
+      localStorage.setItem("cateFilteredList", JSON.stringify(heroProducts));
+      //console.log('local', JSON.parse(localStorage.getItem("cateFilteredList")));
 
       this.$http.get(api).then(response => {
         if (response.data.success) {
           vm.$router.push(
             `../front_single_product/${response.data.product.id}`
           );
-
-          // sessionStorage.setItem(
-          //   "rndProds",
-          //   JSON.stringify(vm.tempRandomProducts)
-          // );
-          // vm.$bus.$emit("getRandomProds", vm.tempRandomProducts);
         }
+      });
+    },
+
+    activatedProductFilterList() {
+      const vm = this;
+      return vm.products.filter(function(item) {
+        return item.is_enabled;
+      });
+    },
+
+    categoryFilterList() {
+      const vm = this;
+      let tempProducts = vm.activatedProductFilterList();
+      tempProducts.reverse();
+
+      return tempProducts.filter(function(item) {
+        return item.category.indexOf("hero") !== -1;
       });
     }
   },
 
-  created() {}
+  created() {
+    this.getAllProducts();
+  }
 };
 </script>

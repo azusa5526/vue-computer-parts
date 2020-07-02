@@ -15,7 +15,7 @@
         <tr v-for="item in shoppingCart.carts" :key="item.id">
           <td class="align-middle d-md-table-cell d-none">
             <div
-              class="product-preview d-md-table-cell d-none"
+              class="product-preview d-md-block d-none"
               :style="{backgroundImage: `url(${item.product.imageUrl})`}"
             ></div>
           </td>

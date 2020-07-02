@@ -128,54 +128,21 @@ export default {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/product/${id}`;
       const vm = this;
       vm.status.loadingItem = id;
-      vm.randomProduct(vm.categoryFilteredList, 4);
+      //vm.randomProduct(vm.categoryFilteredList, 4);
       localStorage.setItem(
         "cateFilteredList",
         JSON.stringify(vm.categoryFilteredList)
       );
-      localStorage.setItem("rndProds", JSON.stringify(vm.tempRandomProducts));
+      //localStorage.setItem("rndProds", JSON.stringify(vm.tempRandomProducts));
 
       this.$http.get(api).then(response => {
         if (response.data.success) {
-          vm.$bus.$emit("getRandomProds", vm.tempRandomProducts);
+          //vm.$bus.$emit("getRandomProds", vm.tempRandomProducts);
           // vm.$router.push(
           //   `../front_single_product/${response.data.product.id}`
           // );
         }
       });
-    },
-
-    randomProduct(arr, num) {
-      let newArr = [];
-      if (arr.length <= num) {
-        num = arr.length;
-      }
-
-      rand(num);
-
-      function rand(selectQty) {
-        if (selectQty == 0) {
-          return;
-        }
-
-        let index = Math.floor(Math.random() * arr.length);
-        let flag = true;
-
-        newArr.forEach(function(item) {
-          if (item == arr[index]) {
-            flag = false;
-          }
-        });
-
-        if (flag) {
-          newArr.push(arr[index]);
-          selectQty--;
-        }
-        rand(selectQty);
-      }
-
-      this.tempRandomProducts = newArr;
-      //return newArr;
     },
 
     addToCart(id, qty = 1) {
