@@ -36,12 +36,12 @@
                 type="button"
                 class="btn btn-outline-primary mr-1percent"
                 @click="addToCart(product.id, true, product.num)"
-              >直接購買</button>
+              ><i class="fas fa-circle-notch fa-spin" v-if="clickedButton == 'direct'"></i> 直接購買</button>
               <button
                 type="button"
                 class="btn btn-outline-danger"
                 @click="addToCart(product.id, false, product.num)"
-              >加入購物車</button>
+              ><i class="fas fa-circle-notch fa-spin" v-if="clickedButton == 'non-direct'"></i> 加入購物車</button>
             </div>
           </div>
         </div>
@@ -68,7 +68,7 @@
 
         <div
           class="col-md-3 col-sm-6 col-12 mb-4 recommand-hover"
-          v-for="(item, index) in localStorageProducts"
+          v-for="(item, index) in recommandProducts"
           :key="index"
         >
           <a
@@ -102,6 +102,7 @@ export default {
   data() {
     return {
       isLoading: false,
+      itemAdding: false,
       productId: "",
       recommandProducts: [],
       localStorageProducts: [],
@@ -109,9 +110,7 @@ export default {
       product: {
         num: 1
       },
-      status: {
-        itemAdding: false
-      }
+      clickedButton: '',
     };
   },
 
@@ -127,6 +126,7 @@ export default {
       const vm = this;
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/product/${vm.productId}`;
       vm.isLoading = true;
+      vm.randomProduct(vm.localCateProducts, 4);
 
       this.$http.get(api).then(response => {
         if (response.data.success) {
@@ -135,17 +135,14 @@ export default {
           vm.$set(vm.product, "num", 1);
 
           vm.isLoading = false;
-          //console.log(vm.product);
         }
       });
-      //console.log("create pdn", vm.product.num);
     },
 
     getRecommandProduct(id) {
       console.log("recommand id", id);
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/product/${id}`;
       const vm = this;
-      //vm.randomProduct(vm.categoryFilteredList, 4);
 
       this.$http.get(api).then(response => {
         console.log(response.data);
@@ -160,7 +157,14 @@ export default {
     addToCart(id, direct, qty = 1) {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/cart`;
       const vm = this;
-      vm.status.itemAdding = true;
+
+      if(direct) {
+        vm.clickedButton = 'direct'
+      } else {
+        vm.clickedButton = 'non-direct'
+      }
+      
+      vm.itemAdding = true;
       const cart = {
         product_id: id,
         qty
@@ -168,17 +172,16 @@ export default {
 
       this.$http.post(api, { data: cart }).then(response => {
         if (response.data.success) {
-          //console.log(response.data);
-          console.log("direct", direct);
-          vm.status.itemAdding = false;
+          vm.$bus.$emit("message:push", 'Successfully add to cart', 'secondary');
+          vm.clickedButton = '',
           vm.product.num = 1;
 
-          if (direct == true) {
+          if (direct) {
             vm.$router.push(`../shopping_cart/front_cart_items`);
           }
         } else {
-          console.log("fail to add item to cart");
-          vm.status.itemAdding = false;
+          vm.$bus.$emit("message:push", 'Fail to add to cart', 'third');
+          vm.clickedButton = '';
         }
       });
     },
@@ -197,22 +200,52 @@ export default {
         vm.product.num++;
       }
       console.log("vm.product.num", vm.product.num);
-    }
-  },
+    },
 
-  computed: {},
+    randomProduct(arr, num) {
+      let newArr = [];
+      if (arr.length <= num) {
+        num = arr.length;
+      }
+
+      rand(num);
+
+      function rand(selectQty) {
+        if (selectQty == 0) {
+          return;
+        }
+
+        let index = Math.floor(Math.random() * arr.length);
+        let flag = true;
+
+        newArr.forEach(function(item) {
+          if (item == arr[index]) {
+            flag = false;
+          }
+        });
+
+        if (flag) {
+          newArr.push(arr[index]);
+          selectQty--;
+        }
+        rand(selectQty);
+      }
+
+      this.recommandProducts = newArr;
+    },
+  },
 
   created() {
     const vm = this;
     this.productId = this.$route.params.productID;
-    this.getSingleProduct();
-
     vm.localStorageProducts = JSON.parse(localStorage.getItem("rndProds"));
     vm.localCateProducts = JSON.parse(localStorage.getItem("cateFilteredList"));
-    vm.$bus.$on("getRandomProds", randomProducts => {
-      vm.recommandProducts = randomProducts;
-      console.log("recommandProducts", vm.recommandProducts);
-    });
+    // vm.$bus.$on("getRandomProds", randomProducts => {
+    //   vm.recommandProducts = randomProducts;
+    //   console.log("recommandProducts", vm.recommandProducts);
+    // });
+
+    this.getSingleProduct();
   }
 };
 </script>

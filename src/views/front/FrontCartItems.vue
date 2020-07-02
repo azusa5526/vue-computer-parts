@@ -14,7 +14,10 @@
       <tbody id="cart-items">
         <tr v-for="item in shoppingCart.carts" :key="item.id">
           <td class="align-middle d-md-table-cell d-none">
-            <div class="product-preview d-md-table-cell d-none" :style="{backgroundImage: `url(${item.product.imageUrl})`}"></div>
+            <div
+              class="product-preview d-md-table-cell d-none"
+              :style="{backgroundImage: `url(${item.product.imageUrl})`}"
+            ></div>
           </td>
           <td class="align-middle">
             {{item.product.title}}
@@ -36,7 +39,7 @@
       <tfoot>
         <tr>
           <td class="d-md-table-cell d-none"></td>
-          <td colspan="3" class="text-right ">總計</td>
+          <td colspan="3" class="text-right">總計</td>
           <td class="text-right">{{shoppingCart.total}}</td>
         </tr>
         <tr v-if="shoppingCart.total !== shoppingCart.final_total">
@@ -59,7 +62,6 @@
       <router-link class="btn btn-outline-danger" to="front_orderlist">填寫購買資料</router-link>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -150,12 +152,12 @@ export default {
       vm.isLoading = true;
 
       this.$http.post(api, { data: coupon }).then(response => {
+        vm.$bus.$emit("message:push", response.data.message, "primary");
+
         if (response.data.success) {
-          console.log(response.data);
           vm.getCart();
           vm.isLoading = false;
         } else {
-          console.log(response.data);
           vm.isLoading = false;
         }
       });

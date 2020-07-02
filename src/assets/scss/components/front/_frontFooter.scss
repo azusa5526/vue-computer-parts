@@ -1,10 +1,18 @@
 .footer {
-  background-color: #181818;
+  background-color:$third;
+  color: darken($color: $secondary, $amount: 10);
   min-height: calc(100vh - 450px);
+
+  .footer-link {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  a {
+    color: darken($color: $secondary, $amount: 10);
+    
+  }
 }
 
-.footer-text {
-  color: whitesmoke;
-}
 
 

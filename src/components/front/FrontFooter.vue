@@ -1,20 +1,49 @@
 <template>
   <footer class="footer">
     <div class="container">
-      <div class="footer-text">
-        <p>&copy; Company 2017-2019</p>
-        <ul>
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
-          <li>4</li>
-          <li>5</li>
-          <li>6</li>
-          <li>7</li>
-          <li>8</li>
-          <li>9</li>
-          <li>10</li>
-        </ul>
+      <div class="row pt-4">
+        <div class="col-lg-6 d-none d-lg-block pl-0">
+          <h4>About VCP.com</h4>
+          <p>VCP.com is the leading tech-focused e-retailer in North America, with a global reach in Europe, South America, Asia Pacific and the Middle East. Founded in 2001, the company offers its tens of millions of registered users a comprehensive selection of the latest consumer electronics, entertainment, smart home and gaming products.</p>
+        </div>
+
+        <div class="col-12 col-lg-6">
+          <div class="row justify-content-center">
+            <ul class="px-4">
+              <li>
+                <h4>Service</h4>
+              </li>
+              <li class="footer-link">
+                <a href="#">Help Center</a>
+              </li>
+              <li class="footer-link">
+                <a href="#">Privacy</a>
+              </li>
+              <li class="footer-link">
+                <a href="#">Return Policy</a>
+              </li>
+              <li class="footer-link">
+                <a href="#">Feedback</a>
+              </li>
+            </ul>
+
+            <ul ul class="px-4">
+              <li>
+                <h4>Content</h4>
+              </li>
+              <li class="footer-link">
+                <a href="#">Feedback</a>
+              </li>
+              <li class="footer-link">
+                <a href="#">Feedback</a>
+              </li>
+              <li class="footer-link">
+                <a href="#">Feedback</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- <p>&copy; Company 2017-2019</p> -->
       </div>
     </div>
   </footer>

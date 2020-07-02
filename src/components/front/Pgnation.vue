@@ -5,7 +5,6 @@
         <li class="page-item" :class="{'disabled' : !pagination.has_pre}">
           <a
             class="page-link"
-            href="#"
             aria-label="Previous"
             @click="changePage(pagination.current_page - 1)"
           >
@@ -18,15 +17,10 @@
           :key="page"
           :class="{'active' : pagination.current_page == page}"
         >
-          <a class="page-link" href="#" @click="changePage(page)">{{page}}</a>
+          <a class="page-link" @click="changePage(page)">{{page}}</a>
         </li>
         <li class="page-item" :class="{'disabled' : !pagination.has_next}">
-          <a
-            class="page-link"
-            href="#"
-            aria-label="Next"
-            @click="changePage(pagination.current_page + 1)"
-          >
+          <a class="page-link" aria-label="Next" @click="changePage(pagination.current_page + 1)">
             <span aria-hidden="true">&raquo;</span>
           </a>
         </li>
@@ -37,18 +31,21 @@
 
 <script>
 export default {
-  props: ['pagination'],
+  props: ["pagination"],
   data() {
-    return {
-
-    };
+    return {};
   },
 
   methods: {
-      changePage(targetPage) {
-          this.$emit('changePage', targetPage);
-      },
-  },
+    changePage(targetPage) {
+      this.$emit("changePage", targetPage);
+      this.topFunction();
+    },
 
+    topFunction() {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+  }
 };
 </script>

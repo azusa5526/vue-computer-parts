@@ -36,3 +36,21 @@ a {
 input {
   border: $third 1px solid;
 }
+
+.dashboard-table-wrap {
+  background-color: $secondary;
+  padding: 1rem;
+}
+
+ul {
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
+.card {
+  border-radius: 0;
+}
+
+.card-footer:last-child {
+  border-radius: 0;
+}

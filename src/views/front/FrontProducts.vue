@@ -24,6 +24,7 @@
               class="link-block"
               :href="'#/front_single_product/' + item.id"
               @click="getProduct(item.id)"
+              @click.middle="getProduct(item.id)"
             >
               <div class="card border-0 shadow-sm">
                 <div
@@ -86,7 +87,7 @@ export default {
         has_next: false,
         has_pre: false,
         total_pages: 1,
-        page_size: 10
+        page_size: 12
       },
       shoppingCart: [],
       couponCode: "",
@@ -117,6 +118,7 @@ export default {
 
       this.$http.get(api).then(response => {
         vm.isLoading = false;
+        console.log(response.data.products);
         vm.products = response.data.products;
       });
     },
@@ -127,24 +129,18 @@ export default {
       const vm = this;
       vm.status.loadingItem = id;
       vm.randomProduct(vm.categoryFilteredList, 4);
+      localStorage.setItem(
+        "cateFilteredList",
+        JSON.stringify(vm.categoryFilteredList)
+      );
+      localStorage.setItem("rndProds", JSON.stringify(vm.tempRandomProducts));
 
       this.$http.get(api).then(response => {
         if (response.data.success) {
-          vm.$router.push(
-            `../front_single_product/${response.data.product.id}`
-          );
-
-          localStorage.setItem(
-            "rndProds",
-            JSON.stringify(vm.tempRandomProducts)
-          );
-
-          localStorage.setItem(
-            "cateFilteredList",
-            JSON.stringify(vm.categoryFilteredList)
-          );
-
           vm.$bus.$emit("getRandomProds", vm.tempRandomProducts);
+          // vm.$router.push(
+          //   `../front_single_product/${response.data.product.id}`
+          // );
         }
       });
     },
@@ -225,6 +221,8 @@ export default {
     categoryFilterList() {
       const vm = this;
       let tempProducts = vm.activatedProductFilterList();
+      tempProducts.reverse();
+
       vm.categoryFilter = vm.$route.params.categoryFilter;
       if (vm.categoryFilter == "all") {
         return tempProducts;

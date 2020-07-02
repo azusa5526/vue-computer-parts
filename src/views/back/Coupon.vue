@@ -3,40 +3,42 @@
     <!-- vue-loading-overlay -->
     <loading :active.sync="isLoading"></loading>
 
-    <div class="text-right">
+    <div class="text-right mb-3">
       <button class="btn btn-primary mt-4" @click="openModal(true)">建立新的優惠券</button>
     </div>
 
-    <table class="table mt-4">
-      <thead>
-        <tr>
-          <th>名稱</th>
-          <th width="130" class="text-center">折扣百分比</th>
-          <th width="130">到期日</th>
-          <th width="130">是否啟用</th>
-          <th width="130">編輯</th>
-        </tr>
-      </thead>
+    <div class="dashboard-table-wrap mb-3">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>名稱</th>
+            <th width="130" class="text-center">折扣百分比</th>
+            <th width="130">到期日</th>
+            <th width="130">是否啟用</th>
+            <th width="130">編輯</th>
+          </tr>
+        </thead>
 
-      <tbody>
-        <tr v-for="item in coupons" :key="item.id">
-          <td>{{item.title}}</td>
-          <td class="text-center">{{item.percent}}%</td>
-          <td>{{item.due_date}}</td>
-          <td>
-            <span class="text-success" v-if="item.is_enabled">啟用</span>
-            <span class="text-danger" v-else>未啟用</span>
-          </td>
-          <td>
-            <button class="btn btn-outline-primary btn-sm" @click="openModal(false, item)">編輯</button>
-            <button
-              class="btn btn btn-outline-danger btn-sm"
-              @click="openDeleteCouponModal(item)"
-            >刪除</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <tbody>
+          <tr v-for="item in coupons" :key="item.id">
+            <td>{{item.title}}</td>
+            <td class="text-center">{{item.percent}}%</td>
+            <td>{{item.due_date}}</td>
+            <td>
+              <span class="text-success" v-if="item.is_enabled">啟用</span>
+              <span class="text-danger" v-else>未啟用</span>
+            </td>
+            <td>
+              <button class="btn btn-outline-primary btn-sm" @click="openModal(false, item)">編輯</button>
+              <button
+                class="btn btn btn-outline-danger btn-sm"
+                @click="openDeleteCouponModal(item)"
+              >刪除</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <!-- BS pagination -->
     <Pagination :pagination="pagination" @changePage="getCoupons"></Pagination>
@@ -132,7 +134,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-third" data-dismiss="modal">取消</button>
             <button type="button" class="btn btn-primary" @click="updateCoupon">確認</button>
           </div>
         </div>

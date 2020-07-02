@@ -1,7 +1,7 @@
 <template>
   <nav class="nav-wrap">
     <div class="side-title">
-      <h6>Advanced Filter</h6>
+      <h6>Filter</h6>
     </div>
 
     <div class="side-clear">

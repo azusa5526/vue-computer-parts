@@ -3,43 +3,44 @@
     <!-- vue-loading-overlay -->
     <loading :active.sync="isLoading"></loading>
 
-    <div class="text-right">
+    <div class="text-right mb-3">
       <button class="btn btn-danger mt-4 mr-2" @click="deleteAllProducts()">刪除全部產品</button>
       <button class="btn btn-primary mt-4" @click="openModal(true)">建立新的產品</button>
     </div>
+    <div class="dashboard-table-wrap mb-3">
+      <table class="table">
+        <thead>
+          <tr>
+            <th width="150">分類</th>
+            <th>產品名稱</th>
+            <th width="130">原價</th>
+            <th width="130">售價</th>
+            <th width="130">是否啟用</th>
+            <th width="130">編輯</th>
+          </tr>
+        </thead>
 
-    <table class="table mt-4">
-      <thead>
-        <tr>
-          <th width="150">分類</th>
-          <th>產品名稱</th>
-          <th width="130">原價</th>
-          <th width="130">售價</th>
-          <th width="130">是否啟用</th>
-          <th width="130">編輯</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr v-for="item in products" :key="item.id">
-          <td>{{item.category}}</td>
-          <td>{{item.title}}</td>
-          <td class="text-right">{{item.origin_price | currency}}</td>
-          <td class="text-right">{{item.price | currency}}</td>
-          <td>
-            <span class="text-success" v-if="item.is_enabled">啟用</span>
-            <span class="text-danger" v-else>未啟用</span>
-          </td>
-          <td>
-            <button class="btn btn-outline-primary btn-sm" @click="openModal(false, item)">編輯</button>
-            <button
-              class="btn btn btn-outline-danger btn-sm"
-              @click="openDeleteProductModal(item)"
-            >刪除</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <tbody>
+          <tr v-for="item in products" :key="item.id">
+            <td>{{item.category}}</td>
+            <td>{{item.title}}</td>
+            <td class="text-right">{{item.origin_price | currency}}</td>
+            <td class="text-right">{{item.price | currency}}</td>
+            <td>
+              <span class="text-success" v-if="item.is_enabled">啟用</span>
+              <span class="text-danger" v-else>未啟用</span>
+            </td>
+            <td>
+              <button class="btn btn-outline-primary btn-sm" @click="openModal(false, item)">編輯</button>
+              <button
+                class="btn btn btn-outline-danger btn-sm"
+                @click="openDeleteProductModal(item)"
+              >刪除</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <!-- BS pagination -->
     <Pagination :pagination="pagination" @changePage="getProducts"></Pagination>
@@ -187,7 +188,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-third" data-dismiss="modal">取消</button>
             <button type="button" class="btn btn-primary" @click="updateProduct">確認</button>
           </div>
         </div>

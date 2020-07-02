@@ -2,45 +2,46 @@
   <div>
     <!-- vue-loading-overlay -->
     <loading :active.sync="isLoading"></loading>
+    <div class="dashboard-table-wrap my-3">
+      <table class="table">
+        <thead>
+          <tr>
+            <th width="150">購買時間</th>
+            <th>Email</th>
+            <th>購買物品</th>
+            <th>訂單編號</th>
+            <th width="130">應付金額</th>
+            <th width="130">是否付款</th>
+          </tr>
+        </thead>
 
-    <table class="table mt-4">
-      <thead>
-        <tr>
-          <th width="150">購買時間</th>
-          <th>Email</th>
-          <th>購買物品</th>
-          <th>訂單編號</th>
-          <th width="130">應付金額</th>
-          <th width="130">是否付款</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr v-for="item in orders" :key="item.id">
-          <td>{{item.create_at | timestampToDate}}</td>
-          <td>{{item.user.email}}</td>
-          <td>
-            <!-- https://stackoverflow.com/questions/1027354/i-need-an-unordered-list-without-any-bullets -->
-            <ul class="list-unstyled">
-              <li v-for="(product, id) in item.products" :key="id">
-                {{product.product.title}} / {{product.qty}} {{product.product.unit}}
-              </li>
-            </ul>
-          </td>
-          <td>{{item.id}}</td>
-          <!-- to be fix -->
-          <td class="text-right">{{item.total}}</td>
-          <td>
-            <span class="text-success" v-if="item.is_paid">已付款</span>
-            <span class="text-danger" v-else>未付款</span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <tbody>
+          <tr v-for="item in orders" :key="item.id">
+            <td>{{item.create_at | timestampToDate}}</td>
+            <td>{{item.user.email}}</td>
+            <td>
+              <!-- https://stackoverflow.com/questions/1027354/i-need-an-unordered-list-without-any-bullets -->
+              <ul class="list-unstyled">
+                <li
+                  v-for="(product, id) in item.products"
+                  :key="id"
+                >{{product.product.title}} / {{product.qty}} {{product.product.unit}}</li>
+              </ul>
+            </td>
+            <td>{{item.id}}</td>
+            <!-- to be fix -->
+            <td class="text-right">{{item.total}}</td>
+            <td>
+              <span class="text-success" v-if="item.is_paid">已付款</span>
+              <span class="text-danger" v-else>未付款</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <!-- BS pagination -->
     <Pagination :pagination="pagination" @changePage="getOrders"></Pagination>
-
   </div>
 </template>
 
@@ -80,8 +81,7 @@ export default {
         vm.orders = response.data.orders;
         vm.pagination = response.data.pagination;
       });
-    },
-
+    }
   },
 
   created() {
