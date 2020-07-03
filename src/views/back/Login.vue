@@ -1,7 +1,5 @@
 <template>
   <div>
-    <loading :active.sync="isLoading"></loading>
-
     <div class="login-wrap">
       <form class="login" @submit.prevent="signin">
         <div class="login-img">
@@ -33,10 +31,9 @@
               <input type="checkbox" value="remember-me" /> Remember me
             </label>
           </div>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+          <button class="btn btn-lg btn-primary btn-block" type="submit"><i class="fas fa-circle-notch fa-spin" v-if="isLoading"></i> Sign in</button>
           <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
         </div>
-        <!-- <h1 class="h3 mb-3 font-weight-normal">VueComputerParts.com</h1> -->
       </form>
     </div>
   </div>
@@ -61,10 +58,11 @@ export default {
       vm.isLoading = true;
 
       this.$http.post(api, vm.user).then(response => {
-        //console.log(response.data);
         vm.isLoading = false;
         if (response.data.success) {
           vm.$router.push("/home");
+        } else if(response.data.error.code == "auth/wrong-password") {
+          vm.$bus.$emit("message:push", 'Account or password is invalid', 'third');
         }
       });
     }

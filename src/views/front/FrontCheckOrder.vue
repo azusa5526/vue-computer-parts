@@ -22,7 +22,7 @@
           <table class="table">
             <thead>
               <th>品名</th>
-              <th>數量</th>
+              <th width="20%">數量</th>
               <th>小計</th>
             </thead>
             <tbody>
@@ -103,9 +103,10 @@ export default {
         if (response.data.order != null) {
           console.log(response.data);
           vm.order = response.data.order;
+          vm.inputOrderId = '';
           vm.isLoading = false;
         } else {
-          console.log("Can't find this order");
+          vm.$bus.$emit("message:push", 'Order ID not found', 'third');
           vm.isLoading = false;
         }
       });
