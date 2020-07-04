@@ -79,7 +79,8 @@ export default {
       isLoading: false,
       status: {
         loadingItem: "",
-        itemAdding: false
+        itemAdding: false,
+        noProductsInWindow: false
       },
       pagination: {},
       pgnation: {
@@ -141,28 +142,6 @@ export default {
           // vm.$router.push(
           //   `../front_single_product/${response.data.product.id}`
           // );
-        }
-      });
-    },
-
-    addToCart(id, qty = 1) {
-      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/cart`;
-      const vm = this;
-      vm.status.itemAdding = true;
-      const cart = {
-        product_id: id,
-        qty
-      };
-
-      this.$http.post(api, { data: cart }).then(response => {
-        if (response.data.success) {
-          vm.status.itemAdding = false;
-          vm.getCart();
-          $("#productModal").modal("hide");
-        } else {
-          console.log("fail to add item to cart");
-          vm.status.itemAdding = false;
-          $("#productModal").modal("hide");
         }
       });
     },
@@ -310,6 +289,17 @@ export default {
     categoryFilter: {
       handler() {
         this.pgnation.current_page = 1;
+      }
+    },
+
+    productsInWindow: {
+      handler() {
+        console.log(this.productsInWindow.length);
+        if (this.productsInWindow.length == 0) {
+          this.status.noProductsInWindow = true;
+        } else {
+          this.status.noProductsInWindow = false;
+        }
       }
     }
   },
