@@ -21,8 +21,9 @@
       </div>
     </div>
 
-    <div class="mt-4" v-else>
-      <img src="@/assets/img/shoppingCart.jpg" />
+    <div class="my-4 emptyCart-wrap" v-else>
+      <h3 class="mb-4">Your Shopping is empty</h3>
+      <img src="@/assets/img/emptyCart.png" />
     </div>
   </div>
 </template>

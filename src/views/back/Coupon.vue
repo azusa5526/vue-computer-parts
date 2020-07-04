@@ -165,7 +165,7 @@
             <strong class="text-danger">{{ tempCoupon.title }}</strong> 優惠券(刪除後將無法恢復)。
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-third" data-dismiss="modal">取消</button>
             <button type="button" class="btn btn-danger" @click="deleteCoupon">確認刪除</button>
           </div>
         </div>
