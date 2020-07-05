@@ -10,6 +10,14 @@
   height: 30vh;
   background-color: #181818;
 
+  @media screen and (max-width: 991px) {
+    height: 50vh;
+  }
+
+  @media screen and (max-width: 767px) {
+    height: 30vh;
+  }
+
   .mid-banner-img {
     height: 100%;
     background-image: url('~@/assets/img/midBanner_fixed.jpg');

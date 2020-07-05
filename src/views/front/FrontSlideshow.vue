@@ -6,46 +6,23 @@
       <li data-target="#frontSlideHome" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
-
-      <!-- <div class="carousel-item active">
-        <img class="d-block w-100" src="@/assets/img/sli.png" alt="First slide" />
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="@/assets/img/sli2.png" alt="Second slide" />
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="@/assets/img/sli3.png" alt="Third slide" />
-      </div>-->
-
       <div class="carousel-item active">
-        <div class="rwdimg" :style="{ backgroundImage: 'url(' + require('@/assets/img/home1.png') + ')' }"></div>
+        <div class="rwdimg slide1"></div>
       </div>
       <div class="carousel-item">
-        <div class="rwdimg" :style="{ backgroundImage: 'url(' + require('@/assets/img/home2.jpg') + ')' }"></div>
+        <div class="rwdimg slide2"></div>
       </div>
       <div class="carousel-item">
-        <div class="rwdimg" :style="{ backgroundImage: 'url(' + require('@/assets/img/home3.jpg') + ')' }"></div>
+        <div class="rwdimg slide3"></div>
       </div>
-      
     </div>
-    <a
-      class="carousel-control-prev"
-      href="#frontSlideHome"
-      role="button"
-      data-slide="prev"
-    >
+    <a class="carousel-control-prev" href="#frontSlideHome" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
-    <a
-      class="carousel-control-next"
-      href="#frontSlideHome"
-      role="button"
-      data-slide="next"
-    >
+    <a class="carousel-control-next" href="#frontSlideHome" role="button" data-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
-    
   </div>
 </template>
