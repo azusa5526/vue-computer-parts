@@ -21,24 +21,6 @@
         <li class="nav-item">
           <router-link class="nav-link" to="/frontProducts/all">Products</router-link>
         </li>
-        <!-- <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="dropdown01"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >Products</a>
-          <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <router-link class="dropdown-item" to="/frontProducts/cpu">CPU</router-link>
-            <router-link class="dropdown-item" to="/frontProducts/motherboard">Motherboard</router-link>
-            <router-link class="dropdown-item" to="/frontProducts/ram">RAM</router-link>
-            <router-link class="dropdown-item" to="/frontProducts/graphic_card">Graphic Card</router-link>
-            <router-link class="dropdown-item" to="/frontProducts/psu">PSU</router-link>
-            <router-link class="dropdown-item" to="/frontProducts/case">Case</router-link>
-          </div>
-        </li> -->
       </ul>
 
       <ul class="navbar-nav align-items-center ml-3">

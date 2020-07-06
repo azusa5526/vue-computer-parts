@@ -1,17 +1,16 @@
 <template>
   <div>
-    <!-- vue-loading-overlay -->
     <loading :active.sync="isLoading"></loading>
     <div class="dashboard-table-wrap my-3">
       <table class="table">
         <thead>
           <tr>
-            <th width="150">購買時間</th>
-            <th>Email</th>
-            <th>購買物品</th>
-            <th>訂單編號</th>
-            <th width="130">應付金額</th>
-            <th width="130">是否付款</th>
+            <th width="150px">ORDER TIME</th>
+            <th>EMAIL</th>
+            <th class="d-lg-table-cell d-none">ORDER ITEMS</th>
+            <th>OEDER NUM</th>
+            <th width="130px">AMOUNT PAYABLE</th>
+            <th width="130px">PAYMENT STATUS</th>
           </tr>
         </thead>
 
@@ -19,7 +18,7 @@
           <tr v-for="item in orders" :key="item.id">
             <td>{{item.create_at | timestampToDate}}</td>
             <td>{{item.user.email}}</td>
-            <td>
+            <td class="d-lg-table-cell d-none">
               <!-- https://stackoverflow.com/questions/1027354/i-need-an-unordered-list-without-any-bullets -->
               <ul class="list-unstyled">
                 <li
@@ -29,18 +28,16 @@
               </ul>
             </td>
             <td>{{item.id}}</td>
-            <!-- to be fix -->
             <td class="text-right">{{item.total}}</td>
-            <td>
-              <span class="text-success" v-if="item.is_paid">已付款</span>
-              <span class="text-danger" v-else>未付款</span>
+            <td class="text-center">
+              <span class="text-success" v-if="item.is_paid">PAID</span>
+              <span class="text-danger" v-else>OUTSTANDING PAYMENT</span>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <!-- BS pagination -->
     <Pagination :pagination="pagination" @changePage="getOrders"></Pagination>
   </div>
 </template>
@@ -69,8 +66,6 @@ export default {
 
   methods: {
     getOrders(page = 1) {
-      //default page 1
-      //console.log(process.env.API_PATH, process.env.CUSTOM_PATH);
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/admin/orders?page=${page}`;
       const vm = this;
       vm.isLoading = true;

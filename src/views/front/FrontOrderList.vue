@@ -1,5 +1,4 @@
 <template>
-  <!-- Order list -->
   <div class="px-3">
     <form>
       <div class="form-group">

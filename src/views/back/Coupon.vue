@@ -3,19 +3,18 @@
     <!-- vue-loading-overlay -->
     <loading :active.sync="isLoading"></loading>
 
-    <div class="text-right mb-3">
-      <button class="btn btn-primary mt-4" @click="openModal(true)">建立新的優惠券</button>
-    </div>
-
     <div class="dashboard-table-wrap mb-3">
+      <div class="text-right mb-3">
+        <button class="btn btn-primary" @click="openModal(true)">ADD COUPON</button>
+      </div>
       <table class="table">
         <thead>
           <tr>
-            <th>名稱</th>
-            <th width="130" class="text-center">折扣百分比</th>
-            <th width="130">到期日</th>
-            <th width="130">是否啟用</th>
-            <th width="130">編輯</th>
+            <th>COUPON NAME</th>
+            <th width="15%" class="text-center">DISCOUNT RATE</th>
+            <th width="15%">DUE TO</th>
+            <th width="15%">ACTIVE</th>
+            <th width="15%">EDIT</th>
           </tr>
         </thead>
 
@@ -23,17 +22,20 @@
           <tr v-for="item in coupons" :key="item.id">
             <td>{{item.title}}</td>
             <td class="text-center">{{item.percent}}%</td>
-            <td>{{item.due_date}}</td>
-            <td>
-              <span class="text-success" v-if="item.is_enabled">啟用</span>
-              <span class="text-danger" v-else>未啟用</span>
+            <td class="text-center">{{item.due_date}}</td>
+            <td class="text-center">
+              <span class="text-success" v-if="item.is_enabled">ENABLE</span>
+              <span class="text-danger" v-else>DISABLE</span>
             </td>
-            <td>
-              <button class="btn btn-outline-primary btn-sm" @click="openModal(false, item)">編輯</button>
+            <td class="text-center">
+              <button
+                class="btn btn-outline-primary btn-sm mr-1"
+                @click="openModal(false, item)"
+              >EDIT</button>
               <button
                 class="btn btn btn-outline-danger btn-sm"
                 @click="openDeleteCouponModal(item)"
-              >刪除</button>
+              >DELE</button>
             </td>
           </tr>
         </tbody>
@@ -56,7 +58,7 @@
         <div class="modal-content border-0">
           <div class="modal-header bg-dark text-white">
             <h5 class="modal-title" id="exampleModalLabel">
-              <span>新增優惠券</span>
+              <span>ADD COUPON</span>
             </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -66,24 +68,24 @@
             <div class="row">
               <div class="col-sm-12">
                 <div class="form-group">
-                  <label for="title">標題</label>
+                  <label for="title">COUPON TITLE</label>
                   <input
                     type="text"
                     class="form-control"
                     id="title"
-                    placeholder="請輸入標題"
+                    placeholder="INPUT COUPON TITLE"
                     v-model="tempCoupon.title"
                   />
                 </div>
 
                 <div class="form-row">
                   <div class="form-group col-md-12">
-                    <label for="category">優惠碼</label>
+                    <label for="category">COUPON CODE</label>
                     <input
                       type="text"
                       class="form-control"
                       id="category"
-                      placeholder="請輸優惠碼"
+                      placeholder="INPUT COUPON CODE"
                       v-model="tempCoupon.code"
                     />
                   </div>
@@ -91,12 +93,12 @@
 
                 <div class="form-row">
                   <div class="form-group col-md-12">
-                    <label for="origin_price">到期日</label>
+                    <label for="origin_price">DUE TO</label>
                     <input
                       type="date"
                       class="form-control"
                       id="origin_price"
-                      placeholder="請輸到期日"
+                      placeholder="INPUT DUE TO"
                       v-model="tempCoupon.due_date"
                     />
                   </div>
@@ -104,12 +106,12 @@
 
                 <div class="form-row">
                   <div class="form-group col-md-12">
-                    <label for="origin_price">折扣百分比</label>
+                    <label for="origin_price">DISCOUNT RATE</label>
                     <input
                       type="number"
                       class="form-control"
                       id="origin_price"
-                      placeholder="請輸入折扣百分比"
+                      placeholder="INPUT DISCOUNT RATE"
                       v-model="tempCoupon.percent"
                     />
                   </div>
@@ -127,15 +129,15 @@
                       :true-value="1"
                       :false-value="0"
                     />
-                    <label class="form-check-label" for="is_enabled">是否啟用</label>
+                    <label class="form-check-label" for="is_enabled">ENABLE</label>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-third" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-primary" @click="updateCoupon">確認</button>
+            <button type="button" class="btn btn-third" data-dismiss="modal">CANCEL</button>
+            <button type="button" class="btn btn-primary" @click="updateCoupon">ACCEPT</button>
           </div>
         </div>
       </div>
@@ -154,19 +156,19 @@
         <div class="modal-content border-0">
           <div class="modal-header bg-danger text-white">
             <h5 class="modal-title" id="exampleModalLabel">
-              <span>刪除優惠券</span>
+              <span>DELETE COUPON</span>
             </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            是否刪除
-            <strong class="text-danger">{{ tempCoupon.title }}</strong> 優惠券(刪除後將無法恢復)。
+            DELETE　
+            <strong class="text-danger">{{ tempCoupon.title }}</strong>　( COUPON CANNOT BE RESTORE AFTER DELETION )
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-third" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-danger" @click="deleteCoupon">確認刪除</button>
+            <button type="button" class="btn btn-third" data-dismiss="modal">CANCEL</button>
+            <button type="button" class="btn btn-danger" @click="deleteCoupon">ACCEPT</button>
           </div>
         </div>
       </div>

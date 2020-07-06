@@ -1,14 +1,19 @@
 .productList-wrap {
-
+  
 }
 
 .dashboard-table-wrap {
   background-color: $third;
-  padding: 2rem 1.5rem;
+  padding: 3rem 3rem;
 
   table {
     color: $secondary;
     margin: 0;
+    
+    td {
+      vertical-align: middle;
+    }
+
   }
 
   th {

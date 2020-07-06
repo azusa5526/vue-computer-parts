@@ -1,20 +1,21 @@
 <template>
-  <div class="productList-wrap ">
+  <div class="productList-wrap">
     <loading :active.sync="isLoading"></loading>
 
-    <div class="text-right mb-3">
-      <button class="btn btn-primary mt-4" @click="openModal(true)">建立新的產品</button>
-    </div>
     <div class="dashboard-table-wrap my-3">
+      <div class="text-right mb-3">
+        <button class="btn btn-primary" @click="openModal(true)">ADD PRODUCT</button>
+      </div>
+
       <table class="table">
         <thead>
           <tr>
-            <th width="150">分類</th>
-            <th>產品名稱</th>
-            <th width="130">原價</th>
-            <th width="130">售價</th>
-            <th width="130">是否啟用</th>
-            <th width="130">編輯</th>
+            <th width="15%">CATEGORY</th>
+            <th>PROD NAME</th>
+            <th width="10%">ORIG PRICE</th>
+            <th width="10%">SELL PRICE</th>
+            <th width="8%">ACTIVE</th>
+            <th width="15%">EDIT</th>
           </tr>
         </thead>
 
@@ -24,16 +25,16 @@
             <td>{{item.title}}</td>
             <td class="text-right">{{item.origin_price | currency}}</td>
             <td class="text-right">{{item.price | currency}}</td>
-            <td>
-              <span class="text-success" v-if="item.is_enabled">啟用</span>
-              <span class="text-danger" v-else>未啟用</span>
+            <td class="text-center">
+              <span class="text-success" v-if="item.is_enabled">ENABLE</span>
+              <span class="text-danger" v-else>DISABLE</span>
             </td>
-            <td>
-              <button class="btn btn-outline-primary btn-sm mr-1" @click="openModal(false, item)">編輯</button>
+            <td class="text-center">
+              <button class="btn btn-outline-primary btn-sm mr-1" @click="openModal(false, item)">EDIT</button>
               <button
                 class="btn btn btn-outline-danger btn-sm"
                 @click="openDeleteProductModal(item)"
-              >刪除</button>
+              >DELE</button>
             </td>
           </tr>
         </tbody>
@@ -54,9 +55,9 @@
     >
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content border-0">
-          <div class="modal-header bg-dark text-white">
+          <div class="modal-header bg-primary text-white">
             <h5 class="modal-title" id="exampleModalLabel">
-              <span>新增產品</span>
+              <span>ADD PRODUCT</span>
             </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -66,18 +67,18 @@
             <div class="row">
               <div class="col-sm-4">
                 <div class="form-group">
-                  <label for="image">輸入圖片網址</label>
+                  <label for="image">IMAGE LINK</label>
                   <input
                     type="text"
                     class="form-control"
                     id="image"
-                    placeholder="請輸入圖片連結"
+                    placeholder="INPUT IMG LINK"
                     v-model="tempProduct.imageUrl"
                   />
                 </div>
                 <div class="form-group">
                   <label for="customFile">
-                    或 上傳圖片
+                    or UPLOAD IMG
                     <i class="fas fa-circle-notch fa-spin" v-if="status.fileUploading"></i>
                   </label>
                   <input
@@ -92,34 +93,34 @@
               </div>
               <div class="col-sm-8">
                 <div class="form-group">
-                  <label for="title">標題</label>
+                  <label for="title">PRODUCT TITLE</label>
                   <input
                     type="text"
                     class="form-control"
                     id="title"
-                    placeholder="請輸入標題"
+                    placeholder="PRODUCT TITLE"
                     v-model="tempProduct.title"
                   />
                 </div>
 
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <label for="category">分類</label>
+                    <label for="category">CATEGORY</label>
                     <input
                       type="text"
                       class="form-control"
                       id="category"
-                      placeholder="請輸入分類"
+                      placeholder="INPUT CATEGORY"
                       v-model="tempProduct.category"
                     />
                   </div>
                   <div class="form-group col-md-6">
-                    <label for="price">單位</label>
+                    <label for="price">UNIT</label>
                     <input
                       type="unit"
                       class="form-control"
                       id="unit"
-                      placeholder="請輸入單位"
+                      placeholder="INPUT UNIT"
                       v-model="tempProduct.unit"
                     />
                   </div>
@@ -127,22 +128,22 @@
 
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <label for="origin_price">原價</label>
+                    <label for="origin_price">ORIG PRICE</label>
                     <input
                       type="number"
                       class="form-control"
                       id="origin_price"
-                      placeholder="請輸入原價"
+                      placeholder="INPUT ORIG PRICE"
                       v-model="tempProduct.origin_price"
                     />
                   </div>
                   <div class="form-group col-md-6">
-                    <label for="price">售價</label>
+                    <label for="price">SELL PRICE</label>
                     <input
                       type="number"
                       class="form-control"
                       id="price"
-                      placeholder="請輸入售價"
+                      placeholder="INPUT SELL PRICE"
                       v-model="tempProduct.price"
                     />
                   </div>
@@ -150,22 +151,22 @@
                 <hr />
 
                 <div class="form-group">
-                  <label for="description">產品描述</label>
+                  <label for="description">PROD DESCRIPTION</label>
                   <textarea
                     type="text"
                     class="form-control"
                     id="description"
-                    placeholder="請輸入產品描述"
+                    placeholder="INPUT PROD DESCRIPTION"
                     v-model="tempProduct.description"
                   ></textarea>
                 </div>
                 <div class="form-group">
-                  <label for="content">說明內容</label>
+                  <label for="content">PROD CONTENT</label>
                   <textarea
                     type="text"
                     class="form-control"
                     id="content"
-                    placeholder="請輸入產品說明內容"
+                    placeholder="INPUT PROD CONTENT"
                     v-model="tempProduct.content"
                   ></textarea>
                 </div>
@@ -179,15 +180,15 @@
                       :true-value="1"
                       :false-value="0"
                     />
-                    <label class="form-check-label" for="is_enabled">是否啟用</label>
+                    <label class="form-check-label" for="is_enabled">ENABLE</label>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-third" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-primary" @click="updateProduct">確認</button>
+            <button type="button" class="btn btn-third" data-dismiss="modal">CANCEL</button>
+            <button type="button" class="btn btn-primary" @click="updateProduct">ACCEPT</button>
           </div>
         </div>
       </div>
@@ -206,19 +207,18 @@
         <div class="modal-content border-0">
           <div class="modal-header bg-danger text-white">
             <h5 class="modal-title" id="exampleModalLabel">
-              <span>刪除產品</span>
+              <span>DELETE PRODUCT</span>
             </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            是否刪除
-            <strong class="text-danger">{{ tempProduct.title }}</strong> 商品(刪除後將無法恢復)。
+            DELETE　<strong class="text-danger">{{ tempProduct.title }}</strong>　( ITEM CANNOT BE RESTORE AFTER DELETION )
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-danger" @click="deleteProduct">確認刪除</button>
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">CANCEL</button>
+            <button type="button" class="btn btn-danger" @click="deleteProduct">ACCEPT</button>
           </div>
         </div>
       </div>

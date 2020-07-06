@@ -3,7 +3,7 @@
     <FrontNavbar></FrontNavbar>
 
     <div class="container-fluid px-0">
-      <main id="main">
+      <main class="main">
         <router-view></router-view>
       </main>
     </div>

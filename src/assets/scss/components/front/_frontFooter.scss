@@ -15,5 +15,13 @@
 
   a {
     color: darken($color: $secondary, $amount: 10);
+    transition: ease-out;
+    transition-duration: 0.2s;
+
+    &:hover {
+      color: lighten($color: $secondary, $amount: 20);
+      transition: ease-out;
+      transition-duration: 0.2s;
+    }
   }
 }

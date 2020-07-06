@@ -7,13 +7,13 @@
         <input
           type="text"
           class="form-control"
-          placeholder="Order ID"
+          placeholder="INPUT ORDER ID"
           aria-label="Order ID"
           aria-describedby="basic-addon2"
           v-model="inputOrderId"
         />
         <div class="input-group-append">
-          <button class="btn btn-primary" type="button" @click="getOrderById">Button</button>
+          <button class="btn btn-primary" type="button" @click="getOrderById">SEARCH</button>
         </div>
       </div>
 
