@@ -6,13 +6,13 @@
       <div class="cart-wrap">
         <div class="shopping-step mb-4">
           <div class="step" :class="{'active-step' : activedPage == 'FrontCartItems'}">
-            <h5>查看購物清單</h5>
+            <h5>CHECK CART</h5>
           </div>
           <div class="step" :class="{'active-step' : activedPage == 'FrontOrderList'}">
-            <h5>填寫購買資料</h5>
+            <h5>FILL INFO</h5>
           </div>
           <div class="step" :class="{'active-step' : activedPage == 'FrontCheckout'}">
-            <h5>付款清單</h5>
+            <h5>PAYMENT LIST</h5>
           </div>
         </div>
 
@@ -22,7 +22,7 @@
     </div>
 
     <div class="my-4 emptyCart-wrap" v-else>
-      <h3 class="mb-4">Your Shopping is empty</h3>
+      <h3 class="mb-4">SHOPPING CART IS EMPTY</h3>
       <img src="@/assets/img/emptyCart.png" />
     </div>
   </div>

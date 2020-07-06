@@ -3,15 +3,15 @@
     <table class="table">
       <thead>
         <tr>
-          <th class="d-md-table-cell d-none">瀏覽</th>
-          <th>品名</th>
-          <th width="20%">數量</th>
-          <th width="20%">小計</th>
-          <th width="15%">移除</th>
+          <th class="d-md-table-cell d-none">THUMB NAIL</th>
+          <th>NAME</th>
+          <th width="20%">QUANTITY</th>
+          <th width="20%">SUB</th>
+          <th width="15%">REMOVE</th>
         </tr>
       </thead>
 
-      <tbody id="cart-items">
+      <tbody class="cart-items">
         <tr v-for="item in shoppingCart.carts" :key="item.id">
           <td class="align-middle d-md-table-cell d-none">
             <div
@@ -39,27 +39,27 @@
       <tfoot>
         <tr>
           <td class="d-md-table-cell d-none"></td>
-          <td colspan="3" class="text-right">總計</td>
+          <td colspan="3" class="text-right">GRAND TOTAL</td>
           <td class="text-right">{{shoppingCart.total}}</td>
         </tr>
         <tr v-if="shoppingCart.total !== shoppingCart.final_total">
           <td class="d-md-table-cell d-none"></td>
-          <td colspan="3" class="text-right text-success">優惠價</td>
+          <td colspan="3" class="text-right text-success">DISCOUNT PRICE</td>
           <td class="text-right text-success">{{shoppingCart.final_total}}</td>
         </tr>
       </tfoot>
     </table>
 
     <div class="input-group mb-3 input-group-sm">
-      <input type="text" class="form-control" placeholder="請輸入優惠碼" v-model="couponCode" />
+      <input type="text" class="form-control" placeholder="PLEASE INPUT COUPON CODE" v-model="couponCode" />
       <div class="input-group-append">
-        <button class="btn btn-outline-third" type="button" @click="addCouponCode">套用優惠碼</button>
+        <button class="btn btn-primary" type="button" @click="addCouponCode">APPLY COUPON</button>
       </div>
     </div>
 
     <div class="d-flex justify-content-between mt-4">
-      <router-link class="btn btn-outline-primary" to="/frontProducts/all">繼續選購</router-link>
-      <router-link class="btn btn-outline-danger" to="front_orderlist">填寫購買資料</router-link>
+      <router-link class="btn btn-primary" to="/frontProducts/all">BACK TO SHOP</router-link>
+      <router-link class="btn btn-danger" to="front_orderlist">FILL INFO</router-link>
     </div>
   </div>
 </template>

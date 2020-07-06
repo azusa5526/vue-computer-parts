@@ -3,7 +3,7 @@
   <div class="px-3">
     <form>
       <div class="form-group">
-        <label for="useremail">Email</label>
+        <label for="useremail">EMAIL</label>
         <input
           type="email"
           class="form-control"
@@ -12,13 +12,13 @@
           v-validate="'required|email'"
           v-model="form.user.email"
           :class="{'is-invalid' : errors.has('tel')}"
-          placeholder="請輸入 Email"
+          placeholder="PLEASE INPUT EMAIL"
         />
         <span class="text-danger" v-if="errors.has('email')">{{ errors.first('email') }}</span>
       </div>
 
       <div class="form-group">
-        <label for="username">收件人姓名</label>
+        <label for="username">ORDERER NAME</label>
         <input
           type="text"
           class="form-control"
@@ -27,13 +27,13 @@
           v-model="form.user.name"
           v-validate="'required'"
           :class="{'is-invalid' : errors.has('name')}"
-          placeholder="輸入姓名"
+          placeholder="INPUT NAME"
         />
-        <span class="text-danger" v-if="errors.has('name')">姓名必須輸入</span>
+        <span class="text-danger" v-if="errors.has('name')">NAME MUST BE INPUT</span>
       </div>
 
       <div class="form-group">
-        <label for="usertel">收件人電話</label>
+        <label for="usertel">PHONE NUMBER</label>
         <input
           type="tel"
           class="form-control"
@@ -42,13 +42,13 @@
           v-model="form.user.tel"
           v-validate="'required'"
           :class="{'is-invalid' : errors.has('tel')}"
-          placeholder="請輸入電話"
+          placeholder="PLEASE INPUT PHONE NUMBER"
         />
-        <span class="text-danger" v-if="errors.has('tel')">收件人電話必須輸入</span>
+        <span class="text-danger" v-if="errors.has('tel')">PHONE NUMBER MUST BE INPUT</span>
       </div>
 
       <div class="form-group">
-        <label for="useraddress">收件人地址</label>
+        <label for="useraddress">ADDRESS</label>
         <input
           type="address"
           class="form-control"
@@ -57,19 +57,19 @@
           v-model="form.user.address"
           v-validate="'required'"
           :class="{'is-invalid' : errors.has('address')}"
-          placeholder="請輸入地址"
+          placeholder="PLEASE INPUT ADDRESS"
         />
-        <span class="text-danger" v-if="errors.has('address')">收件人地址必須輸入</span>
+        <span class="text-danger" v-if="errors.has('address')">ADDRESS MUST BE INPUT</span>
       </div>
 
       <div class="form-group">
-        <label for="useraddress">留言</label>
+        <label for="useraddress">MESSAGE</label>
         <textarea name id class="form-control" cols="30" rows="5" v-model="form.message"></textarea>
       </div>
 
       <div class="d-flex justify-content-between">
-        <router-link class="btn btn-outline-primary" to="front_cart_items">返回購物車</router-link>
-        <button class="btn btn-outline-danger" @click.prevent="createOrder">送出訂單</button>
+        <router-link class="btn btn-primary" to="front_cart_items">BACK TO CART</router-link>
+        <button class="btn btn-danger" @click.prevent="createOrder">SEND ORDER</button>
       </div>
 
     </form>

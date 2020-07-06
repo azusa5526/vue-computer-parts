@@ -1,0 +1,19 @@
+.productList-wrap {
+
+}
+
+.dashboard-table-wrap {
+  background-color: $third;
+  padding: 2rem 1.5rem;
+
+  table {
+    color: $secondary;
+    margin: 0;
+  }
+
+  th {
+    font-weight: normal;
+    color: $primary;
+    text-align: center;
+  }
+}

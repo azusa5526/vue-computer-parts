@@ -1,0 +1,15 @@
+.checkout-wrap {
+  padding: 3.5rem 7rem;
+
+  @media screen and (max-width: 991px) {
+    padding: 3rem 3rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 2rem 2.5rem;
+  }
+
+  @media screen and (max-width: 575px) {
+    padding: 2rem 1.5rem;
+  }
+}

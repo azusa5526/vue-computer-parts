@@ -1,14 +1,17 @@
 <template>
-  <div class="">
+  <div class="checkout-wrap">
     <loading :active.sync="isLoading"></loading>
 
-    <!-- Checkout -->
     <form @submit.prevent="payOrder">
+      <div class="orderTable-title">
+        <h4>OEDER LIST</h4>
+      </div>
+
       <table class="table">
         <thead>
-          <th>品名</th>
-          <th>數量</th>
-          <th>小計</th>
+          <th>NAME</th>
+          <th>QUANTITY</th>
+          <th>SUB</th>
         </thead>
         <tbody>
           <tr v-for="item in order.products" :key="item.id">
@@ -19,45 +22,49 @@
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="2" class="text-right">總計</td>
+            <td colspan="2" class="text-right">GRAND TOTAL</td>
             <td class="text-right">{{order.total}}</td>
           </tr>
         </tfoot>
       </table>
 
+      <div class="orderTable-title">
+        <h4>RECIPIENT INFO</h4>
+      </div>
+
       <table class="table">
         <tbody>
           <tr>
-            <th width="100">訂單號碼</th>
+            <th width="130px">ORDER NUM</th>
             <td>{{order.id}}</td>
           </tr>
           <tr>
-            <th width="100">Email</th>
+            <th>EMAIL</th>
             <td>{{order.user.email}}</td>
           </tr>
           <tr>
-            <th>訂購人姓名</th>
+            <th>ORDERER NAME</th>
             <td>{{order.user.name}}</td>
           </tr>
           <tr>
-            <th>收件人電話</th>
+            <th>PHONE NUMBER</th>
             <td>{{order.user.tel}}</td>
           </tr>
           <tr>
-            <th>收件人地址</th>
+            <th>ADDRESS</th>
             <td>{{order.user.address}}</td>
           </tr>
           <tr>
-            <th>付款狀態</th>
+            <th>PAYMENT STATUS</th>
             <td>
-              <span class="text-success" v-if="order.is_paid">付款完成</span>
-              <span class="text-danger" v-else>尚未付款</span>
+              <span class="text-success" v-if="order.is_paid">PAID</span>
+              <span class="text-danger" v-else>OUTSTANDING PAYMENT</span>
             </td>
           </tr>
         </tbody>
       </table>
       <div class="text-right">
-        <button class="btn btn-danger" v-if="!order.is_paid">確認付款去</button>
+        <button class="btn btn-danger" v-if="!order.is_paid">PAY ORDER</button>
       </div>
     </form>
   </div>

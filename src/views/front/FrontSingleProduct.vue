@@ -1,12 +1,10 @@
 <template>
   <div class="fsp-container-fluid">
-    <!-- vue-loading-overlay -->
     <loading :active.sync="isLoading"></loading>
 
     <div class="product-header">
       <div class="row my-3 justify-content-center">
         <div class="product-wrap col-12 col-md-6">
-          <!-- <img :src="product.imageUrl" class alt /> -->
           <div class="product-img" :style="{backgroundImage: `url(${product.imageUrl})`}"></div>
         </div>
 
@@ -16,16 +14,16 @@
           </div>
 
           <div class="product-price d-flex justify-content-between align-items-baseline">
-            <div class="h4 text-danger" v-if="!product.price">折扣價 {{product.origin_price}} 元</div>
-            <del class="h5" v-if="product.price">原價 {{product.origin_price}} 元</del>
-            <div class="h4 text-danger" v-if="product.price">折扣價 {{product.price}} 元</div>
+            <div class="h4 text-danger" v-if="!product.price">$ {{product.origin_price}} 元</div>
+            <del class="h5" v-if="product.price">$ {{product.origin_price}}</del>
+            <div class="h4 text-danger mr-2" v-if="product.price">$ {{product.price}}</div>
           </div>
 
           <pre class="product-content">{{product.content}}</pre>
 
           <div class="product-input">
             <div class="quantity">
-              <span class="quantity-title">數量</span>
+              <span class="quantity-title">QUANTITY</span>
               <button class="btn btn-outline-third" @click="quantitySub(product)">-</button>
               <input type="text" :value="product.num" readonly="readonly" />
               <button class="btn btn-outline-third" @click="quantityPlus(product)">+</button>
@@ -36,12 +34,12 @@
                 type="button"
                 class="btn btn-outline-primary mr-1percent"
                 @click="addToCart(product.id, true, product.num)"
-              ><i class="fas fa-circle-notch fa-spin" v-if="clickedButton == 'direct'"></i> 直接購買</button>
+              ><i class="fas fa-circle-notch fa-spin" v-if="clickedButton == 'direct'"></i> BUY NOW</button>
               <button
                 type="button"
                 class="btn btn-outline-danger"
                 @click="addToCart(product.id, false, product.num)"
-              ><i class="fas fa-circle-notch fa-spin" v-if="clickedButton == 'non-direct'"></i> 加入購物車</button>
+              ><i class="fas fa-circle-notch fa-spin" v-if="clickedButton == 'non-direct'"></i> ADD TO CART</button>
             </div>
           </div>
         </div>
@@ -51,7 +49,7 @@
     <div class="product-description">
       <div class="row mb-3">
         <div class="description-title col-12">
-          <h3>商品詳情</h3>
+          <h3>PRODUCT INFO</h3>
         </div>
 
         <div class="col-12">
@@ -63,7 +61,7 @@
     <div class="recommand-products">
       <div class="row mb-3">
         <div class="recommand-title my-2 col-12">
-          <h5>也許您同樣也會喜歡...</h5>
+          <h5>MAYBE YOU WILL LIKE...</h5>
         </div>
 
         <div
@@ -86,8 +84,8 @@
               </div>
 
               <div class="card-footer d-flex justify-content-end">
-                <div class="h6" v-if="!item.price">{{item.origin_price}} 元</div>
-                <div class="h6" v-if="item.price">{{item.price}} 元</div>
+                <div class="h6" v-if="!item.price">$ {{item.origin_price}}</div>
+                <div class="h6" v-if="item.price">$ {{item.price}} </div>
               </div>
             </div>
           </a>

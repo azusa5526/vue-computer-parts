@@ -37,9 +37,9 @@
                 </div>
 
                 <div class="card-footer d-flex justify-content-between align-items-baseline">
-                  <div class="h5" v-if="!item.price">現在只要 {{item.origin_price}} 元</div>
-                  <del class="h6" v-if="item.price">{{item.origin_price}} 元</del>
-                  <div class="h5" v-if="item.price">現在只要 {{item.price}} 元</div>
+                  <div class="h5" v-if="!item.price">$ {{item.origin_price}}</div>
+                  <del class="h6" v-if="item.price">$ {{item.origin_price}}</del>
+                  <div class="h5" v-if="item.price">$ {{item.price}}</div>
                 </div>
               </div>
             </a>

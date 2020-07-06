@@ -1,12 +1,11 @@
 <template>
-  <div>
-    <!-- vue-loading-overlay -->
+  <div class="productList-wrap ">
     <loading :active.sync="isLoading"></loading>
 
     <div class="text-right mb-3">
       <button class="btn btn-primary mt-4" @click="openModal(true)">建立新的產品</button>
     </div>
-    <div class="dashboard-table-wrap mb-3">
+    <div class="dashboard-table-wrap my-3">
       <table class="table">
         <thead>
           <tr>
@@ -30,7 +29,7 @@
               <span class="text-danger" v-else>未啟用</span>
             </td>
             <td>
-              <button class="btn btn-outline-primary btn-sm" @click="openModal(false, item)">編輯</button>
+              <button class="btn btn-outline-primary btn-sm mr-1" @click="openModal(false, item)">編輯</button>
               <button
                 class="btn btn btn-outline-danger btn-sm"
                 @click="openDeleteProductModal(item)"

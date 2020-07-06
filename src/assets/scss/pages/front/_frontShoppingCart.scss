@@ -1,9 +1,32 @@
 .cart-wrap {
-  background-color: $secondary;
-  padding: 2rem;
+  background-color: $third;
+  padding: 3.5rem 7rem;
 
+  @media screen and (max-width: 991px) {
+    padding: 3rem 3rem;
+  }
   @media screen and (max-width: 767px) {
-    padding: 1.5rem 1rem 1.5rem 1rem;
+    padding: 2rem 2.5rem;
+  }
+  @media screen and (max-width: 575px) {
+    padding: 2rem 1.5rem;
+  }
+
+  table {
+    color: $secondary;
+    th {
+      color: $primary;
+      font-weight: normal;
+    }
+  }
+
+  .form-control {
+    border: none;
+    border-radius: 0;
+  }
+
+  .input-group-append > .btn {
+    border-radius: 0;
   }
 
   .shopping-step {
@@ -20,8 +43,8 @@
       margin-left: 10px;
       margin-right: 10px;
       padding: 1rem;
-      background-color: $third;
-      color: $secondary;
+      background-color: $secondary;
+      color: $third;
       justify-content: center;
       align-items: center;
 

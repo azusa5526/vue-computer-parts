@@ -2,8 +2,8 @@
   <div class="container mt-4">
     <loading :active.sync="isLoading"></loading>
 
-    <div class="order-wrap">
-      <div class="input-group">
+    <div class="trace-order-wrap">
+      <div class="input-group mb-4">
         <input
           type="text"
           class="form-control"
@@ -13,17 +13,26 @@
           v-model="inputOrderId"
         />
         <div class="input-group-append">
-          <button class="btn btn-outline-third" type="button" @click="getOrderById">Button</button>
+          <button class="btn btn-primary" type="button" @click="getOrderById">Button</button>
         </div>
       </div>
 
-      <div class="mt-4">
+      <div class="empty-order-wrap" v-if="Object.keys(order.user).length === 0">
+        <img src="@/assets/img/box.png" />
+        <h6 class="my-3">Enter your order number</h6>
+      </div>
+
+      <div class="mt-3" v-if="Object.keys(order.user).length !== 0">
         <form @submit.prevent="payOrder">
-          <table class="table">
+          <div class="orderTable-title">
+            <h4>OEDER LIST</h4>
+          </div>
+
+          <table class="orderList-table table">
             <thead>
-              <th>品名</th>
-              <th width="20%">數量</th>
-              <th>小計</th>
+              <th>NAME</th>
+              <th width="20%">QUANTITY</th>
+              <th>SUB</th>
             </thead>
             <tbody>
               <tr v-for="item in order.products" :key="item.id">
@@ -34,47 +43,49 @@
             </tbody>
             <tfoot>
               <tr>
-                <td colspan="2" class="text-right">總計</td>
+                <td colspan="2" class="text-right">GRAND TOTAL</td>
                 <td class="text-right">{{order.total}}</td>
               </tr>
             </tfoot>
           </table>
 
+          <div class="orderTable-title">
+            <h4>RECIPIENT INFO</h4>
+          </div>
           <table class="table">
             <tbody>
               <tr>
-                <th width="100">訂單號碼</th>
+                <th width="130px">ORDER NUM</th>
                 <td>{{order.id}}</td>
               </tr>
               <tr>
-                <th width="100">Email</th>
+                <th >EMAIL</th>
                 <td>{{order.user.email}}</td>
               </tr>
               <tr>
-                <th>訂購人姓名</th>
+                <th>ORDERER NAME</th>
                 <td>{{order.user.name}}</td>
               </tr>
               <tr>
-                <th>收件人電話</th>
+                <th>PHONE NUMBER</th>
                 <td>{{order.user.tel}}</td>
               </tr>
               <tr>
-                <th>收件人地址</th>
+                <th>ADDRESS</th>
                 <td>{{order.user.address}}</td>
               </tr>
               <tr>
-                <th>付款狀態</th>
+                <th>PAYMENT STATUS</th>
                 <td>
-                  <span class="text-success" v-if="order.is_paid">付款完成</span>
-                  <span class="text-danger" v-else>尚未付款</span>
+                  <span class="text-success" v-if="order.is_paid">PAID</span>
+                  <span class="text-danger" v-else>OUTSTANDING PAYMENT</span>
                 </td>
               </tr>
             </tbody>
           </table>
           <div class="text-right">
-            <button class="btn btn-danger" v-if="!order.is_paid">確認付款去</button>
+            <button class="btn btn-primary" v-if="!order.is_paid">PAY ORDER</button>
           </div>
-
         </form>
       </div>
     </div>
@@ -89,7 +100,7 @@ export default {
       inputOrderId: "",
       order: {
         user: {} //預先定義user，避免出現(eamil)not define
-      },
+      }
     };
   },
 
@@ -103,10 +114,10 @@ export default {
         if (response.data.order != null) {
           console.log(response.data);
           vm.order = response.data.order;
-          vm.inputOrderId = '';
+          vm.inputOrderId = "";
           vm.isLoading = false;
         } else {
-          vm.$bus.$emit("message:push", 'Order ID not found', 'third');
+          vm.$bus.$emit("message:push", "Order ID not found", "third");
           vm.isLoading = false;
         }
       });
@@ -142,7 +153,6 @@ export default {
         }
       });
     }
-  },
-
+  }
 };
 </script>
