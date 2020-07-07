@@ -106,6 +106,8 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    transition: ease-out;
+    transition-duration: 0.2s;
 
     &:hover {
       border: #F68657 1.5px solid;
@@ -113,6 +115,8 @@
 
     @media screen and (max-width: 991px) {
       margin-bottom: 1rem;
+      transition: ease-in;
+      transition-duration: 0.2s;
     }
   }
 
@@ -123,7 +127,7 @@
 
     &:hover {
       transform: scale(1.01);
-      transition: ease-out;
+      transition: ease-in;
       transition-duration: 0.2s;
     }
   }

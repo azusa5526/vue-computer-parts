@@ -39,10 +39,11 @@ input {
   border: $third 1px solid;
 }
 
-.dashboard-table-wrap {
-  background-color: $secondary;
-  padding: 1rem;
-}
+// .dashboard-table-wrap {
+//   background-color: $secondary;
+//   padding: 0.25rem 1rem 1rem 1rem;
+//   border: $primary 1.5px solid;
+// }
 
 ul {
   list-style-type: none;
@@ -62,4 +63,3 @@ ul {
   color: $secondary;
   margin-bottom: 0.75rem;
 }
-

@@ -33,13 +33,16 @@
 
         <ul class="navbar-nav align-items-center ml-3">
           <li class="nav-item">
-            <a class="btn btn-outline-danger" href="#" v-if="is_login" @click="signOut">
+            <a class="btn btn-outline-danger mr-2" href="#" v-if="is_login" @click="signOut">
               Sign out
               <i class="fas fa-sign-out-alt ml-2"></i>
             </a>
-            <router-link class="btn btn-outline-secondary" to="/login" v-else>
+            <router-link class="btn btn-outline-secondary mr-2" to="/login" v-else>
               Sign in
               <i class="fas fa-sign-in-alt ml-2"></i>
+            </router-link>
+            <router-link class="btn btn-outline-secondary mr-2" to="/home" v-if="is_login">
+              <i class="fas fa-store-alt"></i>
             </router-link>
           </li>
         </ul>
@@ -84,7 +87,7 @@ export default {
         console.log("sign out", response.data);
         if (response.data.success) {
           vm.is_login = false;
-          vm.$router.push("/login");
+          vm.$router.push("/home");
         }
       });
     }

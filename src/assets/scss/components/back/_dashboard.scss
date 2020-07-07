@@ -126,8 +126,9 @@ body {
 }
 
 .dashboard-table-wrap {
+  padding: 2rem 3rem 3rem 3rem;
+  border: $primary 1.5px solid;
   background-color: $third;
-  padding: 3rem 3rem;
 
   table {
     color: $secondary;
