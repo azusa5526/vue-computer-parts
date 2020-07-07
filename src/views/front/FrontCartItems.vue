@@ -65,12 +65,8 @@
 </template>
 
 <script>
-import $ from "jquery";
-//import Pagination from "../Pagination";
-
 export default {
   components: {
-    //Pagination
   },
 
   data() {
@@ -79,11 +75,8 @@ export default {
       product: {},
       isLoading: false,
       status: {
-        loadingItem: "",
-        itemAdding: false,
         cartHasItem: false
       },
-      pagination: {},
       shoppingCart: [],
       couponCode: "",
       form: {
@@ -105,26 +98,11 @@ export default {
       vm.isLoading = true;
 
       this.$http.get(api).then(response => {
-        //console.log(response.data);
         vm.isLoading = false;
         vm.products = response.data.products;
         vm.pagination = response.data.pagination;
       });
     },
-
-    //Single product
-    // getProduct(id) {
-    //   const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/product/${id}`;
-    //   const vm = this;
-    //   vm.status.loadingItem = id;
-
-    //   this.$http.get(api).then(response => {
-    //     console.log(response.data);
-    //     vm.product = response.data.product;
-    //     $("#productModal").modal("show");
-    //     vm.status.loadingItem = "";
-    //   });
-    // },
 
     removeCartItem(id) {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/cart/${id}`;
@@ -133,11 +111,11 @@ export default {
 
       this.$http.delete(api).then(response => {
         if (response.data.success) {
-          console.log(response.data);
+          vm.$bus.$emit("message:push", "Remove item succefully", "primary");
           vm.getCart();
           vm.isLoading = false;
         } else {
-          console.log("fail to delete item to cart");
+          vm.$bus.$emit("message:push", 'Fail delete item from cart', 'third');
           vm.isLoading = false;
         }
       });
@@ -169,7 +147,6 @@ export default {
       vm.isLoading = true;
 
       this.$http.get(api).then(response => {
-        console.log(response.data);
         vm.isLoading = false;
         vm.shoppingCart = response.data.data;
 

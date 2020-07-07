@@ -48,7 +48,7 @@ export default {
             vm.messages.splice(i, 1);
           }
         });
-      }, 3000);
+      }, 3500);
     }
   },
   created() {

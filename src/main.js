@@ -16,7 +16,6 @@ import router from './router';
 import './bus';
 import currencyFilter from './filters/currency';
 import timestampToDate from './filters/timestampToDate';
-//import dateToTimestamp from './filters/dateToTimestamp';
 
 Vue.use(VueAxios, axios);
 Vue.use(VeeValidate);
@@ -26,7 +25,6 @@ axios.defaults.withCredentials = true;
 Vue.component('Loading', Loading);
 Vue.filter('currency', currencyFilter);
 Vue.filter('timestampToDate', timestampToDate);
-//Vue.filter('dateToTimestamp', dateToTimestamp);
 
 Vue.config.productionTip = false
 
@@ -41,8 +39,6 @@ new Vue({
 });
 
 router.beforeEach((to, from, next) => {
-  //console.log('to', to, 'from', from, 'next', next);
-
   if (to.meta.requiresAuth) {
     console.log('needs auth');
 
@@ -63,13 +59,11 @@ router.beforeEach((to, from, next) => {
 
 });
 
-//this.$router.push相同地址報錯的解決辦法
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 }
 
-//切換路由後畫面置頂
 router.afterEach((to, from, next) => {
   window.scrollTo(0, 0);
 });

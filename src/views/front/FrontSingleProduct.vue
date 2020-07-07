@@ -34,12 +34,16 @@
                 type="button"
                 class="btn btn-outline-primary mr-1percent"
                 @click="addToCart(product.id, true, product.num)"
-              ><i class="fas fa-circle-notch fa-spin" v-if="clickedButton == 'direct'"></i> BUY NOW</button>
+              >
+                <i class="fas fa-circle-notch fa-spin" v-if="clickedButton == 'direct'"></i> BUY NOW
+              </button>
               <button
                 type="button"
                 class="btn btn-outline-danger"
                 @click="addToCart(product.id, false, product.num)"
-              ><i class="fas fa-circle-notch fa-spin" v-if="clickedButton == 'non-direct'"></i> ADD TO CART</button>
+              >
+                <i class="fas fa-circle-notch fa-spin" v-if="clickedButton == 'non-direct'"></i> ADD TO CART
+              </button>
             </div>
           </div>
         </div>
@@ -85,7 +89,7 @@
 
               <div class="card-footer d-flex justify-content-end">
                 <div class="h6" v-if="!item.price">$ {{item.origin_price}}</div>
-                <div class="h6" v-if="item.price">$ {{item.price}} </div>
+                <div class="h6" v-if="item.price">$ {{item.price}}</div>
               </div>
             </div>
           </a>
@@ -100,15 +104,13 @@ export default {
   data() {
     return {
       isLoading: false,
-      itemAdding: false,
       productId: "",
       recommandProducts: [],
-      localStorageProducts: [],
       localCateProducts: [],
       product: {
         num: 1
       },
-      clickedButton: '',
+      clickedButton: ""
     };
   },
 
@@ -129,21 +131,17 @@ export default {
       this.$http.get(api).then(response => {
         if (response.data.success) {
           vm.product = response.data.product;
-          //vm.product.num = 1;
           vm.$set(vm.product, "num", 1);
-
           vm.isLoading = false;
         }
       });
     },
 
     getRecommandProduct(id) {
-      console.log("recommand id", id);
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/product/${id}`;
       const vm = this;
 
       this.$http.get(api).then(response => {
-        console.log(response.data);
         if (response.data.success) {
           vm.$router.push(
             `../front_single_product/${response.data.product.id}`
@@ -156,13 +154,12 @@ export default {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/cart`;
       const vm = this;
 
-      if(direct) {
-        vm.clickedButton = 'direct'
+      if (direct) {
+        vm.clickedButton = "direct";
       } else {
-        vm.clickedButton = 'non-direct'
+        vm.clickedButton = "non-direct";
       }
-      
-      vm.itemAdding = true;
+
       const cart = {
         product_id: id,
         qty
@@ -170,16 +167,19 @@ export default {
 
       this.$http.post(api, { data: cart }).then(response => {
         if (response.data.success) {
-          vm.$bus.$emit("message:push", 'Successfully add to cart', 'secondary');
-          vm.clickedButton = '',
-          vm.product.num = 1;
+          vm.$bus.$emit(
+            "message:push",
+            "Successfully add to cart",
+            "secondary"
+          );
+          (vm.clickedButton = ""), (vm.product.num = 1);
 
           if (direct) {
             vm.$router.push(`../shopping_cart/front_cart_items`);
           }
         } else {
-          vm.$bus.$emit("message:push", 'Fail to add to cart', 'third');
-          vm.clickedButton = '';
+          vm.$bus.$emit("message:push", "Fail to add to cart", "third");
+          vm.clickedButton = "";
         }
       });
     },
@@ -189,7 +189,6 @@ export default {
       if (vm.product.num > 1) {
         vm.product.num--;
       }
-      console.log("vm.product.num", vm.product.num);
     },
 
     quantityPlus(product) {
@@ -197,7 +196,6 @@ export default {
       if (vm.product.num < 5) {
         vm.product.num++;
       }
-      console.log("vm.product.num", vm.product.num);
     },
 
     randomProduct(arr, num) {
@@ -230,18 +228,13 @@ export default {
       }
 
       this.recommandProducts = newArr;
-    },
+    }
   },
 
   created() {
     const vm = this;
     this.productId = this.$route.params.productID;
-    vm.localStorageProducts = JSON.parse(localStorage.getItem("rndProds"));
     vm.localCateProducts = JSON.parse(localStorage.getItem("cateFilteredList"));
-    // vm.$bus.$on("getRandomProds", randomProducts => {
-    //   vm.recommandProducts = randomProducts;
-    //   console.log("recommandProducts", vm.recommandProducts);
-    // });
 
     this.getSingleProduct();
   }

@@ -99,7 +99,7 @@ export default {
       isLoading: false,
       inputOrderId: "",
       order: {
-        user: {} //預先定義user，避免出現(eamil)not define
+        user: {}
       }
     };
   },
@@ -112,7 +112,6 @@ export default {
 
       this.$http.get(api).then(response => {
         if (response.data.order != null) {
-          console.log(response.data);
           vm.order = response.data.order;
           vm.inputOrderId = "";
           vm.isLoading = false;
@@ -130,11 +129,9 @@ export default {
 
       this.$http.post(api).then(response => {
         if (response.data.success) {
-          console.log(response.data);
           vm.getOrder();
           vm.isLoading = false;
         } else {
-          console.log(response.data.message);
           vm.isLoading = false;
         }
       });
@@ -147,7 +144,6 @@ export default {
 
       this.$http.get(api).then(response => {
         if (response.data.success) {
-          console.log(response.data);
           vm.order = response.data.order;
           vm.isLoading = false;
         }

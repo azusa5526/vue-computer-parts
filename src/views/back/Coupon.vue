@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- vue-loading-overlay -->
     <loading :active.sync="isLoading"></loading>
 
     <div class="dashboard-table-wrap mb-3">
@@ -42,10 +41,9 @@
       </table>
     </div>
 
-    <!-- BS pagination -->
     <Pagination :pagination="pagination" @changePage="getCoupons"></Pagination>
 
-    <!-- BS update coupon modal -->
+    <!-- coupon modal -->
     <div
       class="modal fade"
       id="couponModal"
@@ -143,7 +141,7 @@
       </div>
     </div>
 
-    <!-- BS delete product modal -->
+    <!-- delete product modal -->
     <div
       class="modal fade"
       id="delCouponModal"
@@ -163,8 +161,8 @@
             </button>
           </div>
           <div class="modal-body">
-            DELETE　
-            <strong class="text-danger">{{ tempCoupon.title }}</strong>　( COUPON CANNOT BE RESTORE AFTER DELETION )
+            DELETE
+            <strong class="text-danger">{{ tempCoupon.title }}</strong> ( COUPON CANNOT BE RESTORE AFTER DELETION )
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-third" data-dismiss="modal">CANCEL</button>
@@ -200,14 +198,11 @@ export default {
 
   methods: {
     getCoupons(page = 1) {
-      //default page 1
-      //console.log(process.env.API_PATH, process.env.CUSTOM_PATH);
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/admin/coupons?page=${page}`;
       const vm = this;
       vm.isLoading = true;
 
       this.$http.get(api).then(response => {
-        console.log(response.data);
         vm.isLoading = false;
         vm.coupons = response.data.coupons;
         vm.pagination = response.data.pagination;
@@ -216,17 +211,15 @@ export default {
 
     openModal(isNew, item) {
       if (isNew) {
-        //this.tempCoupon = {};
         this.isNew = true;
       } else {
-        this.tempCoupon = Object.assign({}, item); //避免傳參考
+        this.tempCoupon = Object.assign({}, item);
         this.isNew = false;
       }
       $("#couponModal").modal("show");
     },
 
     openDeleteCouponModal(item) {
-      //console.log("delete mode");
       this.tempCoupon = Object.assign({}, item);
       $("#delCouponModal").modal("show");
     },
@@ -242,14 +235,13 @@ export default {
       }
 
       this.$http[httpMethod](api, { data: vm.tempCoupon }).then(response => {
-        //console.log(response.data);
         if (response.data.success) {
           $("#couponModal").modal("hide");
-          vm.getCoupons(vm.pagination.current_page); //停留頁面在修改項目的頁籤下(default page = 1)
+          vm.getCoupons(vm.pagination.current_page);
         } else {
           $("#couponModal").modal("hide");
           vm.getCoupons(vm.pagination.current_page);
-          console.log("新增優惠券失敗");
+          vm.$bus.$emit("message:push", "Fail to add coupon", "third");
         }
       });
     },
@@ -259,13 +251,12 @@ export default {
       let api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/admin/coupon/${vm.tempCoupon.id}`;
       this.$http.delete(api).then(response => {
         if (response.data.success) {
-          console.log(response.data);
           $("#delCouponModal").modal("hide");
           vm.getCoupons(vm.pagination.current_page);
         } else {
           $("#delCouponModal").modal("hide");
           vm.getCoupons(vm.pagination.current_page);
-          console.log("刪除產品失敗");
+          vm.$bus.$emit("message:push", "Fail to delete coupon", "third");
         }
       });
     },
@@ -274,24 +265,21 @@ export default {
       console.log(this);
       const uploadedFile = this.$refs.files.files[0];
       const vm = this;
-      const formData = new FormData(); //https://developer.mozilla.org/zh-TW/docs/Web/API/FormData
+      const formData = new FormData();
 
       formData.append("file-to-upload", uploadedFile);
       const url = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/admin/upload`;
       vm.status.fileUploading = true;
       this.$http
         .post(url, formData, {
-          //第三個參數為物件，用來將(表單)格式改成formData的格式
           headers: {
             "Content-type": "multipart/form-data"
           }
         })
         .then(response => {
-          console.log(response.data);
           vm.status.fileUploading = false;
           if (response.data.success) {
-            //vm.tempCoupon.imageUrl = response.data.imageUrl;   //缺少getter, setter
-            vm.$set(vm.tempCoupon, "imageUrl", response.data.imageUrl); //改用$set強制寫入綁定
+            vm.$set(vm.tempCoupon, "imageUrl", response.data.imageUrl);
           } else {
             this.$bus.$emit("message:push", response.data.message, "danger");
           }

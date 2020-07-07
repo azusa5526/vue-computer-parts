@@ -77,7 +77,7 @@ export default {
       isLoading: false,
       orderId: "",
       order: {
-        user: {} //預先定義user，避免出現(eamil)not define
+        user: {}
       }
     };
   },
@@ -90,7 +90,6 @@ export default {
 
       this.$http.get(api).then(response => {
         if (response.data.success) {
-          console.log(response.data);
           vm.order = response.data.order;
           vm.isLoading = false;
         }
@@ -104,11 +103,9 @@ export default {
 
       this.$http.post(api).then(response => {
         if (response.data.success) {
-          console.log(response.data);
           vm.getOrder();
           vm.isLoading = false;
         } else {
-          console.log(response.data.message);
           vm.isLoading = false;
         }
       });
@@ -116,8 +113,7 @@ export default {
   },
 
   created() {
-    this.orderId = this.$route.params.orderId; //orderId需與對應index路由名稱對應
-    //console.log(this.orderId);
+    this.orderId = this.$route.params.orderId;
     this.getOrder();
   }
 };

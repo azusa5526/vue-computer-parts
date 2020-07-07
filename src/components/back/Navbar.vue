@@ -60,17 +60,6 @@ export default {
   },
 
   methods: {
-    // signout() {
-    //   const api = `${process.env.API_PATH}/logout`;
-    //   const vm = this;
-    //   this.$http.post(api).then(response => {
-    //     //console.log(response.data);
-    //     if (response.data.success) {
-    //       vm.$router.push("/login");
-    //     }
-    //   });
-    // },
-
     checkLoginStatus() {
       const api = `${process.env.API_PATH}/api/user/check`;
       const vm = this;
@@ -84,7 +73,6 @@ export default {
       const api = `${process.env.API_PATH}/logout`;
       const vm = this;
       this.$http.post(api).then(response => {
-        console.log("sign out", response.data);
         if (response.data.success) {
           vm.is_login = false;
           vm.$router.push("/home");

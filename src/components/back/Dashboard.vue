@@ -12,12 +12,10 @@
 </template>
 
 <script>
-import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
 
 export default {
   components: {
-    Sidebar,
     Navbar
   }
 };

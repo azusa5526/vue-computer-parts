@@ -345,8 +345,6 @@ export default {
     prodsFilter: function() {
       const vm = this;
       vm.$emit("filterUpdate", vm.prodsFilter);
-      //console.log('prodsFilter in FS', vm.prodsFilter)
-      console.log("prodsFilter watch active");
     },
 
     cateFilter: {
@@ -364,13 +362,11 @@ export default {
       for (let i = 0; i < checkbox.length; i++) {
         checkbox[i].checked = false;
       }
-      console.log("clearCheckbox active");
     },
 
     clearProdsFilter() {
       const vm = this;
       vm.prodsFilter = [];
-      console.log("clearProdsFilter active");
     },
 
     clearAll() {

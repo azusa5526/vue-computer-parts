@@ -14,18 +14,16 @@
 
 <script >
 import FrontNavbar from "./FrontNavbar";
-import FrontSidebar from "./FrontSidebar";
 import FrontFooter from "./FrontFooter";
 
 export default {
   components: {
     FrontNavbar,
-    FrontSidebar,
-    FrontFooter,
+    FrontFooter
   },
 
   data() {
     return {};
-  },
+  }
 };
 </script>

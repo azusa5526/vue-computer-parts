@@ -29,21 +29,21 @@
 
             <ul ul class="px-4">
               <li>
-                <h4>Content</h4>
+                <h4>Social</h4>
               </li>
               <li class="footer-link">
-                <a href="#">Feedback</a>
+                <a href="#">Facebook</a>
               </li>
               <li class="footer-link">
-                <a href="#">Feedback</a>
+                <a href="#">Twitter</a>
               </li>
               <li class="footer-link">
-                <a href="#">Feedback</a>
+                <a href="#">Instergram</a>
               </li>
             </ul>
           </div>
         </div>
-        <!-- <p>&copy; Company 2017-2019</p> -->
+
       </div>
     </div>
   </footer>

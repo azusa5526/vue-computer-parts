@@ -19,7 +19,6 @@
             <td>{{item.create_at | timestampToDate}}</td>
             <td>{{item.user.email}}</td>
             <td class="d-lg-table-cell d-none">
-              <!-- https://stackoverflow.com/questions/1027354/i-need-an-unordered-list-without-any-bullets -->
               <ul class="list-unstyled">
                 <li
                   v-for="(product, id) in item.products"
@@ -71,7 +70,6 @@ export default {
       vm.isLoading = true;
 
       this.$http.get(api).then(response => {
-        console.log(response.data);
         vm.isLoading = false;
         vm.orders = response.data.orders;
         vm.pagination = response.data.pagination;

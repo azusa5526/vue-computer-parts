@@ -1,19 +1,19 @@
 <template>
   <div id="app">
-    <AllertMessage></AllertMessage>
+    <AlertMessage></AlertMessage>
     <router-view/>
 
   </div>
 </template>
 
 <script>
-import AllertMessage from "../src/components/front/AllertMessage";
+import AlertMessage from "../src/components/front/AlertMessage";
 
 export default {
   name: 'App',
 
   components: {
-    AllertMessage,
+    AlertMessage,
   }
 }
 </script>

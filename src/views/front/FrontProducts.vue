@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- vue-loading-overlay -->
     <loading :active.sync="isLoading"></loading>
     <FrontSlidesProducts></FrontSlidesProducts>
 
@@ -75,31 +74,16 @@ export default {
   data() {
     return {
       products: [],
-      product: {},
       isLoading: false,
       status: {
-        loadingItem: "",
-        itemAdding: false,
         noProductsInWindow: false
       },
-      pagination: {},
       pgnation: {
         current_page: 1,
         has_next: false,
         has_pre: false,
         total_pages: 1,
         page_size: 12
-      },
-      shoppingCart: [],
-      couponCode: "",
-      form: {
-        user: {
-          name: "",
-          email: "",
-          tel: "",
-          address: ""
-        },
-        message: ""
       },
 
       categoryFilter: "",
@@ -119,41 +103,21 @@ export default {
 
       this.$http.get(api).then(response => {
         vm.isLoading = false;
-        console.log(response.data.products);
         vm.products = response.data.products;
       });
     },
 
-    //Single product
     getProduct(id) {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/product/${id}`;
       const vm = this;
-      vm.status.loadingItem = id;
-      //vm.randomProduct(vm.categoryFilteredList, 4);
       localStorage.setItem(
         "cateFilteredList",
         JSON.stringify(vm.categoryFilteredList)
       );
-      //localStorage.setItem("rndProds", JSON.stringify(vm.tempRandomProducts));
 
       this.$http.get(api).then(response => {
         if (response.data.success) {
-          //vm.$bus.$emit("getRandomProds", vm.tempRandomProducts);
-          // vm.$router.push(
-          //   `../front_single_product/${response.data.product.id}`
-          // );
         }
-      });
-    },
-
-    getCart() {
-      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/cart`;
-      const vm = this;
-      vm.isLoading = true;
-
-      this.$http.get(api).then(response => {
-        vm.isLoading = false;
-        vm.shoppingCart = response.data.data;
       });
     },
 
@@ -182,7 +146,7 @@ export default {
     productsFilterList() {
       const vm = this;
       let tempProducts = vm.categoryFilterList();
-      vm.categoryFilteredList = tempProducts; //待移位
+      vm.categoryFilteredList = tempProducts;
 
       if (vm.productsFilter.length === 0) {
         return tempProducts;
@@ -197,22 +161,17 @@ export default {
     },
 
     updateProductsFilter(prodsFilter) {
-      //console.log('FP update active');
-      //console.log('prodsFilter', prodsFilter);
       const vm = this;
-      vm.productsFilter = prodsFilter; //prodsFilter為FrontSidebar傳入值
+      vm.productsFilter = prodsFilter;
     },
 
     pgnationCounter() {
       const vm = this;
       let productsLength = vm.filteredProducts.length;
-      //console.log("productsLength", productsLength);
 
       vm.pgnation.total_pages = Number(
         Math.floor(productsLength / vm.pgnation.page_size) + 1
       );
-      //console.log(Number(Math.floor(productsLength / pageSize) + 1))
-      //vm.pgnation.current_page = 1;
 
       if (vm.pgnation.current_page < vm.pgnation.total_pages) {
         vm.pgnation.has_next = true;
@@ -234,8 +193,6 @@ export default {
         vm.pgnation.page_size +
         1;
       let pageMaxIndex = vm.pgnation.current_page * vm.pgnation.page_size;
-      //console.log("pageMinIndex", pageMinIndex);
-      //console.log("pageMaxIndex", pageMaxIndex);
 
       vm.productsInWindow = [];
       vm.filteredProducts.forEach(function(item, index) {
@@ -248,9 +205,7 @@ export default {
 
     changeCurrentPage(targetPage) {
       const vm = this;
-      //console.log("targetPage", targetPage);
       vm.pgnation.current_page = Number(targetPage);
-      //console.log("vm.pgnation.current_page", vm.pgnation.current_page);
       vm.pgnationCounter();
       vm.pageSpliter();
     }
@@ -263,15 +218,12 @@ export default {
       let tempProducts = [];
 
       vm.filteredProducts = vm.productsFilterList();
-      //console.log('filteredProducts',vm.filteredProducts);
 
       let pageMinIndex =
         vm.pgnation.current_page * vm.pgnation.page_size -
         vm.pgnation.page_size +
         1;
       let pageMaxIndex = vm.pgnation.current_page * vm.pgnation.page_size;
-      //console.log("pageMinIndex", pageMinIndex);
-      //console.log("pageMaxIndex", pageMaxIndex);
 
       vm.filteredProducts.forEach(function(item, index) {
         const num = index + 1;
@@ -294,7 +246,6 @@ export default {
 
     productsInWindow: {
       handler() {
-        console.log(this.productsInWindow.length);
         if (this.productsInWindow.length == 0) {
           this.status.noProductsInWindow = true;
         } else {
@@ -308,7 +259,6 @@ export default {
     this.getAllProducts();
     this.pgnationCounter();
     this.pageSpliter();
-    this.getCart();
   }
 };
 </script>

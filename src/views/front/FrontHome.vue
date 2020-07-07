@@ -6,7 +6,7 @@
 
     <div class="mid-banner mb-3">
       <div class="mid-banner-img">
-        <div id="couponBtn" class="mid-banner-content" @click="getCouponCode()">
+        <div id="couponBtn" class="mid-banner-content" @click="copyCouponCode()">
           <h4>BUILD PC DISCOUNT</h4>
           <p class="m-0">Click to get 10% off Coupon Code</p>
         </div>
@@ -66,7 +66,7 @@
               </div>
               <div
                 class="card-img"
-                :style="{ backgroundImage: 'url(' + require('@/assets/img/MGC_SEKILA_500X.png') + ')' }"
+                style="backgroundImage: url(https://storage.googleapis.com/vue-course-api.appspot.com/andrew%2F1593686150068.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=gU6%2FA%2FLD%2FaU6G3uOLthAh%2FpqcqwvUKM%2BhzCQLamFu%2BG7fN47NY38dSqcUHeFxSKuV4aWrU4i8TIYeh%2Bxh3JrV5Cr0PTspQ%2B4CAoUSsEET5FDFO9APerOv7QPOymTP7996Waw%2FqafVgNxUV0LCcrJ3xDVyyggK3cFHo32cHgj5%2FC8DDInxbv7dwhbVjMeS2zyzt4SJXjAP%2FedlZLcfJ0ktKfkD5H2o5KVXqLWzY32clyb%2FciGRPANe9CiMsO3RnagRcY4TUrTlVydlADWVECRmu84HSFf7wFK0hRFEjOuDwIYlbyAQqlKj6mun92k4r0v00FVG7APG4IcRf83aP9gow%3D%3D)"
               ></div>
             </div>
           </a>
@@ -85,7 +85,7 @@
               </div>
               <div
                 class="card-img"
-                :style="{ backgroundImage: 'url(' + require('@/assets/img/thor_aura2.png') + ')' }"
+                style="backgroundImage: url(https://storage.googleapis.com/vue-course-api.appspot.com/andrew%2F1593685579560.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=M%2FpP8wHuckq9d5v80q46kL06kanZLHITLi4wXNwwK9DnfaJYCGDEVmDcnQSIjZ7IaWEY2kleyDsaS7oSFgRdFl3ORIDVTCnu2VJKQE9UiMlnzBz4RP2Y5TZUuO8vrEK6aRj8oWo1yvgIT4n7XCLVgqpg3oLRWEsmCDa8CFmOtBEr0uzvXw%2BpJ4pOVLE6aSajH2VEMKI0DcB1WEx0iJ%2Fge5jCdaoLQW7GXC04DRVO98fA8VPQEzjDkV2p0lQm37CEPsT1JA3P24DrbwQAEsq9SDkOOWP5g3OYHtA1wVFQkCXjYT5Bsu4BPcx7BYKY6EGuyC9D76qfmwWhE96YosZNqg%3D%3D)"
               ></div>
             </div>
           </a>
@@ -156,7 +156,6 @@ export default {
 
       this.$http.get(api).then(response => {
         vm.isLoading = false;
-        console.log(response.data.products);
         vm.products = response.data.products;
       });
     },
@@ -167,7 +166,6 @@ export default {
       let heroProducts = vm.categoryFilterList();
 
       localStorage.setItem("cateFilteredList", JSON.stringify(heroProducts));
-      //console.log('local', JSON.parse(localStorage.getItem("cateFilteredList")));
 
       this.$http.get(api).then(response => {
         if (response.data.success) {
@@ -195,7 +193,7 @@ export default {
       });
     },
 
-    getCouponCode() {
+    copyCouponCode() {
       const vm = this;
       const couponBtn = document.querySelector("#couponBtn");
       couponBtn.addEventListener("click", () => {

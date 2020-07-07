@@ -30,7 +30,10 @@
               <span class="text-danger" v-else>DISABLE</span>
             </td>
             <td class="text-center">
-              <button class="btn btn-outline-primary btn-sm mr-1" @click="openModal(false, item)">EDIT</button>
+              <button
+                class="btn btn-outline-primary btn-sm mr-1"
+                @click="openModal(false, item)"
+              >EDIT</button>
               <button
                 class="btn btn btn-outline-danger btn-sm"
                 @click="openDeleteProductModal(item)"
@@ -41,10 +44,9 @@
       </table>
     </div>
 
-    <!-- BS pagination -->
     <Pagination :pagination="pagination" @changePage="getProducts"></Pagination>
 
-    <!-- BS update product modal -->
+    <!-- update product modal -->
     <div
       class="modal fade"
       id="productModal"
@@ -194,7 +196,7 @@
       </div>
     </div>
 
-    <!-- BS delete product modal -->
+    <!-- delete product modal -->
     <div
       class="modal fade"
       id="delProductModal"
@@ -214,7 +216,8 @@
             </button>
           </div>
           <div class="modal-body">
-            DELETE　<strong class="text-danger">{{ tempProduct.title }}</strong>　( ITEM CANNOT BE RESTORE AFTER DELETION )
+            DELETE
+            <strong class="text-danger">{{ tempProduct.title }}</strong> ( ITEM CANNOT BE RESTORE AFTER DELETION )
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">CANCEL</button>
@@ -238,7 +241,6 @@ export default {
   data() {
     return {
       products: [],
-      allProducts: [],
       tempProduct: {},
       isNew: false,
       isLoading: false,
@@ -251,29 +253,14 @@ export default {
 
   methods: {
     getProducts(page = 1) {
-      //default page 1
-      //console.log(process.env.API_PATH, process.env.CUSTOM_PATH);
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/admin/products?page=${page}`;
       const vm = this;
       vm.isLoading = true;
 
       this.$http.get(api).then(response => {
-        //console.log(response.data);
         vm.isLoading = false;
         vm.products = response.data.products;
         vm.pagination = response.data.pagination;
-      });
-    },
-
-    getAllProducts() {
-      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/admin/products/all`;
-      const vm = this;
-      vm.isLoading = true;
-
-      this.$http.get(api).then(response => {
-        //console.log(response.data);
-        vm.isLoading = false;
-        vm.allProducts = response.data.products;
       });
     },
 
@@ -282,14 +269,13 @@ export default {
         this.tempProduct = {};
         this.isNew = true;
       } else {
-        this.tempProduct = Object.assign({}, item); //避免傳參考
+        this.tempProduct = Object.assign({}, item);
         this.isNew = false;
       }
       $("#productModal").modal("show");
     },
 
     openDeleteProductModal(item) {
-      //console.log("delete mode");
       this.tempProduct = Object.assign({}, item);
       $("#delProductModal").modal("show");
     },
@@ -305,14 +291,13 @@ export default {
       }
 
       this.$http[httpMethod](api, { data: vm.tempProduct }).then(response => {
-        //console.log(response.data);
         if (response.data.success) {
           $("#productModal").modal("hide");
-          vm.getProducts(vm.pagination.current_page); //停留頁面在修改項目的頁籤下(default page = 1)
+          vm.getProducts(vm.pagination.current_page);
         } else {
           $("#productModal").modal("hide");
           vm.getProducts(vm.pagination.current_page);
-          console.log("新增產品失敗");
+          vm.$bus.$emit("message:push", "Fail to add to product", "third");
         }
       });
     },
@@ -320,42 +305,36 @@ export default {
     deleteProduct() {
       const vm = this;
       let api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/admin/product/${vm.tempProduct.id}`;
-      console.log(api);
       this.$http.delete(api).then(response => {
         if (response.data.success) {
-          console.log(response.data);
           $("#delProductModal").modal("hide");
           vm.getProducts(vm.pagination.current_page);
         } else {
           $("#delProductModal").modal("hide");
           vm.getProducts(vm.pagination.current_page);
-          console.log("刪除產品失敗");
+          vm.$bus.$emit("message:push", "Fail to delete to product", "third");
         }
       });
     },
 
     uploadFile() {
-      console.log(this);
       const uploadedFile = this.$refs.files.files[0];
       const vm = this;
-      const formData = new FormData(); //https://developer.mozilla.org/zh-TW/docs/Web/API/FormData
+      const formData = new FormData();
 
       formData.append("file-to-upload", uploadedFile);
       const url = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/admin/upload`;
       vm.status.fileUploading = true;
       this.$http
         .post(url, formData, {
-          //第三個參數為物件，用來將(表單)格式改成formData的格式
           headers: {
             "Content-type": "multipart/form-data"
           }
         })
         .then(response => {
-          console.log(response.data);
           vm.status.fileUploading = false;
           if (response.data.success) {
-            //vm.tempProduct.imageUrl = response.data.imageUrl;   //缺少getter, setter
-            vm.$set(vm.tempProduct, "imageUrl", response.data.imageUrl); //改用$set強制寫入綁定
+            vm.$set(vm.tempProduct, "imageUrl", response.data.imageUrl);
           } else {
             this.$bus.$emit("message:push", response.data.message, "danger");
           }
@@ -365,7 +344,6 @@ export default {
 
   created() {
     this.getProducts();
-    this.getAllProducts();
   }
 };
 </script>

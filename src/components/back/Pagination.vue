@@ -37,18 +37,15 @@
 
 <script>
 export default {
-  props: ['pagination'],
+  props: ["pagination"],
   data() {
-    return {
-
-    };
+    return {};
   },
 
   methods: {
-      changePage(targetPage) {
-          this.$emit('changePage', targetPage);
-      },
-  },
-
+    changePage(targetPage) {
+      this.$emit("changePage", targetPage);
+    }
+  }
 };
 </script>
