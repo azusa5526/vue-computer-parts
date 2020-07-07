@@ -190,7 +190,9 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-third" data-dismiss="modal">CANCEL</button>
-            <button type="button" class="btn btn-primary" @click="updateProduct">ACCEPT</button>
+            <button type="button" class="btn btn-primary" @click="updateProduct">
+              <i class="fas fa-circle-notch fa-spin" v-if="status.itemUpdating"></i> ACCEPT
+            </button>
           </div>
         </div>
       </div>
@@ -220,8 +222,8 @@
             <strong class="text-danger">{{ tempProduct.title }}</strong> ( ITEM CANNOT BE RESTORE AFTER DELETION )
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">CANCEL</button>
             <button type="button" class="btn btn-danger" @click="deleteProduct">ACCEPT</button>
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">CANCEL</button>
           </div>
         </div>
       </div>
@@ -245,7 +247,8 @@ export default {
       isNew: false,
       isLoading: false,
       status: {
-        fileUploading: false
+        fileUploading: false,
+        itemUpdating: false
       },
       pagination: {}
     };
@@ -284,6 +287,7 @@ export default {
       let api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/admin/product`;
       let httpMethod = "post";
       const vm = this;
+      vm.status.itemUpdating = true;
 
       if (!vm.isNew) {
         api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/admin/product/${vm.tempProduct.id}`;
@@ -292,10 +296,12 @@ export default {
 
       this.$http[httpMethod](api, { data: vm.tempProduct }).then(response => {
         if (response.data.success) {
+          vm.status.itemUpdating = false;
           $("#productModal").modal("hide");
           vm.getProducts(vm.pagination.current_page);
         } else {
           $("#productModal").modal("hide");
+          vm.status.itemUpdating = false;
           vm.getProducts(vm.pagination.current_page);
           vm.$bus.$emit("message:push", "Fail to add to product", "third");
         }

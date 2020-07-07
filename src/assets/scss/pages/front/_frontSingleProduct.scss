@@ -16,7 +16,6 @@
 }
 
 .product-header {
-
   .product-wrap {  
     display: flex;
     align-items: center;
@@ -76,7 +75,6 @@
 
   .product-input {
     .buy-option {
-
       @media screen and (max-width: 767px) {
         text-align: center;
       }
@@ -134,7 +132,6 @@
 }
 
 .recommand-products {
-
   .recommand-title {
     @media screen and (max-width: 767px) {
       margin-top: 0.8rem;

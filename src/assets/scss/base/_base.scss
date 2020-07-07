@@ -3,6 +3,7 @@
 body {
   font-family: 'Dosis', 'Noto Sans TC', sans-serif;
   background-color: #000000;
+  font-size: .875rem;
 }
 
 .main {
@@ -38,12 +39,6 @@ a {
 input {
   border: $third 1px solid;
 }
-
-// .dashboard-table-wrap {
-//   background-color: $secondary;
-//   padding: 0.25rem 1rem 1rem 1rem;
-//   border: $primary 1.5px solid;
-// }
 
 ul {
   list-style-type: none;

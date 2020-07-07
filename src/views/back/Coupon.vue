@@ -54,7 +54,7 @@
     >
       <div class="modal-dialog" role="document">
         <div class="modal-content border-0">
-          <div class="modal-header bg-dark text-white">
+          <div class="modal-header bg-primary">
             <h5 class="modal-title" id="exampleModalLabel">
               <span>ADD COUPON</span>
             </h5>
@@ -135,7 +135,9 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-third" data-dismiss="modal">CANCEL</button>
-            <button type="button" class="btn btn-primary" @click="updateCoupon">ACCEPT</button>
+            <button type="button" class="btn btn-primary" @click="updateCoupon">
+              <i class="fas fa-circle-notch fa-spin" v-if="status.itemUpdating"></i> ACCEPT
+            </button>
           </div>
         </div>
       </div>
@@ -190,7 +192,8 @@ export default {
       isNew: false,
       isLoading: false,
       status: {
-        fileUploading: false
+        fileUploading: false,
+        itemUpdating: false
       },
       pagination: {}
     };
@@ -211,6 +214,7 @@ export default {
 
     openModal(isNew, item) {
       if (isNew) {
+        this.tempCoupon = {};
         this.isNew = true;
       } else {
         this.tempCoupon = Object.assign({}, item);
@@ -228,6 +232,7 @@ export default {
       let api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/admin/coupon`;
       let httpMethod = "post";
       const vm = this;
+      vm.status.itemUpdating = true;
 
       if (!vm.isNew) {
         api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/admin/coupon/${vm.tempCoupon.id}`;
@@ -236,9 +241,11 @@ export default {
 
       this.$http[httpMethod](api, { data: vm.tempCoupon }).then(response => {
         if (response.data.success) {
+          vm.status.itemUpdating = true;
           $("#couponModal").modal("hide");
           vm.getCoupons(vm.pagination.current_page);
         } else {
+          vm.status.itemUpdating = true;
           $("#couponModal").modal("hide");
           vm.getCoupons(vm.pagination.current_page);
           vm.$bus.$emit("message:push", "Fail to add coupon", "third");
