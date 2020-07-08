@@ -81,8 +81,10 @@
 
       .btn {
         border-radius: 0rem;
-        width: 45%;
+        width: 47%;
         height: 44px;
+        padding-left: 0.2rem;
+        padding-right: 0.2rem;
       }
 
       .mr-1percent {
@@ -166,12 +168,12 @@
   }
 
   .card-footer {
-    background-color: $secondary;
+    background-color: lighten($color: $third, $amount: 10);
     border-top: none;
 
     .h6 {
       margin-bottom: 0;
-      color: $danger;
+      color: $primary;
     }
   }
 }

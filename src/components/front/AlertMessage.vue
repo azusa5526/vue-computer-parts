@@ -5,6 +5,7 @@
       :class="'alert-' + item.status"
       v-for="(item, i) in messages"
       :key="i"
+      style="border: #181818 1px solid;"
     >
       {{ item.message }}
       <button

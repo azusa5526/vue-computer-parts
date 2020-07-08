@@ -9,21 +9,21 @@
 
       <table class="table">
         <thead>
-          <th>NAME</th>
-          <th>QUANTITY</th>
-          <th>SUB</th>
+          <th class="text-left">NAME</th>
+          <th class="text-center">QUANTITY</th>
+          <th class="text-center">SUB</th>
         </thead>
         <tbody>
           <tr v-for="item in order.products" :key="item.id">
-            <td class="align-middle">{{item.product.title}}</td>
-            <td class="align-middle">{{item.qty}} {{item.product.unit}}</td>
-            <td class="align-middle text-right">{{item.final_total}}</td>
+            <td class="align-middle text-left">{{item.product.title}}</td>
+            <td class="align-middle text-center">{{item.qty}} {{item.product.unit}}</td>
+            <td class="align-middle text-right">$ {{item.final_total}}</td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
             <td colspan="2" class="text-right">GRAND TOTAL</td>
-            <td class="text-right">{{order.total}}</td>
+            <td class="text-right">$ {{order.total}}</td>
           </tr>
         </tfoot>
       </table>

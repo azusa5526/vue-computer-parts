@@ -1,6 +1,10 @@
 .item-wrap {
   padding-left: 10px;
   padding-right: 10px;
+
+  @media screen and (max-width: 767px) {
+    padding: 0;
+  }
 }
 
 .cart-items {

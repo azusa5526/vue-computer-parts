@@ -78,7 +78,7 @@
             :href="'#/front_single_product/' + item.id"
             @click="getRecommandProduct(item.id)"
           >
-            <div class="card border-0 shadow-sm">
+            <div class="card shadow-sm">
               <div
                 style="height: 200px; background-size: contain; background-repeat: no-repeat; background-position: center;"
                 :style="{backgroundImage: `url(${item.imageUrl})`}"

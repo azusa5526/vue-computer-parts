@@ -1,5 +1,5 @@
 <template>
-  <div class="px-3">
+  <div class="orderList-wrap">
     <loading :active.sync="isLoading"></loading>
     <form>
       <div class="form-group">
@@ -67,7 +67,7 @@
         <textarea name id class="form-control mb-1" cols="30" rows="5" v-model="form.message"></textarea>
       </div>
 
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-between step-control">
         <router-link class="btn btn-primary" to="front_cart_items">BACK TO CART</router-link>
         <button class="btn btn-danger" @click.prevent="createOrder">SEND ORDER</button>
       </div>

@@ -1,13 +1,14 @@
 <template>
   <div class="item-wrap">
+    <loading :active.sync="isLoading"></loading>
     <table class="table">
       <thead>
         <tr>
           <th class="d-md-table-cell d-none">THUMB NAIL</th>
           <th>NAME</th>
-          <th width="20%">QUANTITY</th>
-          <th width="20%">SUB</th>
-          <th width="15%">REMOVE</th>
+          <th class="d-sm-table-cell d-none" width="15%">QUANTITY</th>
+          <th width="25%">SUB</th>
+          <th width="10%">REMOVE</th>
         </tr>
       </thead>
 
@@ -19,12 +20,12 @@
               :style="{backgroundImage: `url(${item.product.imageUrl})`}"
             ></div>
           </td>
-          <td class="align-middle">
+          <td class="align-middle text-left">
             {{item.product.title}}
-            <div class="text-success" v-if="item.coupon">已套用優惠券 {{item.coupon.title}}</div>
+            <div class="text-primary" v-if="item.coupon">COUPON APPLIED: {{item.coupon.title}}</div>
           </td>
-          <td class="align-middle">{{item.qty}} / {{item.product.unit}}</td>
-          <td class="align-middle">{{item.product.price}} / {{item.total}}</td>
+          <td class="align-middle d-sm-table-cell d-none">{{item.qty}} / {{item.product.unit}}</td>
+          <td class="align-middle">$ {{item.product.price}} /$ {{item.total}}</td>
           <td class="align-middle">
             <button
               type="button"
@@ -39,13 +40,15 @@
       <tfoot>
         <tr>
           <td class="d-md-table-cell d-none"></td>
-          <td colspan="3" class="text-right">GRAND TOTAL</td>
-          <td class="text-right">{{shoppingCart.total}}</td>
+          <td class="d-sm-table-cell d-none"></td>
+          <td colspan="2" class="text-right">GRAND TOTAL</td>
+          <td class="text-right">$ {{shoppingCart.total}}</td>
         </tr>
         <tr v-if="shoppingCart.total !== shoppingCart.final_total">
           <td class="d-md-table-cell d-none"></td>
-          <td colspan="3" class="text-right text-success">DISCOUNT PRICE</td>
-          <td class="text-right text-success">{{shoppingCart.final_total}}</td>
+          <td class="d-sm-table-cell d-none"></td>
+          <td colspan="2" class="text-right text-primary">DISCOUNT PRICE</td>
+          <td class="text-right text-primary">$ {{shoppingCart.final_total}}</td>
         </tr>
       </tfoot>
     </table>
@@ -53,11 +56,11 @@
     <div class="input-group mb-3 input-group-sm">
       <input type="text" class="form-control" placeholder="PLEASE INPUT COUPON CODE" v-model="couponCode" />
       <div class="input-group-append">
-        <button class="btn btn-primary" type="button" @click="addCouponCode">APPLY COUPON</button>
+        <button class="btn btn-primary" type="button" @click="addCouponCode">APPLY CODE</button>
       </div>
     </div>
 
-    <div class="d-flex justify-content-between mt-4">
+    <div class="d-flex justify-content-between mt-4 step-control">
       <router-link class="btn btn-primary" to="/frontProducts/all">BACK TO SHOP</router-link>
       <router-link class="btn btn-danger" to="front_orderlist">FILL INFO</router-link>
     </div>
@@ -75,7 +78,7 @@ export default {
       product: {},
       isLoading: false,
       status: {
-        cartHasItem: false
+        cartHasItem: false,
       },
       shoppingCart: [],
       couponCode: "",
