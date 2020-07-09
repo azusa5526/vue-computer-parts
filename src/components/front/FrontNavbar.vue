@@ -63,8 +63,19 @@
   </nav>
 </template>
 
+
+
+
 <script>
 import $ from "jquery";
+
+  $(function () {
+    if ($(window).width() < 768) { 
+      $('.navbar a').on('click', function () {
+        $('.navbar-toggler').click();
+      });
+    }
+  });
 
 export default {
   data() {
@@ -97,6 +108,7 @@ export default {
 
   created() {
     this.checkLoginStatus();
-  }
+  },
+
 };
 </script>

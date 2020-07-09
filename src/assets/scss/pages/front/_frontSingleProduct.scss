@@ -48,7 +48,7 @@
     }
 
     .product-price {
-      background-color: $gray-100;
+      background-color: lighten($color: $third, $amount: 86);
       padding: 1rem;
       margin-bottom: 0.75rem;
     }

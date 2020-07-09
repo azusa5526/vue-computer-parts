@@ -20,9 +20,12 @@ import FrontSingleProduct from '@/views/front/frontSingleProduct';
 Vue.use(Router);
 
 export default new Router({
-  routes: [
-    {
+  routes: [{
       path: '*',
+      redirect: '/home',
+    },
+    {
+      path: '/',
       redirect: '/home',
     },
 
@@ -35,8 +38,7 @@ export default new Router({
       path: '/',
       name: 'FrontEnd',
       component: FrontEnd,
-      children: [
-        {
+      children: [{
           path: 'home',
           name: 'Home',
           component: FrontHome,
@@ -58,8 +60,7 @@ export default new Router({
           path: 'shopping_cart',
           name: 'shoppingCart',
           component: FrontShoppingCart,
-          children: [
-            {
+          children: [{
               path: 'front_cart_items',
               name: 'FrontCartItems',
               component: FrontCartItems,
@@ -91,26 +92,31 @@ export default new Router({
       path: '/admin',
       name: 'Dashboard',
       component: Dashboard,
-      children: [
-        {
+      children: [{
           path: 'products',
           name: 'Products',
           component: Products,
-          meta: { requiresAuth: true },
+          meta: {
+            requiresAuth: true
+          },
         },
-        { 
+        {
           path: 'order_list',
           name: 'OrderList',
           component: OrderList,
-          meta: { requiresAuth: true },
+          meta: {
+            requiresAuth: true
+          },
         },
         {
           path: 'coupon',
           name: 'Coupon',
           component: Coupon,
-          meta: { requiresAuth: true },
+          meta: {
+            requiresAuth: true
+          },
         },
-        
+
       ]
     },
 

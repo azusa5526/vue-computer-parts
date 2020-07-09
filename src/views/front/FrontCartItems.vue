@@ -25,7 +25,11 @@
             <div class="text-primary" v-if="item.coupon">COUPON APPLIED: {{item.coupon.title}}</div>
           </td>
           <td class="align-middle d-sm-table-cell d-none">{{item.qty}} / {{item.product.unit}}</td>
-          <td class="align-middle">$ {{item.product.price}} /$ {{item.total}}</td>
+          <td class="align-middle">
+            $ {{item.product.price}} /$ {{item.total}}
+            <div class="text-primary" v-if="item.coupon">$ {{item.final_total}}</div>
+          </td>
+
           <td class="align-middle">
             <button
               type="button"
@@ -54,7 +58,12 @@
     </table>
 
     <div class="input-group mb-3 input-group-sm">
-      <input type="text" class="form-control" placeholder="PLEASE INPUT COUPON CODE" v-model="couponCode" />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="PLEASE INPUT COUPON CODE"
+        v-model="couponCode"
+      />
       <div class="input-group-append">
         <button class="btn btn-primary" type="button" @click="addCouponCode">APPLY CODE</button>
       </div>
@@ -69,16 +78,13 @@
 
 <script>
 export default {
-  components: {
-  },
+  components: {},
 
   data() {
     return {
-      products: [],
-      product: {},
       isLoading: false,
       status: {
-        cartHasItem: false,
+        cartHasItem: false
       },
       shoppingCart: [],
       couponCode: "",
@@ -95,18 +101,6 @@ export default {
   },
 
   methods: {
-    getProducts(page = 1) {
-      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/products?page=${page}`;
-      const vm = this;
-      vm.isLoading = true;
-
-      this.$http.get(api).then(response => {
-        vm.isLoading = false;
-        vm.products = response.data.products;
-        vm.pagination = response.data.pagination;
-      });
-    },
-
     removeCartItem(id) {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/cart/${id}`;
       const vm = this;
@@ -118,7 +112,7 @@ export default {
           vm.getCart();
           vm.isLoading = false;
         } else {
-          vm.$bus.$emit("message:push", 'Fail delete item from cart', 'third');
+          vm.$bus.$emit("message:push", "Fail delete item from cart", "third");
           vm.isLoading = false;
         }
       });
@@ -133,13 +127,13 @@ export default {
       vm.isLoading = true;
 
       this.$http.post(api, { data: coupon }).then(response => {
-        vm.$bus.$emit("message:push", response.data.message, "primary");
-
         if (response.data.success) {
           vm.getCart();
           vm.isLoading = false;
+          vm.$bus.$emit("message:push", "Apply coupon succefully", "primary");
         } else {
           vm.isLoading = false;
+          vm.$bus.$emit("message:push", "Coupon code not found", "third");
         }
       });
     },
@@ -163,7 +157,6 @@ export default {
   },
 
   created() {
-    this.getProducts();
     this.getCart();
   }
 };
