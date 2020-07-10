@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <div id="heroProducts" class="my-3">
+    <div id="heroProducts" class="mb-3">
       <div class="row">
         <div class="col-lg-3 col-md-6 hero-hover">
           <a
@@ -93,7 +93,7 @@
       </div>
     </div>
 
-    <div class="home-article">
+    <div class="home-article mb-3">
       <div class="row py-3">
         <div class="col-12 col-lg-6 article-wrap">
           <div class="card bg-dark text-white">
