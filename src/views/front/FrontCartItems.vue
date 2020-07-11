@@ -24,7 +24,11 @@
             {{item.product.title}}
             <div class="text-primary" v-if="item.coupon">COUPON APPLIED: {{item.coupon.title}}</div>
           </td>
-          <td class="align-middle d-sm-table-cell d-none">{{item.qty}}</td>
+          <td class="align-middle d-sm-table-cell d-none qty-input">
+            <button class="btn btn-outline-secondary" @click="quantitySub(product)">-</button>
+            <input type="text" :value="item.qty" readonly="readonly" />
+            <button class="btn btn-outline-secondary" @click="quantityPlus(product)">+</button>
+          </td>
           <td class="align-middle">
             $ {{item.product.price}} /$ {{item.total}}
             <div class="text-primary" v-if="item.coupon">$ {{item.final_total}}</div>

@@ -9,6 +9,13 @@
 
 .cart-items {
 
+  .qty-input {
+    button {
+      padding: 0.3rem 0.7rem;
+      font-size: 0.75rem;
+    }
+  }
+
   .product-preview {
     height: 120px;
     width: 120px;

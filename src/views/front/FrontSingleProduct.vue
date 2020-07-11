@@ -24,9 +24,9 @@
           <div class="product-input">
             <div class="quantity">
               <span class="quantity-title">QUANTITY</span>
-              <button class="btn btn-outline-third" @click="quantitySub(product)">-</button>
+              <button class="btn-sm btn-outline-third" @click="quantitySub(product)">-</button>
               <input type="text" :value="product.num" readonly="readonly" />
-              <button class="btn btn-outline-third" @click="quantityPlus(product)">+</button>
+              <button class="btn-sm btn-outline-third" @click="quantityPlus(product)">+</button>
             </div>
 
             <div class="buy-option">
