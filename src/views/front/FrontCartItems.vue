@@ -24,7 +24,7 @@
             {{item.product.title}}
             <div class="text-primary" v-if="item.coupon">COUPON APPLIED: {{item.coupon.title}}</div>
           </td>
-          <td class="align-middle d-sm-table-cell d-none">{{item.qty}} / {{item.product.unit}}</td>
+          <td class="align-middle d-sm-table-cell d-none">{{item.qty}}</td>
           <td class="align-middle">
             $ {{item.product.price}} /$ {{item.total}}
             <div class="text-primary" v-if="item.coupon">$ {{item.final_total}}</div>

@@ -20,8 +20,9 @@
       </div>
     </div>
 
-    <div class="my-4 emptyCart-wrap" v-else>
-      <h3 class="mb-4">SHOPPING CART IS EMPTY</h3>
+    <div class="emptyCart-wrap" v-else>
+      <h4>SHOPPING CART IS EMPTY</h4>
+      <router-link class="btn btn-primary shopping-link" to="/frontProducts/all">SHOPPING NOW!</router-link>
       <img src="@/assets/img/emptyCart.png" />
     </div>
   </div>

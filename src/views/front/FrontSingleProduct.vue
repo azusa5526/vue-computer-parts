@@ -110,7 +110,8 @@ export default {
       product: {
         num: 1
       },
-      clickedButton: ""
+      clickedButton: "",
+      shoppingCart: []
     };
   },
 
@@ -150,9 +151,24 @@ export default {
       });
     },
 
+    getCart() {
+      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/cart`;
+      const vm = this;
+      vm.isLoading = true;
+
+      this.$http.get(api).then(response => {
+        vm.isLoading = false;
+        vm.shoppingCart = response.data.data;
+      });
+    },
+
     addToCart(id, direct, qty = 1) {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/cart`;
       const vm = this;
+      const cart = {
+        product_id: id,
+        qty
+      };
 
       if (direct) {
         vm.clickedButton = "direct";
@@ -160,13 +176,17 @@ export default {
         vm.clickedButton = "non-direct";
       }
 
-      const cart = {
-        product_id: id,
-        qty
-      };
+      // vm.shoppingCart.carts.filter(function(item) {
+      //   if (item.product_id == cart.product_id) {
+      //     cart.qty = item.qty + cart.qty;
+      //     vm.removeCartItem(item.product_id);
+      //   }
+      //   vm.getCart();
+      // });
 
       this.$http.post(api, { data: cart }).then(response => {
         if (response.data.success) {
+          vm.getCart();
           vm.$bus.$emit(
             "message:push",
             "Successfully add to cart",
@@ -180,6 +200,22 @@ export default {
         } else {
           vm.$bus.$emit("message:push", "Fail to add to cart", "third");
           vm.clickedButton = "";
+        }
+      });
+    },
+
+    removeCartItem(id) {
+      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/cart/${id}`;
+      const vm = this;
+      vm.isLoading = true;
+
+      this.$http.delete(api).then(response => {
+        if (response.data.success) {
+          console.log(response.data);
+          vm.isLoading = false;
+        } else {
+          console.log(response.data);
+          vm.isLoading = false;
         }
       });
     },
@@ -237,6 +273,7 @@ export default {
     vm.localCateProducts = JSON.parse(localStorage.getItem("cateFilteredList"));
 
     this.getSingleProduct();
+    this.getCart();
   }
 };
 </script>

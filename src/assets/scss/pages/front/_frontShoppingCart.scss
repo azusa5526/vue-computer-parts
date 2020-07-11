@@ -72,8 +72,28 @@
 }
 
 .emptyCart-wrap {
-  h3 {
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+
+  h4 {
     color: $secondary;
+    margin-bottom: 1.5rem;
+
+    @media screen and (max-width: 575px) {
+      font-size: $font-size-lg;
+    }
+  }
+
+  .shopping-link {
+    width: 180px;
+    margin-bottom: 2.5rem;
+  }
+
+  img {
+    width: 80%;
   }
 }
