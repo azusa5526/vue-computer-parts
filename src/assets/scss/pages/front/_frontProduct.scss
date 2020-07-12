@@ -57,3 +57,20 @@
     padding-right: 0;
   }
 }
+
+.promote-wrap {
+  width: 90px;
+  height: 90px;
+  position: absolute;
+  top: -4.5px;
+  right: -4px;
+
+  .promote-content {
+    position: absolute;
+    top: 20px;
+    right: 16px;
+    transform: rotate(45deg); 
+    color: $primary;
+  }
+
+}

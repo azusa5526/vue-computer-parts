@@ -10,6 +10,7 @@
 
         <div class="product-info col-12 col-md-6">
           <div class="product-title">
+            <div class="hero-title" v-if="product.category.indexOf('hero') !== -1">HERO</div>
             <h2>{{product.title}}</h2>
           </div>
 
@@ -32,14 +33,14 @@
             <div class="buy-option">
               <button
                 type="button"
-                class="btn btn-outline-primary mr-1percent"
+                class="btn btn-primary mr-1percent"
                 @click="addToCart(product.id, true, product.num)"
               >
                 <i class="fas fa-circle-notch fa-spin" v-if="clickedButton == 'direct'"></i> BUY NOW
               </button>
               <button
                 type="button"
-                class="btn btn-outline-danger"
+                class="btn btn-danger"
                 @click="addToCart(product.id, false, product.num)"
               >
                 <i class="fas fa-circle-notch fa-spin" v-if="clickedButton == 'non-direct'"></i> ADD TO CART
@@ -272,9 +273,6 @@ export default {
 
     this.getSingleProduct();
     this.getCart();
-
-
-    //this.getTestProduct();
   }
 };
 </script>

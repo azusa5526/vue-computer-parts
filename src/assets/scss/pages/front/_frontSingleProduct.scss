@@ -5,7 +5,7 @@
   padding-left: 15px;
 
   .row {
-    background-color: white;
+    background-color: $white;
     margin: 0 auto;
     padding: 1.5rem;
 
@@ -16,7 +16,8 @@
 }
 
 .product-header {
-  .product-wrap {  
+
+  .product-wrap {
     display: flex;
     align-items: center;
 
@@ -55,10 +56,11 @@
 
     .h4 {
       margin-bottom: 0;
+
       @media screen and (max-width: 575px) {
         font-size: $font-size-lg;
       }
-  
+
     }
 
     .h5 {
@@ -67,11 +69,29 @@
       }
     }
 
+    .product-title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+
+      .hero-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $primary;
+        background-color: $third;
+        padding: 0.1rem 0.25rem;
+        width: 55px;
+        height: 25px;
+        text-align: center;
+        border: $primary 1px solid;
+        margin-bottom: 0.5rem;
+        margin-right: 0.5rem;
+      }
+    }
+
   }
 
-  .product-title {
-    margin-bottom: 0.5rem;
-  }
 
   .product-input {
     .buy-option {
@@ -127,7 +147,7 @@
 .product-description {
   .description-title {
     margin-bottom: 0.5rem;
-    
+
     @media screen and (max-width: 767px) {
       margin-top: 0.8rem;
     }
@@ -151,6 +171,10 @@
       transition: ease-out;
       transition-duration: 0.2s;
     }
+  }
+
+  .card {
+    background-color: $secondary;
   }
 
   .card-title {

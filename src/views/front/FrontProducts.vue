@@ -26,6 +26,12 @@
               @click.middle="getProduct(item.id)"
             >
               <div class="card border-0 shadow-sm">
+
+                <div class="promote-wrap" v-if="item.category.indexOf('hero') !== -1">
+                  <img src="@/assets/img/hero_promote_b.png" />
+                  <h6 class="promote-content">HREO</h6>
+                </div>
+
                 <div
                   style="height: 300px; background-size: contain; background-position: center; background-repeat: no-repeat; background-color: #FFFFFF;"
                   :style="{backgroundImage: `url(${item.imageUrl})`}"
@@ -110,6 +116,8 @@ export default {
     getProduct(id) {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/product/${id}`;
       const vm = this;
+      vm.isLoading = true;
+
       localStorage.setItem(
         "cateFilteredList",
         JSON.stringify(vm.categoryFilteredList)
@@ -117,6 +125,7 @@ export default {
 
       this.$http.get(api).then(response => {
         if (response.data.success) {
+          vm.isLoading = false;
         }
       });
     },
