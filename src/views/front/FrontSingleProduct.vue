@@ -24,9 +24,9 @@
           <div class="product-input">
             <div class="quantity">
               <span class="quantity-title">QUANTITY</span>
-              <button class="btn-sm btn-outline-third" @click="quantitySub(product)">-</button>
+              <button class="btn btn-outline-third" @click="quantitySub(product)">-</button>
               <input type="text" :value="product.num" readonly="readonly" />
-              <button class="btn-sm btn-outline-third" @click="quantityPlus(product)">+</button>
+              <button class="btn btn-outline-third" @click="quantityPlus(product)">+</button>
             </div>
 
             <div class="buy-option">
@@ -176,13 +176,13 @@ export default {
         vm.clickedButton = "non-direct";
       }
 
-      // vm.shoppingCart.carts.filter(function(item) {
-      //   if (item.product_id == cart.product_id) {
-      //     cart.qty = item.qty + cart.qty;
-      //     vm.removeCartItem(item.product_id);
-      //   }
-      //   vm.getCart();
-      // });
+      vm.shoppingCart.carts.filter(function(item) {
+        if (item.product.id == cart.product_id) {
+          cart.qty = item.qty + cart.qty;
+          vm.removeCartItem(item.id);
+          vm.getCart();
+        }
+      });
 
       this.$http.post(api, { data: cart }).then(response => {
         if (response.data.success) {
@@ -211,10 +211,8 @@ export default {
 
       this.$http.delete(api).then(response => {
         if (response.data.success) {
-          console.log(response.data);
           vm.isLoading = false;
         } else {
-          console.log(response.data);
           vm.isLoading = false;
         }
       });
@@ -274,6 +272,9 @@ export default {
 
     this.getSingleProduct();
     this.getCart();
+
+
+    //this.getTestProduct();
   }
 };
 </script>

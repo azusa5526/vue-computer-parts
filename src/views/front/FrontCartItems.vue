@@ -6,9 +6,9 @@
         <tr>
           <th class="d-md-table-cell d-none">THUMB NAIL</th>
           <th>NAME</th>
-          <th class="d-sm-table-cell d-none" width="15%">QUANTITY</th>
+          <th class="d-sm-table-cell d-none" width="120px">QUANTITY</th>
           <th width="25%">SUB</th>
-          <th width="10%">REMOVE</th>
+          <th width="60px">REMOVE</th>
         </tr>
       </thead>
 
@@ -24,10 +24,10 @@
             {{item.product.title}}
             <div class="text-primary" v-if="item.coupon">COUPON APPLIED: {{item.coupon.title}}</div>
           </td>
-          <td class="align-middle d-sm-table-cell d-none qty-input">
-            <button class="btn btn-outline-secondary" @click="quantitySub(product)">-</button>
+          <td class="align-middle d-sm-table-cell d-none qty-adjust">
+            <button class="btn btn-outline-secondary" @click="quantitySub(item)">-</button>
             <input type="text" :value="item.qty" readonly="readonly" />
-            <button class="btn btn-outline-secondary" @click="quantityPlus(product)">+</button>
+            <button class="btn btn-outline-secondary" @click="quantityPlus(item)">+</button>
           </td>
           <td class="align-middle">
             $ {{item.product.price}} /$ {{item.total}}
@@ -75,7 +75,7 @@
 
     <div class="d-flex justify-content-between mt-4 step-control">
       <router-link class="btn btn-primary" to="/frontProducts/all">BACK TO SHOP</router-link>
-      <router-link class="btn btn-danger" to="front_orderlist">FILL INFO</router-link>
+      <router-link class="btn btn-danger" to="front_orderlist" v-if="status.cartHasItem">FILL INFO</router-link>
     </div>
   </div>
 </template>
@@ -109,12 +109,13 @@ export default {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/cart/${id}`;
       const vm = this;
       vm.isLoading = true;
+      console.log("id", id);
 
       this.$http.delete(api).then(response => {
         if (response.data.success) {
           vm.$bus.$emit("message:push", "Remove item succefully", "primary");
-          vm.getCart();
           vm.isLoading = false;
+          vm.getCart();
         } else {
           vm.$bus.$emit("message:push", "Fail delete item from cart", "third");
           vm.isLoading = false;
@@ -157,6 +158,23 @@ export default {
           vm.status.cartHasItem = true;
         }
       });
+    },
+
+    quantitySub(item) {
+      const vm = this;
+      console.log("item", item);
+      if (item.qty > 1) {
+        item.qty--;
+        vm.getCart();
+      }
+    },
+
+    quantityPlus(item) {
+      const vm = this;
+      if (item.qty < 5) {
+        item.qty++;
+        vm.getCart();
+      }
     }
   },
 

@@ -67,10 +67,32 @@
         <button class="btn btn-danger" v-if="!order.is_paid">PAY ORDER</button>
       </div>
     </form>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="paymentCompeleted"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h4>AWESOME</h4>
+            <p>YOUR PAYMENT COMPLETED</p>
+            <button class="btn btn-primary" @click="goToProducts">COUNTINUE SHOPPING!</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import $ from "jquery";
+
 export default {
   data() {
     return {
@@ -105,11 +127,19 @@ export default {
         if (response.data.success) {
           vm.getOrder();
           vm.isLoading = false;
+          $("#paymentCompeleted").modal("show");
+
         } else {
           vm.isLoading = false;
         }
       });
-    }
+    },
+
+    goToProducts() {
+      $("#paymentCompeleted").modal("hide");
+      this.$router.push("/frontProducts/all");
+    },
+    
   },
 
   created() {
