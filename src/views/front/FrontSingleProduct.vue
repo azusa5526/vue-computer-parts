@@ -2,16 +2,16 @@
   <div class="fsp-container-fluid">
     <loading :active.sync="isLoading"></loading>
 
+    <!-- <div class="hero-decorate mt-3" style="border-top: #F68657 5px solid;" v-if="isHero"></div> -->
     <div class="product-header">
-      <div class="row my-3 justify-content-center">
+      <div class="row justify-content-center">
         <div class="product-wrap col-12 col-md-6">
           <div class="product-img" :style="{backgroundImage: `url(${product.imageUrl})`}"></div>
         </div>
 
         <div class="product-info col-12 col-md-6">
           <div class="product-title">
-            <div class="hero-title" v-if="product.category.indexOf('hero') !== -1">HERO</div>
-            <h2>{{product.title}}</h2>
+            <h2><span class="hero-title" v-if="isHero">HERO</span>{{product.title}}</h2>        
           </div>
 
           <div class="product-price d-flex justify-content-between align-items-baseline">
@@ -50,9 +50,10 @@
         </div>
       </div>
     </div>
+    <!-- <div class="hero-decorate mb-3" style="border-bottom: #F68657 5px solid;" v-if="isHero"></div> -->
 
     <div class="product-description">
-      <div class="row mb-3">
+      <div class="row my-3">
         <div class="description-title col-12">
           <h3>PRODUCT INFO</h3>
         </div>
@@ -263,6 +264,17 @@ export default {
       }
 
       this.recommandProducts = newArr;
+    }
+  },
+
+  computed: {
+    isHero() {
+      const vm = this;
+      if(vm.product.category.indexOf('hero') !== -1) {
+        return true;
+      } else {
+        return false;
+      }
     }
   },
 

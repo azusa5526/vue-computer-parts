@@ -13,6 +13,13 @@
       padding: 0.8rem 0.6rem 1.5rem 0.6rem;
     }
   }
+
+}
+
+.hero-decorate {
+  width: 100%;
+  height: 15px;
+  background-color: lighten($color: $third, $amount: 15);
 }
 
 .product-header {
@@ -71,22 +78,24 @@
 
     .product-title {
       display: flex;
+      flex-wrap: nowrap;
       align-items: center;
       margin-bottom: 0.5rem;
 
       .hero-title {
-        display: flex;
+        vertical-align: 35%;
         justify-content: center;
         align-items: center;
         color: $primary;
         background-color: $third;
-        padding: 0.1rem 0.25rem;
+        padding: 0.15rem 0.5rem;
         width: 55px;
         height: 25px;
+        font-size: $font-size-sm;
         text-align: center;
         border: $primary 1px solid;
-        margin-bottom: 0.5rem;
         margin-right: 0.5rem;
+
       }
     }
 
