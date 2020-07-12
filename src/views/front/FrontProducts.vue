@@ -107,7 +107,7 @@ export default {
       const vm = this;
       vm.isLoading = true;
 
-      this.$http.get(api).then(response => {
+      vm.$http.get(api).then(response => {
         vm.isLoading = false;
         vm.products = response.data.products;
       });
@@ -123,7 +123,7 @@ export default {
         JSON.stringify(vm.categoryFilteredList)
       );
 
-      this.$http.get(api).then(response => {
+      vm.$http.get(api).then(response => {
         if (response.data.success) {
           vm.isLoading = false;
         }

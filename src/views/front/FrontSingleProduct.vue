@@ -130,7 +130,7 @@ export default {
       vm.isLoading = true;
       vm.randomProduct(vm.localCateProducts, 4);
 
-      this.$http.get(api).then(response => {
+      vm.$http.get(api).then(response => {
         if (response.data.success) {
           vm.product = response.data.product;
           vm.$set(vm.product, "num", 1);
@@ -143,7 +143,7 @@ export default {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/product/${id}`;
       const vm = this;
 
-      this.$http.get(api).then(response => {
+      vm.$http.get(api).then(response => {
         if (response.data.success) {
           vm.$router.push(
             `../front_single_product/${response.data.product.id}`
@@ -157,7 +157,7 @@ export default {
       const vm = this;
       vm.isLoading = true;
 
-      this.$http.get(api).then(response => {
+      vm.$http.get(api).then(response => {
         vm.isLoading = false;
         vm.shoppingCart = response.data.data;
       });
@@ -185,7 +185,7 @@ export default {
         }
       });
 
-      this.$http.post(api, { data: cart }).then(response => {
+      vm.$http.post(api, { data: cart }).then(response => {
         if (response.data.success) {
           vm.getCart();
           vm.$bus.$emit(
@@ -210,7 +210,7 @@ export default {
       const vm = this;
       vm.isLoading = true;
 
-      this.$http.delete(api).then(response => {
+      vm.$http.delete(api).then(response => {
         if (response.data.success) {
           vm.isLoading = false;
         } else {
@@ -267,10 +267,8 @@ export default {
   },
 
   created() {
-    const vm = this;
     this.productId = this.$route.params.productID;
-    vm.localCateProducts = JSON.parse(localStorage.getItem("cateFilteredList"));
-
+    this.localCateProducts = JSON.parse(localStorage.getItem("cateFilteredList"));
     this.getSingleProduct();
     this.getCart();
   }

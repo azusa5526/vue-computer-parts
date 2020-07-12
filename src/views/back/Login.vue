@@ -61,7 +61,7 @@ export default {
       const vm = this;
       vm.isLoading = true;
 
-      this.$http.post(api, vm.user).then(response => {
+      vm.$http.post(api, vm.user).then(response => {
         vm.isLoading = false;
         if (response.data.success) {
           vm.$router.push("/home");

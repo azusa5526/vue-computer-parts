@@ -99,9 +99,9 @@ export default {
       const order = vm.form;
       vm.isLoading = true;
 
-      this.$validator.validate().then(valid => {
+      vm.$validator.validate().then(valid => {
         if (valid) {
-          this.$http.post(api, { data: order }).then(response => {
+          vm.$http.post(api, { data: order }).then(response => {
             if (response.data.success) {
               vm.$bus.$emit("message:push", "Order created", "primary");
               vm.$router.push(`front_checkout/${response.data.orderId}`);

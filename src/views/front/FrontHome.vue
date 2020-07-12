@@ -154,7 +154,7 @@ export default {
       const vm = this;
       vm.isLoading = true;
 
-      this.$http.get(api).then(response => {
+      vm.$http.get(api).then(response => {
         vm.isLoading = false;
         vm.products = response.data.products;
       });
@@ -167,7 +167,7 @@ export default {
 
       localStorage.setItem("cateFilteredList", JSON.stringify(heroProducts));
 
-      this.$http.get(api).then(response => {
+      vm.$http.get(api).then(response => {
         if (response.data.success) {
           vm.$router.push(
             `../front_single_product/${response.data.product.id}`

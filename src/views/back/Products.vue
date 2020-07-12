@@ -260,7 +260,7 @@ export default {
       const vm = this;
       vm.isLoading = true;
 
-      this.$http.get(api).then(response => {
+      vm.$http.get(api).then(response => {
         vm.isLoading = false;
         vm.products = response.data.products;
         vm.pagination = response.data.pagination;
@@ -294,7 +294,7 @@ export default {
         httpMethod = "put";
       }
 
-      this.$http[httpMethod](api, { data: vm.tempProduct }).then(response => {
+      vm.$http[httpMethod](api, { data: vm.tempProduct }).then(response => {
         if (response.data.success) {
           vm.status.itemUpdating = false;
           $("#productModal").modal("hide");
@@ -311,7 +311,7 @@ export default {
     deleteProduct() {
       const vm = this;
       let api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/admin/product/${vm.tempProduct.id}`;
-      this.$http.delete(api).then(response => {
+      vm.$http.delete(api).then(response => {
         if (response.data.success) {
           $("#delProductModal").modal("hide");
           vm.getProducts(vm.pagination.current_page);
@@ -331,7 +331,7 @@ export default {
       formData.append("file-to-upload", uploadedFile);
       const url = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/admin/upload`;
       vm.status.fileUploading = true;
-      this.$http
+      vm.$http
         .post(url, formData, {
           headers: {
             "Content-type": "multipart/form-data"
@@ -342,7 +342,7 @@ export default {
           if (response.data.success) {
             vm.$set(vm.tempProduct, "imageUrl", response.data.imageUrl);
           } else {
-            this.$bus.$emit("message:push", response.data.message, "danger");
+            vm.$bus.$emit("message:push", response.data.message, "danger");
           }
         });
     }

@@ -64,7 +64,7 @@ export default {
       const api = `${process.env.API_PATH}/api/user/check`;
       const vm = this;
 
-      this.$http.post(api).then(response => {
+      vm.$http.post(api).then(response => {
         vm.is_login = response.data.success;
       });
     },
@@ -72,7 +72,7 @@ export default {
     signOut() {
       const api = `${process.env.API_PATH}/logout`;
       const vm = this;
-      this.$http.post(api).then(response => {
+      vm.$http.post(api).then(response => {
         if (response.data.success) {
           vm.is_login = false;
           vm.$router.push("/home");

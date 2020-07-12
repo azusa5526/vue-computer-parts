@@ -57,7 +57,7 @@ export default {
       const vm = this;
       vm.isLoading = true;
 
-      this.$http.get(api).then(response => {
+      vm.$http.get(api).then(response => {
         vm.shoppingCart = response.data.data;
 
         if (vm.shoppingCart.carts.length == 0) {
@@ -72,7 +72,6 @@ export default {
 
   computed: {
     activedPage() {
-      const vm = this;
       return this.$route.name;
     }
   },

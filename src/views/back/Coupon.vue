@@ -205,7 +205,7 @@ export default {
       const vm = this;
       vm.isLoading = true;
 
-      this.$http.get(api).then(response => {
+      vm.$http.get(api).then(response => {
         vm.isLoading = false;
         vm.coupons = response.data.coupons;
         vm.pagination = response.data.pagination;
@@ -239,7 +239,7 @@ export default {
         httpMethod = "put";
       }
 
-      this.$http[httpMethod](api, { data: vm.tempCoupon }).then(response => {
+      vm.$http[httpMethod](api, { data: vm.tempCoupon }).then(response => {
         if (response.data.success) {
           vm.status.itemUpdating = true;
           $("#couponModal").modal("hide");
@@ -256,7 +256,7 @@ export default {
     deleteCoupon() {
       const vm = this;
       let api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/admin/coupon/${vm.tempCoupon.id}`;
-      this.$http.delete(api).then(response => {
+      vm.$http.delete(api).then(response => {
         if (response.data.success) {
           $("#delCouponModal").modal("hide");
           vm.getCoupons(vm.pagination.current_page);
@@ -277,7 +277,7 @@ export default {
       formData.append("file-to-upload", uploadedFile);
       const url = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/admin/upload`;
       vm.status.fileUploading = true;
-      this.$http
+      vm.$http
         .post(url, formData, {
           headers: {
             "Content-type": "multipart/form-data"

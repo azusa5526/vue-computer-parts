@@ -111,7 +111,7 @@ export default {
       vm.isLoading = true;
       console.log("id", id);
 
-      this.$http.delete(api).then(response => {
+      vm.$http.delete(api).then(response => {
         if (response.data.success) {
           vm.$bus.$emit("message:push", "Remove item succefully", "primary");
           vm.isLoading = false;
@@ -131,7 +131,7 @@ export default {
       };
       vm.isLoading = true;
 
-      this.$http.post(api, { data: coupon }).then(response => {
+      vm.$http.post(api, { data: coupon }).then(response => {
         if (response.data.success) {
           vm.getCart();
           vm.isLoading = false;
@@ -148,7 +148,7 @@ export default {
       const vm = this;
       vm.isLoading = true;
 
-      this.$http.get(api).then(response => {
+      vm.$http.get(api).then(response => {
         vm.isLoading = false;
         vm.shoppingCart = response.data.data;
 

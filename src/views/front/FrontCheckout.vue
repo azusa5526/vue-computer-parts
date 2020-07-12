@@ -110,7 +110,7 @@ export default {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/order/${vm.orderId}`;
       vm.isLoading = true;
 
-      this.$http.get(api).then(response => {
+      vm.$http.get(api).then(response => {
         if (response.data.success) {
           vm.order = response.data.order;
           vm.isLoading = false;
@@ -123,7 +123,7 @@ export default {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/pay/${vm.orderId}`;
       vm.isLoading = true;
 
-      this.$http.post(api).then(response => {
+      vm.$http.post(api).then(response => {
         if (response.data.success) {
           vm.getOrder();
           vm.isLoading = false;
