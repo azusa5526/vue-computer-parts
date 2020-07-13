@@ -2,8 +2,8 @@
   <div class="fsp-container-fluid">
     <loading :active.sync="isLoading"></loading>
 
-    <!-- <div class="hero-decorate mt-3" style="border-top: #F68657 5px solid;" v-if="isHero"></div> -->
-    <div class="product-header">
+    <div class="hero-decorate mt-3" style="border-top: #F68657 5px solid;" v-if="isHero"></div>
+    <div class="product-header" :class="{'mt-3' : !isHero}">
       <div class="row justify-content-center">
         <div class="product-wrap col-12 col-md-6">
           <div class="product-img" :style="{backgroundImage: `url(${product.imageUrl})`}"></div>
@@ -11,11 +11,14 @@
 
         <div class="product-info col-12 col-md-6">
           <div class="product-title">
-            <h2><span class="hero-title" v-if="isHero">HERO</span>{{product.title}}</h2>        
+            <h2>
+              <span class="hero-title" v-if="isHero">HERO</span>
+              {{product.title}}
+            </h2>
           </div>
 
           <div class="product-price d-flex justify-content-between align-items-baseline">
-            <div class="h4 text-danger" v-if="!product.price">$ {{product.origin_price}} 元</div>
+            <div class="h4 text-danger" v-if="!product.price">$ {{product.origin_price}}</div>
             <del class="h5" v-if="product.price">$ {{product.origin_price}}</del>
             <div class="h4 text-danger mr-2" v-if="product.price">$ {{product.price}}</div>
           </div>
@@ -50,7 +53,7 @@
         </div>
       </div>
     </div>
-    <!-- <div class="hero-decorate mb-3" style="border-bottom: #F68657 5px solid;" v-if="isHero"></div> -->
+    <div class="hero-decorate mb-3" style="border-bottom: #F68657 5px solid;" v-if="isHero"></div>
 
     <div class="product-description">
       <div class="row my-3">
@@ -113,7 +116,10 @@ export default {
         num: 1
       },
       clickedButton: "",
-      shoppingCart: []
+      shoppingCart: [],
+      status: {
+        isHero: false
+      }
     };
   },
 
@@ -159,8 +165,8 @@ export default {
       vm.isLoading = true;
 
       vm.$http.get(api).then(response => {
-        vm.isLoading = false;
         vm.shoppingCart = response.data.data;
+        vm.isLoading = false;
       });
     },
 
@@ -270,18 +276,23 @@ export default {
   computed: {
     isHero() {
       const vm = this;
-      console.log('vm.product' , vm.product);
-      if(vm.product.category.indexOf('hero') !== -1) {
-        return true;
+      if (vm.product.category == undefined) {
+        return;
       } else {
-        return false;
+        if (vm.product.category.indexOf("hero") !== -1) {
+          return true;
+        } else {
+          return false;
+        }
       }
     }
   },
 
   created() {
     this.productId = this.$route.params.productID;
-    this.localCateProducts = JSON.parse(localStorage.getItem("cateFilteredList"));
+    this.localCateProducts = JSON.parse(
+      localStorage.getItem("cateFilteredList")
+    );
     this.getSingleProduct();
     this.getCart();
   }
