@@ -75,7 +75,7 @@
 
     <div class="d-flex justify-content-between mt-4 step-control">
       <router-link class="btn btn-primary" to="/frontProducts/all">BACK TO SHOP</router-link>
-      <router-link class="btn btn-danger" to="front_orderlist" v-if="status.cartHasItem">FILL INFO</router-link>
+      <router-link class="btn btn-danger" to="front_orderlist" v-if="cartHasItem">FILL INFO</router-link>
     </div>
   </div>
 </template>
@@ -87,9 +87,6 @@ export default {
   data() {
     return {
       isLoading: false,
-      status: {
-        cartHasItem: false
-      },
       shoppingCart: [],
       couponCode: "",
       form: {
@@ -105,11 +102,40 @@ export default {
   },
 
   methods: {
+    updateCart(cartItem_id, product_id, qty) {
+      const rm_api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/cart/${cartItem_id}`;
+      const add_api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/cart`;
+      const vm = this;
+      const cart = {
+        product_id: product_id,
+        qty
+      };
+      vm.isLoading = true;
+
+      vm.$http.delete(rm_api).then(response => {
+        if (response.data.success) {
+          vm.$http.post(add_api, { data: cart }).then(response => {
+            if (response.data.success) {
+              vm.getCart();
+            } else {
+              vm.$bus.$emit(
+                "message:push",
+                "Fail update(add) cart Qty",
+                "third"
+              );
+            }
+          });
+        } else {
+          vm.$bus.$emit("message:push", "Fail update(del) cart Qty", "third");
+          vm.isLoading = false;
+        }
+      });
+    },
+
     removeCartItem(id) {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/cart/${id}`;
       const vm = this;
       vm.isLoading = true;
-      console.log("id", id);
 
       vm.$http.delete(api).then(response => {
         if (response.data.success) {
@@ -168,32 +194,35 @@ export default {
       vm.$http.get(api).then(response => {
         vm.shoppingCart = response.data.data;
         vm.isLoading = false;
-
-        if (vm.shoppingCart.carts.length == 0) {
-          vm.status.cartHasItem = false;
-        } else {
-          vm.status.cartHasItem = true;
-        }
       });
     },
 
     quantitySub(item) {
       const vm = this;
-      console.log('item', item);
       if (item.qty > 1) {
-        vm.addToCart(item.product_id, item.qty - 1);
-        vm.removeCartItem(item.id);
-        vm.getCart();
+        vm.updateCart(item.id, item.product_id, item.qty - 1);
       }
-
     },
 
     quantityPlus(item) {
       const vm = this;
       if (item.qty < 5) {
-        vm.addToCart(item.product_id, item.qty + 1);
-        vm.removeCartItem(item.id);
-        vm.getCart();
+        vm.updateCart(item.id, item.product_id, item.qty + 1);
+      }
+    }
+  },
+
+  computed: {
+    cartHasItem() {
+      const vm = this;
+      if (vm.shoppingCart.carts == undefined) {
+        return;
+      } else {
+        if (vm.shoppingCart.carts.length == 0) {
+          return false;
+        } else {
+          return true;
+        }
       }
     }
   },

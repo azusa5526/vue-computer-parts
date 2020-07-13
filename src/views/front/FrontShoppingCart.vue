@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <loading :active.sync="isLoading"></loading>
 
-    <div class="container mt-4" v-if="status.cartHasItem">
+    <div class="container mt-4" v-if="cartHasItem">
       <div class="cart-wrap">
         <div class="shopping-step mb-4">
           <div class="step" :class="{'active-step' : activedPage == 'FrontCartItems'}">
@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <div class="emptyCart-wrap" v-else>
+    <div class="emptyCart-wrap" v-if="!cartHasItem">
       <h4>SHOPPING CART IS EMPTY</h4>
       <router-link class="btn btn-primary shopping-link" to="/frontProducts/all">SHOPPING NOW!</router-link>
       <img src="@/assets/img/emptyCart.png" />
@@ -33,9 +33,6 @@ export default {
   data() {
     return {
       isLoading: false,
-      status: {
-        cartHasItem: false
-      },
       shoppingCart: [],
       couponCode: "",
       form: {
@@ -59,12 +56,6 @@ export default {
 
       vm.$http.get(api).then(response => {
         vm.shoppingCart = response.data.data;
-
-        if (vm.shoppingCart.carts.length == 0) {
-          vm.status.cartHasItem = false;
-        } else {
-          vm.status.cartHasItem = true;
-        }
         vm.isLoading = false;
       });
     }
@@ -73,6 +64,19 @@ export default {
   computed: {
     activedPage() {
       return this.$route.name;
+    },
+
+    cartHasItem() {
+      const vm = this;
+      if (vm.shoppingCart.carts == undefined) {
+        return;
+      } else {
+        if (vm.shoppingCart.carts.length == 0) {
+          return false;
+        } else {
+          return true;
+        }
+      }
     }
   },
 
