@@ -270,6 +270,7 @@ export default {
   computed: {
     isHero() {
       const vm = this;
+      console.log('vm.product' , vm.product);
       if(vm.product.category.indexOf('hero') !== -1) {
         return true;
       } else {

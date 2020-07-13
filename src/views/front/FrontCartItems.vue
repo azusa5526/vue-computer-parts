@@ -123,6 +123,23 @@ export default {
       });
     },
 
+    addToCart(id, qty) {
+      const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/cart`;
+      const vm = this;
+      const cart = {
+        product_id: id,
+        qty
+      };
+
+      vm.$http.post(api, { data: cart }).then(response => {
+        if (response.data.success) {
+          vm.getCart();
+        } else {
+          vm.$bus.$emit("message:push", "Fail update cart Qty", "third");
+        }
+      });
+    },
+
     addCouponCode() {
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/coupon`;
       const vm = this;
@@ -149,8 +166,8 @@ export default {
       vm.isLoading = true;
 
       vm.$http.get(api).then(response => {
-        vm.isLoading = false;
         vm.shoppingCart = response.data.data;
+        vm.isLoading = false;
 
         if (vm.shoppingCart.carts.length == 0) {
           vm.status.cartHasItem = false;
@@ -162,17 +179,20 @@ export default {
 
     quantitySub(item) {
       const vm = this;
-      console.log("item", item);
+      console.log('item', item);
       if (item.qty > 1) {
-        item.qty--;
+        vm.addToCart(item.product_id, item.qty - 1);
+        vm.removeCartItem(item.id);
         vm.getCart();
       }
+
     },
 
     quantityPlus(item) {
       const vm = this;
       if (item.qty < 5) {
-        item.qty++;
+        vm.addToCart(item.product_id, item.qty + 1);
+        vm.removeCartItem(item.id);
         vm.getCart();
       }
     }

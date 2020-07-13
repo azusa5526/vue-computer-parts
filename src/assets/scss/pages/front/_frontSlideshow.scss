@@ -29,19 +29,19 @@
 }
 
 .slide1 {
-  background-image: url('~@/assets/img/home_1_lg.png');
+  background-image: url('~@/assets/img/home_2_lg.png');
 
   @media screen and (max-width: 767px) {
-    background-image: url('~@/assets/img/home_1_xs.png');
+    background-image: url('~@/assets/img/home_2_xs.png');
   }
 
 }
 
 .slide2 {
-  background-image: url('~@/assets/img/home_2_lg.png');
+  background-image: url('~@/assets/img/home_1_lg.png');
 
   @media screen and (max-width: 767px) {
-    background-image: url('~@/assets/img/home_2_xs.png');
+    background-image: url('~@/assets/img/home_1_xs.png');
   }
 
 }
