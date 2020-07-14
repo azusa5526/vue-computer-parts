@@ -18,9 +18,9 @@
           </div>
 
           <div class="product-price d-flex justify-content-between align-items-baseline">
-            <div class="h4 text-danger" v-if="!product.price">$ {{product.origin_price}}</div>
-            <del class="h5" v-if="product.price">$ {{product.origin_price}}</del>
-            <div class="h4 text-danger mr-2" v-if="product.price">$ {{product.price}}</div>
+            <div class="h4 text-danger" v-if="!product.price">{{product.origin_price | currency}}</div>
+            <del class="h5" v-if="product.price">{{product.origin_price | currency}}</del>
+            <div class="h4 text-danger mr-2" v-if="product.price">{{product.price | currency}}</div>
           </div>
 
           <pre class="product-content">{{product.content}}</pre>
@@ -93,8 +93,8 @@
               </div>
 
               <div class="card-footer d-flex justify-content-end">
-                <div class="h6" v-if="!item.price">$ {{item.origin_price}}</div>
-                <div class="h6" v-if="item.price">$ {{item.price}}</div>
+                <div class="h6" v-if="!item.price">{{item.origin_price | currency}}</div>
+                <div class="h6" v-if="item.price">{{item.price | currency}}</div>
               </div>
             </div>
           </a>
@@ -289,12 +289,14 @@ export default {
   },
 
   created() {
+    const vm = this;
     this.productId = this.$route.params.productID;
     this.localCateProducts = JSON.parse(
       localStorage.getItem("cateFilteredList")
     );
     this.getSingleProduct();
     this.getCart();
-  }
+  },
+
 };
 </script>

@@ -107,15 +107,6 @@ ul {
 
 }
 
-
-
-
-
-
-
-
-
-
 .card {
   border-radius: 0;
   border: none;
@@ -127,5 +118,10 @@ ul {
 
 .orderTable-title {
   color: $secondary;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.sub-td {
+  min-width: 80px;
+  width: 15%;
 }

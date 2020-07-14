@@ -42,9 +42,9 @@
                 </div>
 
                 <div class="card-footer d-flex justify-content-between align-items-baseline">
-                  <div class="h5 mb-0" v-if="!item.price">$ {{item.origin_price}}</div>
-                  <del class="h6 mb-0" v-if="item.price">$ {{item.origin_price}}</del>
-                  <div class="h5 mb-0" v-if="item.price">$ {{item.price}}</div>
+                  <div class="h5 mb-0" v-if="!item.price">{{item.origin_price | currency}}</div>
+                  <del class="h6 mb-0" v-if="item.price">{{item.origin_price | currency}}</del>
+                  <div class="h5 mb-0" v-if="item.price">{{item.price | currency}}</div>
                 </div>
               </div>
             </a>

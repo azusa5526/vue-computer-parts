@@ -30,8 +30,8 @@
             <button class="btn btn-outline-secondary" @click="quantityPlus(item)">+</button>
           </td>
           <td class="align-middle">
-            $ {{item.product.price}} /$ {{item.total}}
-            <div class="text-primary" v-if="item.coupon">$ {{item.final_total}}</div>
+            {{item.product.price | currency}} /{{item.total | currency}}
+            <div class="text-primary" v-if="item.coupon">{{item.final_total | currency}}</div>
           </td>
 
           <td class="align-middle">
@@ -50,13 +50,13 @@
           <td class="d-md-table-cell d-none"></td>
           <td class="d-sm-table-cell d-none"></td>
           <td colspan="2" class="text-right">GRAND TOTAL</td>
-          <td class="text-right">$ {{shoppingCart.total}}</td>
+          <td class="text-right">{{shoppingCart.total | currency}}</td>
         </tr>
         <tr v-if="shoppingCart.total !== shoppingCart.final_total">
           <td class="d-md-table-cell d-none"></td>
           <td class="d-sm-table-cell d-none"></td>
           <td colspan="2" class="text-right text-primary">DISCOUNT PRICE</td>
-          <td class="text-right text-primary">$ {{shoppingCart.final_total}}</td>
+          <td class="text-right text-primary">{{shoppingCart.final_total | currency}}</td>
         </tr>
       </tfoot>
     </table>

@@ -2,6 +2,10 @@
   <div class="orderList-wrap">
     <loading :active.sync="isLoading"></loading>
     <form>
+      <div class="form-title">
+        RECIPIENT INFO
+        <span style="font-size: 0.8rem;">[ REQUIRED ]</span>
+      </div>
       <div class="form-group">
         <label for="useremail">EMAIL</label>
         <input
@@ -46,7 +50,13 @@
         />
         <span class="text-primary" v-if="errors.has('tel')">PHONE NUMBER MUST BE INPUT</span>
       </div>
+    </form>
 
+    <form>
+      <div class="form-title">
+        SHIPPING INFO
+        <span style="font-size: 0.8rem;">[ REQUIRED ]</span>
+      </div>
       <div class="form-group">
         <label for="useraddress">ADDRESS</label>
         <input
@@ -62,8 +72,14 @@
         <span class="text-primary" v-if="errors.has('address')">ADDRESS MUST BE INPUT</span>
       </div>
 
+      <div id="twzipcode">
+        
+      </div>
+    </form>
+
+    <form>
+      <div class="form-title">MESSAGE</div>
       <div class="form-group">
-        <label for="useraddress">MESSAGE</label>
         <textarea name id class="form-control mb-1" cols="30" rows="5" v-model="form.message"></textarea>
       </div>
 
@@ -76,6 +92,7 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
