@@ -11,14 +11,22 @@
   background-size: cover;
 
   .form-wrap {
-    max-width: 20vw;
+    
     max-height: 40vh;
+    width: 350px;
     min-width: 320px;
     min-height: 620px;
+
+
 
     border-top: $primary 1.5px solid;
     border-bottom: $primary 1.5px solid;
     background-color: #181818;
+
+    @media screen and (max-width: 768px) {
+      max-width: 80vw;
+      width: 50vw;
+    }
   }
 
   .login-img {

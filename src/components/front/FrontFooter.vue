@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row pt-4">
         <div class="col-lg-6 d-none d-lg-block pl-0">
-          <h4>About VCP.com</h4>
+          <h3>About VCP.com</h3>
           <p>VCP.com is the leading tech-focused e-retailer in Taiwan, with a global reach in Europe, South America, Asia Pacific and the Middle East. Founded in 2020, the company offers its tens of millions of registered users a comprehensive selection of the latest consumer electronics, entertainment, smart home and gaming products.</p>
         </div>
 
@@ -11,7 +11,7 @@
           <div class="row justify-content-center">
             <ul class="px-4">
               <li>
-                <h4>Service</h4>
+                <h3>Service</h3>
               </li>
               <li class="footer-link">
                 <a href="#">Help Center</a>
@@ -29,7 +29,7 @@
 
             <ul ul class="px-4">
               <li>
-                <h4>Social</h4>
+                <h3>Social</h3>
               </li>
               <li class="footer-link">
                 <a href="#"><i class="fab fa-facebook-square"></i> Facebook</a>

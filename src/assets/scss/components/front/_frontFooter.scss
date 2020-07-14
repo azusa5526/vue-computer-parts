@@ -8,15 +8,17 @@
     padding-bottom: 4px;
 
     @media screen and (max-width: 575px) {
-      padding-top: 10px;
-      padding-bottom: 10px;
+      padding-top: 7px;
+      padding-bottom: 7px;
     }
+
   }
 
   a {
     color: darken($color: $secondary, $amount: 10);
     transition: ease-out;
     transition-duration: 0.2s;
+    font-size: $font-size-base;
 
     &:hover {
       color: lighten($color: $secondary, $amount: 20);
