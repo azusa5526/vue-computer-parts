@@ -327,6 +327,126 @@
           </div>
         </div>
       </div>
+
+      <div class="card" v-if="cateFilter === 'psu'">
+        <h5 class="mb-0">
+          <button
+            class="btn btn-link collapsed"
+            data-toggle="collapse"
+            data-target="#collapse80plus"
+            aria-expanded="false"
+            aria-controls="collapse80plus"
+          >
+            <div class="card-header">80 Plus Level</div>
+          </button>
+        </h5>
+
+        <div id="collapse80plus" class="collapse" data-parent="#accordion">
+          <div class="card-body">
+            <div>
+              <input type="checkbox" id="bronze" value="bronze" v-model="prodsFilter" />
+              <label for="bronze">Bronze</label>
+            </div>
+            <div>
+              <input type="checkbox" id="silver" value="silver" v-model="prodsFilter" />
+              <label for="silver">Silver</label>
+            </div>
+            <div>
+              <input type="checkbox" id="gold" value="gold" v-model="prodsFilter" />
+              <label for="gold">Gold</label>
+            </div>
+            <div>
+              <input type="checkbox" id="platinum" value="platinum" v-model="prodsFilter" />
+              <label for="platinum">Platinum</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" v-if="cateFilter === 'psu'">
+        <h5 class="mb-0">
+          <button
+            class="btn btn-link collapsed"
+            data-toggle="collapse"
+            data-target="#collapsePsuWatt"
+            aria-expanded="false"
+            aria-controls="collapsePsuWatt"
+          >
+            <div class="card-header">Output Watt</div>
+          </button>
+        </h5>
+
+        <div id="collapsePsuWatt" class="collapse" data-parent="#accordion">
+          <div class="card-body">
+            <div>
+              <input type="checkbox" id="400-700" value="400-700" v-model="prodsFilter" />
+              <label for="400-700">400W - 700W</label>
+            </div>
+            <div>
+              <input type="checkbox" id="700-1000" value="700-1000" v-model="prodsFilter" />
+              <label for="700-1000">700W - 1000W</label>
+            </div>
+            <div>
+              <input type="checkbox" id="1000+" value="1000+" v-model="prodsFilter" />
+              <label for="1000+">1000W +</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" v-if="cateFilter === 'psu'">
+        <h5 class="mb-0">
+          <button
+            class="btn btn-link collapsed"
+            data-toggle="collapse"
+            data-target="#collapseCableConnection"
+            aria-expanded="false"
+            aria-controls="collapseCableConnection"
+          >
+            <div class="card-header">Cable Connection</div>
+          </button>
+        </h5>
+
+        <div id="collapseCableConnection" class="collapse" data-parent="#accordion">
+          <div class="card-body">
+            <div>
+              <input type="checkbox" id="fixed-cable" value="fixed-cable" v-model="prodsFilter" />
+              <label for="fixed-cable">Fixed Cable</label>
+            </div>
+            <div>
+              <input type="checkbox" id="modular-cable" value="modular-cable" v-model="prodsFilter" />
+              <label for="modular-cable">Modular Cable</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" v-if="cateFilter === 'case'">
+        <h5 class="mb-0">
+          <button
+            class="btn btn-link collapsed"
+            data-toggle="collapse"
+            data-target="#collapseCaseSize"
+            aria-expanded="false"
+            aria-controls="collapseCaseSize"
+          >
+            <div class="card-header">Case Size</div>
+          </button>
+        </h5>
+
+        <div id="collapseCaseSize" class="collapse" data-parent="#accordion">
+          <div class="card-body">
+            <div>
+              <input type="checkbox" id="Atx" value="Atx" v-model="prodsFilter" />
+              <label for="Atx">ATX</label>
+            </div>
+            <div>
+              <input type="checkbox" id="matx" value="matx" v-model="prodsFilter" />
+              <label for="matx">m-ATX</label>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </nav>
 </template>
