@@ -150,18 +150,7 @@
                     />
                   </div>
                 </div>
-                <hr />
 
-                <div class="form-group">
-                  <label for="description">PROD DESCRIPTION</label>
-                  <textarea
-                    type="text"
-                    class="form-control"
-                    id="description"
-                    placeholder="INPUT PROD DESCRIPTION"
-                    v-model="tempProduct.description"
-                  ></textarea>
-                </div>
                 <div class="form-group">
                   <label for="content">PROD CONTENT</label>
                   <textarea
@@ -169,7 +158,19 @@
                     class="form-control"
                     id="content"
                     placeholder="INPUT PROD CONTENT"
+                    rows="4"
                     v-model="tempProduct.content"
+                  ></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="description">PROD DESCRIPTION</label>
+                  <textarea
+                    type="text"
+                    class="form-control"
+                    id="description"
+                    placeholder="INPUT PROD DESCRIPTION"
+                    rows="4"
+                    v-model="tempProduct.description"
                   ></textarea>
                 </div>
                 <div class="form-group">

@@ -32,13 +32,13 @@
                 <h3>Social</h3>
               </li>
               <li class="footer-link">
-                <a href="#"><i class="fab fa-facebook-square"></i> Facebook</a>
+                <a href="#"><i class="fab fa-facebook-square mr-1"></i> Facebook</a>
               </li>
               <li class="footer-link">
-                <a href="#"><i class="fab fa-twitter-square"></i> twitter</a>
+                <a href="#"><i class="fab fa-twitter-square mr-1"></i> twitter</a>
               </li>
               <li class="footer-link">
-                <a href="#"><i class="fab fa-instagram-square"></i> instagram</a>
+                <a href="#"><i class="fab fa-instagram-square mr-1"></i> instagram</a>
               </li>
             </ul>
           </div>

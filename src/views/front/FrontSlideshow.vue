@@ -7,10 +7,22 @@
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <div class="rwdimg slide1"></div>
+        <a
+          class="link-block"
+          @click="gotoSingleProduct('-MCF_VwymBeytGPiQ9Ml')"
+          href="#/front_single_product/-MCF_VwymBeytGPiQ9Ml"
+        >
+          <div class="rwdimg slide1"></div>
+        </a>
       </div>
       <div class="carousel-item">
-        <div class="rwdimg slide2"></div>
+        <a
+          class="link-block"
+          @click="gotoSingleProduct('-M9y6Rpb6D6ntBcwB5XZ')"
+          href="#/front_single_product/-M9y6Rpb6D6ntBcwB5XZ"
+        >
+          <div class="rwdimg slide2"></div>
+        </a>
       </div>
       <div class="carousel-item">
         <div class="rwdimg slide3"></div>
@@ -26,3 +38,17 @@
     </a>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {};
+  },
+
+  methods: {
+    gotoSingleProduct(id) {
+      this.$emit("gotoSingleProduct", id);
+    }
+  }
+};
+</script>

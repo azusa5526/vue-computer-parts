@@ -32,17 +32,20 @@
         </ul>
 
         <ul class="navbar-nav align-items-center ml-3">
-          <li class="nav-item">
-            <a class="btn btn-outline-danger mr-2" href="#" v-if="is_login" @click="signOut">
-              Sign out
-              <i class="fas fa-sign-out-alt ml-2"></i>
+          <li>
+            <a class="text-light-danger nav-link mr-2" href="#" v-if="is_login" @click="signOut">
+              SIGN OUT
+              <i class="fas fa-sign-out-alt ml-1"></i>
             </a>
-            <router-link class="btn btn-outline-secondary mr-2" to="/login" v-else>
-              Sign in
-              <i class="fas fa-sign-in-alt ml-2"></i>
+            <router-link class="text-secondary nav-link mr-2" to="/login" v-else>
+              SIGN IN
+              <i class="fas fa-sign-in-alt ml-1"></i>
             </router-link>
-            <router-link class="btn btn-outline-secondary mr-2" to="/home" v-if="is_login">
-              <i class="fas fa-store-alt"></i>
+          </li>
+          <li>
+            <router-link class="text-secondary nav-link mr-2" to="/home" v-if="is_login">
+              FRONT END
+              <i class="fas fa-store-alt ml-1"></i>
             </router-link>
           </li>
         </ul>

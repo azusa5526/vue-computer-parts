@@ -2,7 +2,7 @@
   <div>
     <loading :active.sync="isLoading"></loading>
 
-    <FrontSlideshow class="mb-3"></FrontSlideshow>
+    <FrontSlideshow class="mb-3" @gotoSingleProduct="getProduct"></FrontSlideshow>
 
     <div class="mid-banner mb-3">
       <div class="mid-banner-img">

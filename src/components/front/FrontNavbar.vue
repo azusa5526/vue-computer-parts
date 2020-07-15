@@ -20,42 +20,35 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav align-items-center mr-auto">
         <li class="nav-item">
-          <router-link class="nav-link" to="/Front_check_order">Check Order</router-link>
+          <router-link class="nav-link" to="/Front_check_order">CHECK ORDER</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/frontProducts/all">Products</router-link>
+          <router-link class="nav-link" to="/frontProducts/all">PRODUCTS</router-link>
         </li>
       </ul>
 
       <ul class="navbar-nav align-items-center ml-3">
         <li class="nav-item">
-          <router-link
-            class="btn btn-outline-primary mr-2"
-            to="/shopping_cart/front_cart_items"
-            style="width:115px;"
-          >
+          <router-link class="text-primary nav-link mr-2" to="/shopping_cart/front_cart_items">
             CART
-            <i class="fas fa-shopping-cart ml-2"></i>
+            <i class="fas fa-shopping-cart ml-1"></i>
           </router-link>
-          <a class="btn btn-outline-danger mr-2" href="#" v-if="is_login" @click="signOut">
+        </li>
+        <li>
+          <a class="text-light-danger nav-link mr-1" href="#" v-if="is_login" @click="signOut">
             SIGN OUT
-            <i class="fas fa-sign-out-alt ml-2"></i>
+            <i class="fas fa-sign-out-alt ml-1"></i>
           </a>
-          <router-link
-            class="btn btn-outline-secondary mr-2"
-            to="/login"
-            style="width:115px;"
-            v-else
-          >
+          <router-link class="text-secondary nav-link mr-2" to="/login" v-else>
             SIGN IN
-            <i class="fas fa-sign-in-alt ml-2"></i>
+            <i class="fas fa-sign-in-alt ml-1"></i>
           </router-link>
-          <router-link
-            class="btn btn-outline-secondary mr-2"
-            to="/admin/products"
-            v-if="is_login"
-          >
-            <i class="fas fa-cog"></i>
+        </li>
+
+        <li>
+           <router-link class="text-secondary nav-link mr-2" to="/admin/products" v-if="is_login">
+            BACK END
+            <i class="fas fa-cog ml-1"></i>
           </router-link>
         </li>
       </ul>
@@ -69,13 +62,13 @@
 <script>
 import $ from "jquery";
 
-  $(function () {
-    if ($(window).width() < 768) { 
-      $('.navbar a').on('click', function () {
-        $('.navbar-toggler').click();
-      });
-    }
-  });
+$(function() {
+  if ($(window).width() < 768) {
+    $(".navbar a").on("click", function() {
+      $(".navbar-toggler").click();
+    });
+  }
+});
 
 export default {
   data() {
@@ -108,7 +101,6 @@ export default {
 
   created() {
     this.checkLoginStatus();
-  },
-
+  }
 };
 </script>

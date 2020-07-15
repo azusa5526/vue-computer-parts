@@ -117,9 +117,7 @@ export default {
       },
       clickedButton: "",
       shoppingCart: [],
-      status: {
-        isHero: false
-      }
+      isHero: false,
     };
   },
 
@@ -131,6 +129,15 @@ export default {
   },
 
   methods: {
+    hero() {
+      const vm = this;
+      if (vm.product.category.indexOf("hero") !== -1) {
+        vm.isHero = true;
+      } else {
+        vm.isHero = false;
+      }
+    },
+
     getSingleProduct() {
       const vm = this;
       const api = `${process.env.API_PATH}/api/${process.env.CUSTOM_PATH}/product/${vm.productId}`;
@@ -142,6 +149,7 @@ export default {
           vm.product = response.data.product;
           vm.$set(vm.product, "num", 1);
           vm.isLoading = false;
+          vm.hero();
         }
       });
     },
@@ -273,21 +281,6 @@ export default {
     }
   },
 
-  computed: {
-    isHero() {
-      const vm = this;
-      if (vm.product.category == undefined) {
-        return;
-      } else {
-        if (vm.product.category.indexOf("hero") !== -1) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-    }
-  },
-
   created() {
     const vm = this;
     this.productId = this.$route.params.productID;
@@ -296,7 +289,6 @@ export default {
     );
     this.getSingleProduct();
     this.getCart();
-  },
-
+  }
 };
 </script>

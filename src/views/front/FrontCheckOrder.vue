@@ -19,7 +19,7 @@
 
       <div class="empty-order-wrap" v-if="Object.keys(order.user).length === 0">
         <img src="@/assets/img/box.png" />
-        <h6 class="my-3">Enter your order number</h6>
+        <h6 class="my-3">PLEASE ENTER YOUR ORDER ID</h6>
       </div>
 
       <div class="mt-3" v-if="Object.keys(order.user).length !== 0">
@@ -78,7 +78,7 @@
                 <th>PAYMENT STATUS</th>
                 <td>
                   <span class="text-success" v-if="order.is_paid">PAID</span>
-                  <span class="text-danger" v-else>OUTSTANDING PAYMENT</span>
+                  <span class="text-light-danger" v-else>OUTSTANDING PAYMENT</span>
                 </td>
               </tr>
             </tbody>

@@ -58,7 +58,7 @@
             <th>PAYMENT STATUS</th>
             <td>
               <span class="text-success" v-if="order.is_paid">PAID</span>
-              <span class="text-danger" v-else>OUTSTANDING PAYMENT</span>
+              <span class="text-light-danger" v-else>OUTSTANDING PAYMENT</span>
             </td>
           </tr>
         </tbody>
