@@ -25,7 +25,13 @@
         </a>
       </div>
       <div class="carousel-item">
-        <div class="rwdimg slide3"></div>
+        <a
+          class="link-block"
+          @click="gotoSingleProduct('-MBE7OLMRCOp_Z1Mkj48')"
+          href="#/front_single_product/-MBE7OLMRCOp_Z1Mkj48"
+        >
+          <div class="rwdimg slide3"></div>
+        </a>
       </div>
     </div>
     <a class="carousel-control-prev" href="#frontSlideHome" role="button" data-slide="prev">
