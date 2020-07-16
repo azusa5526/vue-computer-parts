@@ -26,7 +26,6 @@
               @click.middle="getProduct(item.id)"
             >
               <div class="card border-0 shadow-sm">
-
                 <div class="promote-wrap" v-if="item.category.indexOf('hero') !== -1">
                   <img src="@/assets/img/hero_promote_b.png" />
                   <h6 class="promote-content">HREO</h6>
@@ -126,6 +125,9 @@ export default {
       vm.$http.get(api).then(response => {
         if (response.data.success) {
           vm.isLoading = false;
+          vm.$router.push(
+            `../front_single_product/${response.data.product.id}`
+          );
         }
       });
     },
