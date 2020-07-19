@@ -6,7 +6,11 @@
     <div class="product-header" :class="{'mt-3' : !isHero}">
       <div class="row justify-content-center">
         <div class="product-wrap col-12 col-md-6">
-          <div class="product-img" :style="{backgroundImage:'url(' + product.imageUrl + ')'}"></div>
+          <div class="product-img">
+            <div class="abs-wrap">
+              <img :src="product.imageUrl" alt />
+            </div>
+          </div>
         </div>
 
         <div class="product-info col-12 col-md-6">
@@ -18,9 +22,9 @@
           </div>
 
           <div class="product-price d-flex justify-content-between align-items-baseline">
-            <div class="h4 text-danger" v-if="!product.price">{{product.origin_price | currency}}</div>
-            <del class="h5" v-if="product.price">{{product.origin_price | currency}}</del>
-            <div class="h4 text-danger mr-2" v-if="product.price">{{product.price | currency}}</div>
+            <div class="h4 text-danger mb-0" v-if="!product.price">{{product.origin_price | currency}}</div>
+            <del class="h5 mb-0" v-if="product.price">{{product.origin_price | currency}}</del>
+            <div class="h4 text-danger mr-2 mb-0" v-if="product.price">{{product.price | currency}}</div>
           </div>
 
           <pre class="product-content">{{product.content}}</pre>
@@ -69,7 +73,7 @@
 
     <div class="recommand-products">
       <div class="row mb-3">
-        <div class="recommand-title my-2 col-12">
+        <div class="recommand-title mt-1 mb-3 col-12">
           <h5>MAYBE YOU WILL LIKE...</h5>
         </div>
 
@@ -117,7 +121,7 @@ export default {
       },
       clickedButton: "",
       shoppingCart: [],
-      isHero: false,
+      isHero: false
     };
   },
 
