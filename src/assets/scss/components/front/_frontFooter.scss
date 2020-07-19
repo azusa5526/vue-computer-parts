@@ -2,7 +2,8 @@
   background-color:$third;
   color: darken($color: $secondary, $amount: 10);
   min-height: calc(100vh - 450px);
-  padding-top: 3rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 
   .footer-link {
     padding-top: 4px;

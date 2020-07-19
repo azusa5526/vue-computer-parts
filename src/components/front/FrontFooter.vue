@@ -11,7 +11,7 @@
           <div class="row justify-content-center">
             <ul class="px-4">
               <li>
-                <h3>Service</h3>
+                <h3 class="text-center">Service</h3>
               </li>
               <li class="footer-link">
                 <a href="#">Help Center</a>
@@ -29,7 +29,7 @@
 
             <ul ul class="px-4">
               <li>
-                <h3>Social</h3>
+                <h3 class="text-center">Social</h3>
               </li>
               <li class="footer-link">
                 <a href="#"><i class="fab fa-facebook-square mr-1"></i> Facebook</a>

@@ -31,7 +31,7 @@
           <table class="orderList-table table">
             <thead>
               <th>NAME</th>
-              <th class="text-center" width="20%">QUANTITY</th>
+              <th class="text-center" width="20%">QTY</th>
               <th class="text-center">SUB</th>
             </thead>
             <tbody>
