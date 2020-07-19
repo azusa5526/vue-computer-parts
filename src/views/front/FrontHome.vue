@@ -47,7 +47,7 @@
               </div>
               <div
                 class="card-img"
-                style="backgroundImage: url(https://storage.googleapis.com/vue-course-api.appspot.com/andrew%2F1592327410828.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=W3TWo7fHRjye%2Bab2gBDehcX4tA0RmiHaq22QWO%2BAYcb1om7cWEqNKgxVFseLMp0ucFu5ynYFOB6Tvk7pkndCQ2QT32pFppDoyw1aadNSLkkeDGOi3pHiRPlQEjl5bqnk04kaI0oi7JN4xpnTJDVWG5VBJPnOjKTNE5tYYfwcPhL%2FB6OSolKvYLKLw5bFi9YD7LswSo%2Bzp87LNk%2Ff9bSVC568xil98fTHyO5PyrIXiDHKqXitkiisdx9hhtypaqfht9a7HJfImcKSvdIqYPJqGewZHBkv%2BetQv3oUSxvMAS37Aue0lpfK%2Fkw95S1ltn%2FhvJB%2FitDzutj%2BQeL0r4nyGg%3D%3D)"
+                style="backgroundImage: url(https://storage.googleapis.com/vue-course-api.appspot.com/andrew%2F1595182588879.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=oyMqf%2BE5lNkdUijecRoB5O6FqVgbqCFCq%2Be8uQ18TmayqochVFF6CAstKdHQ1k9FTnVrK1802TBuVyNxWGQPIokolNIOfX%2FBe54o3ZTYX94%2FEmzQjrWnNXWsOaPSvfxRhi%2F85eGIW%2BcQ6OUok3haCBgfJ6I6%2BiRfbLLb3TKzbE5XaoCMBYtESdViwlmmt1UAfvcBpXrhgoBLc1QgSyLRv2cqwKZbZ%2FhO1bju9J1F8UPbi742ZBp%2BFfSagn0qaLpfZx5WsHx4fy44T4cDdQH1q1JdtWikKpJRW1eH7Ce1ranVk3N5aRgObmoJKZQtqy7SlkXynKrjIraa7thQZfPB8Q%3D%3D)"
               ></div>
             </div>
           </a>
@@ -85,7 +85,7 @@
               </div>
               <div
                 class="card-img"
-                style="backgroundImage: url(https://storage.googleapis.com/vue-course-api.appspot.com/andrew%2F1593685579560.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=M%2FpP8wHuckq9d5v80q46kL06kanZLHITLi4wXNwwK9DnfaJYCGDEVmDcnQSIjZ7IaWEY2kleyDsaS7oSFgRdFl3ORIDVTCnu2VJKQE9UiMlnzBz4RP2Y5TZUuO8vrEK6aRj8oWo1yvgIT4n7XCLVgqpg3oLRWEsmCDa8CFmOtBEr0uzvXw%2BpJ4pOVLE6aSajH2VEMKI0DcB1WEx0iJ%2Fge5jCdaoLQW7GXC04DRVO98fA8VPQEzjDkV2p0lQm37CEPsT1JA3P24DrbwQAEsq9SDkOOWP5g3OYHtA1wVFQkCXjYT5Bsu4BPcx7BYKY6EGuyC9D76qfmwWhE96YosZNqg%3D%3D)"
+                style="backgroundImage: url(https://storage.googleapis.com/vue-course-api.appspot.com/andrew%2F1595182678769.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=mW9OTUCdtx%2BujL0tPWm5ecH%2Baea0chMB0IjJ0s9%2FWRJBKTZrzb1Xfv3f44cs7MgBqLsIHFx8uCr5TJLXANylzWIEVzYuRBxQ1Om5Pjr5XYjtTBBc2fnLsPOVg%2FEkbEGx%2B8VhS6FBkocFO6qFHzZRBJfxjI6ST0%2BYdHYfV1pkEKO17MD7RwW83PMcFBDAnBnSsu40eYZv%2BI3ouoxmUWVvbNWXbdgeBJHuMvA7xRFHB7BHEzE9OJUDGVJBoXib3CYB%2BpxH45JxFxTXcvf0Ff%2FJAKqkQls1zBLg2X5H2nG4JlsGeHILXXb4cdGCh7fq2E%2FxN0FX1IZIpK1NxGcr3tl99A%3D%3D)"
               ></div>
             </div>
           </a>
