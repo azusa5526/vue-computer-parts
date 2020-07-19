@@ -46,7 +46,7 @@
         </li>
 
         <li>
-           <router-link class="text-secondary nav-link mr-2" to="/admin/products" v-if="is_login">
+          <router-link class="text-secondary nav-link mr-2" to="/admin/products" v-if="is_login">
             BACK END
             <i class="fas fa-cog ml-1"></i>
           </router-link>
@@ -65,7 +65,9 @@ import $ from "jquery";
 $(function() {
   if ($(window).width() < 768) {
     $(".navbar a").on("click", function() {
-      $(".navbar-toggler").click();
+      if ($("#navbarsExampleDefault").hasClass("show")) {
+        $(".navbar-toggler").click();
+      }
     });
   }
 });

@@ -6,7 +6,7 @@
     <div class="product-header" :class="{'mt-3' : !isHero}">
       <div class="row justify-content-center">
         <div class="product-wrap col-12 col-md-6">
-          <div class="product-img" :style="{backgroundImage: `url(${product.imageUrl})`}"></div>
+          <div class="product-img" :style="{backgroundImage:'url(' + product.imageUrl + ')'}"></div>
         </div>
 
         <div class="product-info col-12 col-md-6">
